@@ -1,0 +1,1667 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		53AE76FA27EAB0FE00856BE6 /* NETSAudienceChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AE76F827EAB0FE00856BE6 /* NETSAudienceChatRoomCell.m */; };
+		53AE76FE27EB1DF900856BE6 /* NETSAudienceMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 53AE76FC27EB1DF900856BE6 /* NETSAudienceMask.m */; };
+		53B221BC27F5A8FE00268D17 /* NEOnlinePKDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B221BB27F5A8FE00268D17 /* NEOnlinePKDemoTests.m */; };
+		5E21A38927DF2D9900DF7429 /* NETSInputToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A38827DF2D9900DF7429 /* NETSInputToolBar.m */; };
+		5E21A38C27DF2EF500DF7429 /* NETSAudienceNum.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A38A27DF2EF000DF7429 /* NETSAudienceNum.m */; };
+		5E21A38F27DF311300DF7429 /* NTESKeyboardToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A38E27DF311300DF7429 /* NTESKeyboardToolbarView.m */; };
+		5E21A39327DF319400DF7429 /* NETSLiveChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A39027DF318900DF7429 /* NETSLiveChatView.m */; };
+		5E21A39627DF31BD00DF7429 /* NETSMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A39427DF31B300DF7429 /* NETSMessageModel.m */; };
+		5E21A39927DF31D300DF7429 /* NETSLiveChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A39827DF31D300DF7429 /* NETSLiveChatCell.m */; };
+		5E21A39D27DF36E400DF7429 /* NETSMoreSettingActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A39C27DF36E400DF7429 /* NETSMoreSettingActionSheet.m */; };
+		5E21A3A027DF36FB00DF7429 /* NETSMoreSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A39E27DF36F200DF7429 /* NETSMoreSettingModel.m */; };
+		5E21A3A327DF376300DF7429 /* TopmostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A3A227DF376300DF7429 /* TopmostView.m */; };
+		5E21A3A627DF377E00DF7429 /* NETSMoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A3A427DF377300DF7429 /* NETSMoreSettingCell.m */; };
+		5E21A3A927DF381400DF7429 /* NETSBaseActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A3A827DF381400DF7429 /* NETSBaseActionSheet.m */; };
+		5E21A3AC27DF478600DF7429 /* NETSChoosePKSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A3AB27DF478600DF7429 /* NETSChoosePKSheet.m */; };
+		5E21A3AF27DF479B00DF7429 /* NETSChoosePKCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A3AD27DF479A00DF7429 /* NETSChoosePKCell.m */; };
+		5E2C6E1727E8140E00876F01 /* NETSBeautySettingActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C6E1527E8140E00876F01 /* NETSBeautySettingActionSheet.m */; };
+		5E2C6E1A27E8142500876F01 /* NETSBeautyParam.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C6E1827E8142400876F01 /* NETSBeautyParam.m */; };
+		5E2C6E1D27E8144000876F01 /* NETSFUManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C6E1C27E8144000876F01 /* NETSFUManger.m */; };
+		5E2C6E2127E8159C00876F01 /* NETSFilterSettingActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2C6E2027E8159C00876F01 /* NETSFilterSettingActionSheet.m */; };
+		5E464B2327F29FF800910F24 /* NEPersonInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E464B2227F29FF800910F24 /* NEPersonInfoVC.m */; };
+		5E464B2627F2A00C00910F24 /* NEPersonTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E464B2427F2A00C00910F24 /* NEPersonTextCell.m */; };
+		5E464B2927F2A01700910F24 /* NENicknameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E464B2827F2A01700910F24 /* NENicknameVC.m */; };
+		5E5A792127E75BE400610488 /* NETSGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A792027E75BE400610488 /* NETSGiftModel.m */; };
+		5E5A792727E76B9A00610488 /* NETSLiveUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A792627E76B9A00610488 /* NETSLiveUtils.m */; };
+		5E5A792A27E76CF200610488 /* NETSAudienceSendGiftSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A792827E76CF100610488 /* NETSAudienceSendGiftSheet.m */; };
+		5E5A792D27E76D1F00610488 /* NETSAudienceSendGiftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A792C27E76D1F00610488 /* NETSAudienceSendGiftCell.m */; };
+		5E5A793027E7805500610488 /* NETSLiveApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A792F27E7805500610488 /* NETSLiveApi.m */; };
+		5E5A793427E780A300610488 /* NETSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A793127E7809E00610488 /* NETSRequest.m */; };
+		5E5A793727E780BB00610488 /* NETSApiOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A793627E780BB00610488 /* NETSApiOptions.m */; };
+		5E5A793A27E780D500610488 /* NETSApiModelMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A793927E780D500610488 /* NETSApiModelMapping.m */; };
+		5E5A793D27E7814200610488 /* NETSService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A793B27E7814000610488 /* NETSService.m */; };
+		5E5A794027E7814E00610488 /* SKVObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A793E27E7814C00610488 /* SKVObject.m */; };
+		5E7C87E227F1AE74000C3213 /* UIViewController+Gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87E027F1AE73000C3213 /* UIViewController+Gesture.m */; };
+		5E7C87E527F1B103000C3213 /* NETSPullStreamErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87E327F1B103000C3213 /* NETSPullStreamErrorView.m */; };
+		5E7C87E827F1B11E000C3213 /* NETSLiveEndView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87E727F1B11E000C3213 /* NETSLiveEndView.m */; };
+		5E7C87EB27F1B136000C3213 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87E927F1B135000C3213 /* Reachability.m */; };
+		5E7C87EE27F1B272000C3213 /* NETSLiveBaseErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87ED27F1B272000C3213 /* NETSLiveBaseErrorView.m */; };
+		5E7C87F127F1C3A1000C3213 /* NETSViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87EF27F1C39F000C3213 /* NETSViewFactory.m */; };
+		5E7C87F427F1E872000C3213 /* NEPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87F327F1E872000C3213 /* NEPersonTableViewCell.m */; };
+		5E7C87F727F1E880000C3213 /* NEPersonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87F527F1E87E000C3213 /* NEPersonView.m */; };
+		5E7C87FA27F1E984000C3213 /* NEAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87F927F1E984000C3213 /* NEAboutViewController.m */; };
+		5E7C87FD27F1E9D6000C3213 /* NEBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C87FC27F1E9D6000C3213 /* NEBaseWebViewController.m */; };
+		5E80EBDF27D9EAB6008E0BF5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E80EBDD27D9EAB6008E0BF5 /* TestViewController.m */; };
+		5E80EBE027D9EAB6008E0BF5 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E80EBDE27D9EAB6008E0BF5 /* TestViewController.xib */; };
+		5E864C4927E8CB6E003B2AD1 /* anim_gift_01.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E864C4527E8CB6E003B2AD1 /* anim_gift_01.json */; };
+		5E864C4A27E8CB6E003B2AD1 /* anim_gift_04.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E864C4627E8CB6E003B2AD1 /* anim_gift_04.json */; };
+		5E864C4B27E8CB6E003B2AD1 /* anim_gift_02.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E864C4727E8CB6E003B2AD1 /* anim_gift_02.json */; };
+		5E864C4C27E8CB6E003B2AD1 /* anim_gift_03.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E864C4827E8CB6E003B2AD1 /* anim_gift_03.json */; };
+		5E91D86027CCCEE30019D7EB /* NSMacro.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D85127CCCEE30019D7EB /* NSMacro.m */; };
+		5E91D86127CCCEE30019D7EB /* NETabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D85627CCCEE30019D7EB /* NETabbarController.m */; };
+		5E91D86227CCCEE30019D7EB /* NEBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D85727CCCEE30019D7EB /* NEBaseTableViewController.m */; };
+		5E91D86327CCCEE30019D7EB /* NEBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D85827CCCEE30019D7EB /* NEBaseViewController.m */; };
+		5E91D86427CCCEE30019D7EB /* NEPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D85C27CCCEE30019D7EB /* NEPersonViewController.m */; };
+		5E91D86527CCCEE30019D7EB /* NEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D85E27CCCEE30019D7EB /* NEMenuViewController.m */; };
+		5E91D86927CCD1000019D7EB /* NENavCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D86827CCD0FF0019D7EB /* NENavCustomView.m */; };
+		5E91D86C27CCD1330019D7EB /* NEMenuHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D86A27CCD12B0019D7EB /* NEMenuHeader.m */; };
+		5E91D86F27CCD1480019D7EB /* NEMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D86E27CCD1480019D7EB /* NEMenuCell.m */; };
+		5E91D87327CCE2FE0019D7EB /* NETSLiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D87227CCE2FE0019D7EB /* NETSLiveListViewController.m */; };
+		5E91D87727CCE4080019D7EB /* NETSLiveListVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D87627CCE4070019D7EB /* NETSLiveListVM.m */; };
+		5E91D87C27CCE5C20019D7EB /* NETSEmptyListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D87827CCE5B10019D7EB /* NETSEmptyListView.m */; };
+		5E91D87D27CCE5C20019D7EB /* NETSLiveListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D87927CCE5B70019D7EB /* NETSLiveListCell.m */; };
+		5E91D88027CCE7EC0019D7EB /* UIImage+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91D87E27CCE7E10019D7EB /* UIImage+NTES.m */; };
+		5E9301B227E2D32F0075503D /* NENavigator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9301B127E2D32F0075503D /* NENavigator.m */; };
+		5ECB159B27CDB8AE008FF3A2 /* UIView+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB159A27CDB8AE008FF3A2 /* UIView+NTES.m */; };
+		5ECB159E27CDBE7F008FF3A2 /* NEPkLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB159D27CDBE7F008FF3A2 /* NEPkLiveViewController.m */; };
+		5ECB15A127CDC1FC008FF3A2 /* NETSWarnToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB159F27CDC1FB008FF3A2 /* NETSWarnToast.m */; };
+		5ECB15A427CDC2E7008FF3A2 /* NETSAnchorBottomPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB15A327CDC2E7008FF3A2 /* NETSAnchorBottomPanel.m */; };
+		5ECB15A727CDC2FB008FF3A2 /* UIControl+repeatclick.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB15A527CDC2FA008FF3A2 /* UIControl+repeatclick.m */; };
+		5ECB15AA27CDC375008FF3A2 /* NETSAnchorCoverSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB15A927CDC375008FF3A2 /* NETSAnchorCoverSetting.m */; };
+		5ECB15AD27CDC392008FF3A2 /* UIButton+NTES.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB15AC27CDC392008FF3A2 /* UIButton+NTES.m */; };
+		5ECB15B127CDEB9A008FF3A2 /* NETSAnchorTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECB15B027CDEB9A008FF3A2 /* NETSAnchorTopInfoView.m */; };
+		5ED2AA4427F724C000FF072A /* NMCLiveStreaming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ED2AA4327F724C000FF072A /* NMCLiveStreaming.framework */; platformFilter = ios; };
+		5ED89D4227CCC68000C76510 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED89D4127CCC68000C76510 /* AppDelegate.m */; };
+		5ED89D4B27CCC68000C76510 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED89D4927CCC68000C76510 /* Main.storyboard */; };
+		5ED89D4D27CCC69700C76510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ED89D4C27CCC69700C76510 /* Assets.xcassets */; };
+		5ED89D5027CCC69700C76510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ED89D4E27CCC69700C76510 /* LaunchScreen.storyboard */; };
+		5ED89D5327CCC69700C76510 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED89D5227CCC69700C76510 /* main.m */; };
+		5EEC2EF227E57E68000AC2D9 /* NETSInvitingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2EF127E57E68000AC2D9 /* NETSInvitingBar.m */; };
+		5EEC2EF527E57EDF000AC2D9 /* UIView+Gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2EF327E57EDF000AC2D9 /* UIView+Gradient.m */; };
+		5EEC2EF827E58292000AC2D9 /* NETSPkStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2EF627E58292000AC2D9 /* NETSPkStatusBar.m */; };
+		5EEC2EFB27E582BE000AC2D9 /* NETSPkTimeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2EFA27E582BE000AC2D9 /* NETSPkTimeLabel.m */; };
+		5EEC2EFE27E58522000AC2D9 /* NETSInviteeInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2EFC27E58521000AC2D9 /* NETSInviteeInfoView.m */; };
+		5EEC2F1027E6CAD2000AC2D9 /* NETSAudienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F0F27E6CAD2000AC2D9 /* NETSAudienceViewController.m */; };
+		5EEC2F1327E6D17B000AC2D9 /* NETSAudienceBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F1227E6D17B000AC2D9 /* NETSAudienceBottomBar.m */; };
+		5EEC2F1627E6D3B5000AC2D9 /* NETSGiftAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F1427E6D3B5000AC2D9 /* NETSGiftAnimationView.m */; };
+		5EEC2FA527E6D3D4000AC2D9 /* LOTRenderNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F1927E6D3D4000AC2D9 /* LOTRenderNode.m */; };
+		5EEC2FA627E6D3D4000AC2D9 /* LOTTrimPathNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F1E27E6D3D4000AC2D9 /* LOTTrimPathNode.m */; };
+		5EEC2FA727E6D3D4000AC2D9 /* LOTColorInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2027E6D3D4000AC2D9 /* LOTColorInterpolator.m */; };
+		5EEC2FA827E6D3D4000AC2D9 /* LOTPathInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2127E6D3D4000AC2D9 /* LOTPathInterpolator.m */; };
+		5EEC2FA927E6D3D4000AC2D9 /* LOTSizeInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2927E6D3D4000AC2D9 /* LOTSizeInterpolator.m */; };
+		5EEC2FAA27E6D3D4000AC2D9 /* LOTPointInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2B27E6D3D4000AC2D9 /* LOTPointInterpolator.m */; };
+		5EEC2FAB27E6D3D4000AC2D9 /* LOTValueInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2C27E6D3D4000AC2D9 /* LOTValueInterpolator.m */; };
+		5EEC2FAC27E6D3D4000AC2D9 /* LOTTransformInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2D27E6D3D4000AC2D9 /* LOTTransformInterpolator.m */; };
+		5EEC2FAD27E6D3D4000AC2D9 /* LOTArrayInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2E27E6D3D4000AC2D9 /* LOTArrayInterpolator.m */; };
+		5EEC2FAE27E6D3D4000AC2D9 /* LOTNumberInterpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F2F27E6D3D4000AC2D9 /* LOTNumberInterpolator.m */; };
+		5EEC2FAF27E6D3D4000AC2D9 /* LOTAnimatorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3027E6D3D4000AC2D9 /* LOTAnimatorNode.m */; };
+		5EEC2FB027E6D3D4000AC2D9 /* LOTPathAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3227E6D3D4000AC2D9 /* LOTPathAnimator.m */; };
+		5EEC2FB127E6D3D4000AC2D9 /* LOTPolystarAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3327E6D3D4000AC2D9 /* LOTPolystarAnimator.m */; };
+		5EEC2FB227E6D3D4000AC2D9 /* LOTPolygonAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3427E6D3D4000AC2D9 /* LOTPolygonAnimator.m */; };
+		5EEC2FB327E6D3D4000AC2D9 /* LOTCircleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3627E6D3D4000AC2D9 /* LOTCircleAnimator.m */; };
+		5EEC2FB427E6D3D4000AC2D9 /* LOTRoundedRectAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3A27E6D3D4000AC2D9 /* LOTRoundedRectAnimator.m */; };
+		5EEC2FB527E6D3D4000AC2D9 /* LOTRenderGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3D27E6D3D4000AC2D9 /* LOTRenderGroup.m */; };
+		5EEC2FB627E6D3D4000AC2D9 /* LOTGradientFillRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F3E27E6D3D4000AC2D9 /* LOTGradientFillRender.m */; };
+		5EEC2FB727E6D3D4000AC2D9 /* LOTStrokeRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F4327E6D3D4000AC2D9 /* LOTStrokeRenderer.m */; };
+		5EEC2FB827E6D3D4000AC2D9 /* LOTFillRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F4427E6D3D4000AC2D9 /* LOTFillRenderer.m */; };
+		5EEC2FB927E6D3D4000AC2D9 /* LOTRepeaterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F4627E6D3D4000AC2D9 /* LOTRepeaterRenderer.m */; };
+		5EEC2FBA27E6D3D4000AC2D9 /* UIBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F4927E6D3D4000AC2D9 /* UIBezierPath.m */; };
+		5EEC2FBB27E6D3D4000AC2D9 /* UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F4C27E6D3D4000AC2D9 /* UIColor.m */; };
+		5EEC2FBC27E6D3D5000AC2D9 /* NSValue+Compat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F4F27E6D3D4000AC2D9 /* NSValue+Compat.m */; };
+		5EEC2FBD27E6D3D5000AC2D9 /* CALayer+Compat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5027E6D3D4000AC2D9 /* CALayer+Compat.m */; };
+		5EEC2FBE27E6D3D5000AC2D9 /* LOTMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5227E6D3D4000AC2D9 /* LOTMask.m */; };
+		5EEC2FBF27E6D3D5000AC2D9 /* LOTLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5327E6D3D4000AC2D9 /* LOTLayer.m */; };
+		5EEC2FC027E6D3D5000AC2D9 /* LOTAssetGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5427E6D3D4000AC2D9 /* LOTAssetGroup.m */; };
+		5EEC2FC127E6D3D5000AC2D9 /* LOTLayerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5927E6D3D4000AC2D9 /* LOTLayerGroup.m */; };
+		5EEC2FC227E6D3D5000AC2D9 /* LOTShapeStar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5A27E6D3D4000AC2D9 /* LOTShapeStar.m */; };
+		5EEC2FC327E6D3D5000AC2D9 /* LOTShapeTrimPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5B27E6D3D4000AC2D9 /* LOTShapeTrimPath.m */; };
+		5EEC2FC427E6D3D5000AC2D9 /* LOTShapeGradientFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F5F27E6D3D4000AC2D9 /* LOTShapeGradientFill.m */; };
+		5EEC2FC527E6D3D5000AC2D9 /* LOTAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6227E6D3D4000AC2D9 /* LOTAsset.m */; };
+		5EEC2FC627E6D3D5000AC2D9 /* LOTShapeRepeater.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6427E6D3D4000AC2D9 /* LOTShapeRepeater.m */; };
+		5EEC2FC727E6D3D5000AC2D9 /* LOTShapeRectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6627E6D3D4000AC2D9 /* LOTShapeRectangle.m */; };
+		5EEC2FC827E6D3D5000AC2D9 /* LOTShapeCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6B27E6D3D4000AC2D9 /* LOTShapeCircle.m */; };
+		5EEC2FC927E6D3D5000AC2D9 /* LOTShapePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6C27E6D3D4000AC2D9 /* LOTShapePath.m */; };
+		5EEC2FCA27E6D3D5000AC2D9 /* LOTShapeGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6D27E6D3D4000AC2D9 /* LOTShapeGroup.m */; };
+		5EEC2FCB27E6D3D5000AC2D9 /* LOTShapeFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F6F27E6D3D4000AC2D9 /* LOTShapeFill.m */; };
+		5EEC2FCC27E6D3D5000AC2D9 /* LOTShapeTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7027E6D3D4000AC2D9 /* LOTShapeTransform.m */; };
+		5EEC2FCD27E6D3D5000AC2D9 /* LOTShapeStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7227E6D3D4000AC2D9 /* LOTShapeStroke.m */; };
+		5EEC2FCE27E6D3D5000AC2D9 /* CGGeometry+LOTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7627E6D3D4000AC2D9 /* CGGeometry+LOTAdditions.m */; };
+		5EEC2FCF27E6D3D5000AC2D9 /* LOTBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7727E6D3D4000AC2D9 /* LOTBezierPath.m */; };
+		5EEC2FD027E6D3D5000AC2D9 /* LOTRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7927E6D3D4000AC2D9 /* LOTRadialGradientLayer.m */; };
+		5EEC2FD127E6D3D5000AC2D9 /* UIColor+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7C27E6D3D4000AC2D9 /* UIColor+Expanded.m */; };
+		5EEC2FD227E6D3D5000AC2D9 /* LOTAnimationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7E27E6D3D4000AC2D9 /* LOTAnimationCache.m */; };
+		5EEC2FD327E6D3D5000AC2D9 /* LOTComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F7F27E6D3D4000AC2D9 /* LOTComposition.m */; };
+		5EEC2FD427E6D3D5000AC2D9 /* LOTValueCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8027E6D3D4000AC2D9 /* LOTValueCallback.m */; };
+		5EEC2FD527E6D3D5000AC2D9 /* LOTBlockCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8127E6D3D4000AC2D9 /* LOTBlockCallback.m */; };
+		5EEC2FD627E6D3D5000AC2D9 /* LOTAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8227E6D3D4000AC2D9 /* LOTAnimationView.m */; };
+		5EEC2FD727E6D3D5000AC2D9 /* LOTAnimationTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8327E6D3D4000AC2D9 /* LOTAnimationTransitionController.m */; };
+		5EEC2FD827E6D3D5000AC2D9 /* LOTKeypath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8527E6D3D4000AC2D9 /* LOTKeypath.m */; };
+		5EEC2FD927E6D3D5000AC2D9 /* LOTCacheProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8627E6D3D4000AC2D9 /* LOTCacheProvider.m */; };
+		5EEC2FDA27E6D3D5000AC2D9 /* LOTAnimatedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8727E6D3D4000AC2D9 /* LOTAnimatedControl.m */; };
+		5EEC2FDB27E6D3D5000AC2D9 /* LOTInterpolatorCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8827E6D3D4000AC2D9 /* LOTInterpolatorCallback.m */; };
+		5EEC2FDC27E6D3D5000AC2D9 /* LOTAnimatedSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8927E6D3D4000AC2D9 /* LOTAnimatedSwitch.m */; };
+		5EEC2FDD27E6D3D5000AC2D9 /* LOTKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8B27E6D3D4000AC2D9 /* LOTKeyframe.m */; };
+		5EEC2FDE27E6D3D5000AC2D9 /* LOTBezierData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F8C27E6D3D4000AC2D9 /* LOTBezierData.m */; };
+		5EEC2FDF27E6D3D5000AC2D9 /* LOTLayerContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F9027E6D3D4000AC2D9 /* LOTLayerContainer.m */; };
+		5EEC2FE027E6D3D5000AC2D9 /* LOTCompositionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F9427E6D3D4000AC2D9 /* LOTCompositionContainer.m */; };
+		5EEC2FE127E6D3D5000AC2D9 /* LOTMaskContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2F9527E6D3D4000AC2D9 /* LOTMaskContainer.m */; };
+		5EEC2FE427E7149E000AC2D9 /* NETSToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEC2FE227E7149C000AC2D9 /* NETSToast.m */; };
+		8D05C3BC61DB7C88A928598A /* Pods_NEOnlinePKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E0E86809F5CE294BC680564 /* Pods_NEOnlinePKDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		53B221BD27F5A8FE00268D17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5ED89D3527CCC68000C76510 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5ED89D3C27CCC68000C76510;
+			remoteInfo = NEOnlinePKDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E0E86809F5CE294BC680564 /* Pods_NEOnlinePKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NEOnlinePKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53AE76F827EAB0FE00856BE6 /* NETSAudienceChatRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceChatRoomCell.m; sourceTree = "<group>"; };
+		53AE76F927EAB0FE00856BE6 /* NETSAudienceChatRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAudienceChatRoomCell.h; sourceTree = "<group>"; };
+		53AE76FC27EB1DF900856BE6 /* NETSAudienceMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceMask.m; sourceTree = "<group>"; };
+		53AE76FD27EB1DF900856BE6 /* NETSAudienceMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAudienceMask.h; sourceTree = "<group>"; };
+		53B221B927F5A8FE00268D17 /* NEOnlinePKDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NEOnlinePKDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		53B221BB27F5A8FE00268D17 /* NEOnlinePKDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEOnlinePKDemoTests.m; sourceTree = "<group>"; };
+		5E21A38727DF2D9400DF7429 /* NETSInputToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSInputToolBar.h; sourceTree = "<group>"; };
+		5E21A38827DF2D9900DF7429 /* NETSInputToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSInputToolBar.m; sourceTree = "<group>"; };
+		5E21A38A27DF2EF000DF7429 /* NETSAudienceNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceNum.m; sourceTree = "<group>"; };
+		5E21A38B27DF2EF500DF7429 /* NETSAudienceNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAudienceNum.h; sourceTree = "<group>"; };
+		5E21A38D27DF310B00DF7429 /* NTESKeyboardToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTESKeyboardToolbarView.h; sourceTree = "<group>"; };
+		5E21A38E27DF311300DF7429 /* NTESKeyboardToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTESKeyboardToolbarView.m; sourceTree = "<group>"; };
+		5E21A39027DF318900DF7429 /* NETSLiveChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveChatView.m; sourceTree = "<group>"; };
+		5E21A39427DF31B300DF7429 /* NETSMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSMessageModel.m; sourceTree = "<group>"; };
+		5E21A39527DF31BD00DF7429 /* NETSMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSMessageModel.h; sourceTree = "<group>"; };
+		5E21A39727DF31C900DF7429 /* NETSLiveChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveChatCell.h; sourceTree = "<group>"; };
+		5E21A39827DF31D300DF7429 /* NETSLiveChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveChatCell.m; sourceTree = "<group>"; };
+		5E21A39B27DF36DB00DF7429 /* NETSMoreSettingActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSMoreSettingActionSheet.h; sourceTree = "<group>"; };
+		5E21A39C27DF36E400DF7429 /* NETSMoreSettingActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSMoreSettingActionSheet.m; sourceTree = "<group>"; };
+		5E21A39E27DF36F200DF7429 /* NETSMoreSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSMoreSettingModel.m; sourceTree = "<group>"; };
+		5E21A39F27DF36FB00DF7429 /* NETSMoreSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSMoreSettingModel.h; sourceTree = "<group>"; };
+		5E21A3A127DF375A00DF7429 /* TopmostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopmostView.h; sourceTree = "<group>"; };
+		5E21A3A227DF376300DF7429 /* TopmostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopmostView.m; sourceTree = "<group>"; };
+		5E21A3A427DF377300DF7429 /* NETSMoreSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSMoreSettingCell.m; sourceTree = "<group>"; };
+		5E21A3A527DF377E00DF7429 /* NETSMoreSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSMoreSettingCell.h; sourceTree = "<group>"; };
+		5E21A3A727DF380C00DF7429 /* NETSBaseActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSBaseActionSheet.h; sourceTree = "<group>"; };
+		5E21A3A827DF381400DF7429 /* NETSBaseActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSBaseActionSheet.m; sourceTree = "<group>"; };
+		5E21A3AA27DF478600DF7429 /* NETSChoosePKSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSChoosePKSheet.h; sourceTree = "<group>"; };
+		5E21A3AB27DF478600DF7429 /* NETSChoosePKSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSChoosePKSheet.m; sourceTree = "<group>"; };
+		5E21A3AD27DF479A00DF7429 /* NETSChoosePKCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSChoosePKCell.m; sourceTree = "<group>"; };
+		5E21A3AE27DF479B00DF7429 /* NETSChoosePKCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSChoosePKCell.h; sourceTree = "<group>"; };
+		5E21A3B127DF6A0400DF7429 /* NETSLiveChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveChatView.h; sourceTree = "<group>"; };
+		5E2C6E1527E8140E00876F01 /* NETSBeautySettingActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSBeautySettingActionSheet.m; sourceTree = "<group>"; };
+		5E2C6E1627E8140E00876F01 /* NETSBeautySettingActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSBeautySettingActionSheet.h; sourceTree = "<group>"; };
+		5E2C6E1827E8142400876F01 /* NETSBeautyParam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSBeautyParam.m; sourceTree = "<group>"; };
+		5E2C6E1927E8142500876F01 /* NETSBeautyParam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSBeautyParam.h; sourceTree = "<group>"; };
+		5E2C6E1B27E8144000876F01 /* NETSFUManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSFUManger.h; sourceTree = "<group>"; };
+		5E2C6E1C27E8144000876F01 /* NETSFUManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSFUManger.m; sourceTree = "<group>"; };
+		5E2C6E1E27E814EA00876F01 /* authpack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = authpack.h; sourceTree = "<group>"; };
+		5E2C6E1F27E8159C00876F01 /* NETSFilterSettingActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSFilterSettingActionSheet.h; sourceTree = "<group>"; };
+		5E2C6E2027E8159C00876F01 /* NETSFilterSettingActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSFilterSettingActionSheet.m; sourceTree = "<group>"; };
+		5E464B2127F29FF700910F24 /* NEPersonInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEPersonInfoVC.h; sourceTree = "<group>"; };
+		5E464B2227F29FF800910F24 /* NEPersonInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEPersonInfoVC.m; sourceTree = "<group>"; };
+		5E464B2427F2A00C00910F24 /* NEPersonTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEPersonTextCell.m; sourceTree = "<group>"; };
+		5E464B2527F2A00C00910F24 /* NEPersonTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEPersonTextCell.h; sourceTree = "<group>"; };
+		5E464B2727F2A01600910F24 /* NENicknameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NENicknameVC.h; sourceTree = "<group>"; };
+		5E464B2827F2A01700910F24 /* NENicknameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NENicknameVC.m; sourceTree = "<group>"; };
+		5E5A791F27E75BE400610488 /* NETSGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSGiftModel.h; sourceTree = "<group>"; };
+		5E5A792027E75BE400610488 /* NETSGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSGiftModel.m; sourceTree = "<group>"; };
+		5E5A792527E76B9900610488 /* NETSLiveUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveUtils.h; sourceTree = "<group>"; };
+		5E5A792627E76B9A00610488 /* NETSLiveUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveUtils.m; sourceTree = "<group>"; };
+		5E5A792827E76CF100610488 /* NETSAudienceSendGiftSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceSendGiftSheet.m; sourceTree = "<group>"; };
+		5E5A792927E76CF200610488 /* NETSAudienceSendGiftSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAudienceSendGiftSheet.h; sourceTree = "<group>"; };
+		5E5A792B27E76D1E00610488 /* NETSAudienceSendGiftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAudienceSendGiftCell.h; sourceTree = "<group>"; };
+		5E5A792C27E76D1F00610488 /* NETSAudienceSendGiftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceSendGiftCell.m; sourceTree = "<group>"; };
+		5E5A792E27E7805300610488 /* NETSLiveApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveApi.h; sourceTree = "<group>"; };
+		5E5A792F27E7805500610488 /* NETSLiveApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveApi.m; sourceTree = "<group>"; };
+		5E5A793127E7809E00610488 /* NETSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSRequest.m; sourceTree = "<group>"; };
+		5E5A793327E780A200610488 /* NETSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSRequest.h; sourceTree = "<group>"; };
+		5E5A793527E780BA00610488 /* NETSApiOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSApiOptions.h; sourceTree = "<group>"; };
+		5E5A793627E780BB00610488 /* NETSApiOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSApiOptions.m; sourceTree = "<group>"; };
+		5E5A793827E780D300610488 /* NETSApiModelMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSApiModelMapping.h; sourceTree = "<group>"; };
+		5E5A793927E780D500610488 /* NETSApiModelMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSApiModelMapping.m; sourceTree = "<group>"; };
+		5E5A793B27E7814000610488 /* NETSService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSService.m; sourceTree = "<group>"; };
+		5E5A793C27E7814200610488 /* NETSService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSService.h; sourceTree = "<group>"; };
+		5E5A793E27E7814C00610488 /* SKVObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKVObject.m; sourceTree = "<group>"; };
+		5E5A793F27E7814E00610488 /* SKVObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKVObject.h; sourceTree = "<group>"; };
+		5E7C87E027F1AE73000C3213 /* UIViewController+Gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Gesture.m"; sourceTree = "<group>"; };
+		5E7C87E127F1AE74000C3213 /* UIViewController+Gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Gesture.h"; sourceTree = "<group>"; };
+		5E7C87E327F1B103000C3213 /* NETSPullStreamErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSPullStreamErrorView.m; sourceTree = "<group>"; };
+		5E7C87E427F1B103000C3213 /* NETSPullStreamErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSPullStreamErrorView.h; sourceTree = "<group>"; };
+		5E7C87E627F1B11E000C3213 /* NETSLiveEndView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveEndView.h; sourceTree = "<group>"; };
+		5E7C87E727F1B11E000C3213 /* NETSLiveEndView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveEndView.m; sourceTree = "<group>"; };
+		5E7C87E927F1B135000C3213 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5E7C87EA27F1B136000C3213 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		5E7C87EC27F1B272000C3213 /* NETSLiveBaseErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveBaseErrorView.h; sourceTree = "<group>"; };
+		5E7C87ED27F1B272000C3213 /* NETSLiveBaseErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveBaseErrorView.m; sourceTree = "<group>"; };
+		5E7C87EF27F1C39F000C3213 /* NETSViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSViewFactory.m; sourceTree = "<group>"; };
+		5E7C87F027F1C3A1000C3213 /* NETSViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSViewFactory.h; sourceTree = "<group>"; };
+		5E7C87F227F1E871000C3213 /* NEPersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEPersonTableViewCell.h; sourceTree = "<group>"; };
+		5E7C87F327F1E872000C3213 /* NEPersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEPersonTableViewCell.m; sourceTree = "<group>"; };
+		5E7C87F527F1E87E000C3213 /* NEPersonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEPersonView.m; sourceTree = "<group>"; };
+		5E7C87F627F1E880000C3213 /* NEPersonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEPersonView.h; sourceTree = "<group>"; };
+		5E7C87F827F1E983000C3213 /* NEAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEAboutViewController.h; sourceTree = "<group>"; };
+		5E7C87F927F1E984000C3213 /* NEAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEAboutViewController.m; sourceTree = "<group>"; };
+		5E7C87FB27F1E9D4000C3213 /* NEBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEBaseWebViewController.h; sourceTree = "<group>"; };
+		5E7C87FC27F1E9D6000C3213 /* NEBaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEBaseWebViewController.m; sourceTree = "<group>"; };
+		5E80EBDC27D9EAB6008E0BF5 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		5E80EBDD27D9EAB6008E0BF5 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		5E80EBDE27D9EAB6008E0BF5 /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		5E864C4527E8CB6E003B2AD1 /* anim_gift_01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_gift_01.json; sourceTree = "<group>"; };
+		5E864C4627E8CB6E003B2AD1 /* anim_gift_04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_gift_04.json; sourceTree = "<group>"; };
+		5E864C4727E8CB6E003B2AD1 /* anim_gift_02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_gift_02.json; sourceTree = "<group>"; };
+		5E864C4827E8CB6E003B2AD1 /* anim_gift_03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = anim_gift_03.json; sourceTree = "<group>"; };
+		5E91D85127CCCEE30019D7EB /* NSMacro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMacro.m; sourceTree = "<group>"; };
+		5E91D85227CCCEE30019D7EB /* NSMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMacro.h; sourceTree = "<group>"; };
+		5E91D85427CCCEE30019D7EB /* NEBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEBaseViewController.h; sourceTree = "<group>"; };
+		5E91D85527CCCEE30019D7EB /* NEBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEBaseTableViewController.h; sourceTree = "<group>"; };
+		5E91D85627CCCEE30019D7EB /* NETabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETabbarController.m; sourceTree = "<group>"; };
+		5E91D85727CCCEE30019D7EB /* NEBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEBaseTableViewController.m; sourceTree = "<group>"; };
+		5E91D85827CCCEE30019D7EB /* NEBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEBaseViewController.m; sourceTree = "<group>"; };
+		5E91D85927CCCEE30019D7EB /* NETabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETabbarController.h; sourceTree = "<group>"; };
+		5E91D85B27CCCEE30019D7EB /* NEPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEPersonViewController.h; sourceTree = "<group>"; };
+		5E91D85C27CCCEE30019D7EB /* NEPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEPersonViewController.m; sourceTree = "<group>"; };
+		5E91D85E27CCCEE30019D7EB /* NEMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEMenuViewController.m; sourceTree = "<group>"; };
+		5E91D85F27CCCEE30019D7EB /* NEMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEMenuViewController.h; sourceTree = "<group>"; };
+		5E91D86627CCCEEB0019D7EB /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		5E91D86727CCD0FA0019D7EB /* NENavCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NENavCustomView.h; sourceTree = "<group>"; };
+		5E91D86827CCD0FF0019D7EB /* NENavCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NENavCustomView.m; sourceTree = "<group>"; };
+		5E91D86A27CCD12B0019D7EB /* NEMenuHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEMenuHeader.m; sourceTree = "<group>"; };
+		5E91D86B27CCD1330019D7EB /* NEMenuHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEMenuHeader.h; sourceTree = "<group>"; };
+		5E91D86D27CCD1400019D7EB /* NEMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEMenuCell.h; sourceTree = "<group>"; };
+		5E91D86E27CCD1480019D7EB /* NEMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEMenuCell.m; sourceTree = "<group>"; };
+		5E91D87127CCE2FE0019D7EB /* NETSLiveListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NETSLiveListViewController.h; sourceTree = "<group>"; };
+		5E91D87227CCE2FE0019D7EB /* NETSLiveListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NETSLiveListViewController.m; sourceTree = "<group>"; };
+		5E91D87527CCE3FE0019D7EB /* NETSLiveListVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveListVM.h; sourceTree = "<group>"; };
+		5E91D87627CCE4070019D7EB /* NETSLiveListVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveListVM.m; sourceTree = "<group>"; };
+		5E91D87827CCE5B10019D7EB /* NETSEmptyListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSEmptyListView.m; sourceTree = "<group>"; };
+		5E91D87927CCE5B70019D7EB /* NETSLiveListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSLiveListCell.m; sourceTree = "<group>"; };
+		5E91D87A27CCE5BC0019D7EB /* NETSLiveListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSLiveListCell.h; sourceTree = "<group>"; };
+		5E91D87B27CCE5C20019D7EB /* NETSEmptyListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSEmptyListView.h; sourceTree = "<group>"; };
+		5E91D87E27CCE7E10019D7EB /* UIImage+NTES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NTES.m"; sourceTree = "<group>"; };
+		5E91D87F27CCE7EC0019D7EB /* UIImage+NTES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NTES.h"; sourceTree = "<group>"; };
+		5E9301B027E2D32E0075503D /* NENavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NENavigator.h; sourceTree = "<group>"; };
+		5E9301B127E2D32F0075503D /* NENavigator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NENavigator.m; sourceTree = "<group>"; };
+		5ECB159927CDB8AE008FF3A2 /* UIView+NTES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NTES.h"; sourceTree = "<group>"; };
+		5ECB159A27CDB8AE008FF3A2 /* UIView+NTES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NTES.m"; sourceTree = "<group>"; };
+		5ECB159C27CDBE7F008FF3A2 /* NEPkLiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEPkLiveViewController.h; sourceTree = "<group>"; };
+		5ECB159D27CDBE7F008FF3A2 /* NEPkLiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEPkLiveViewController.m; sourceTree = "<group>"; };
+		5ECB159F27CDC1FB008FF3A2 /* NETSWarnToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSWarnToast.m; sourceTree = "<group>"; };
+		5ECB15A027CDC1FC008FF3A2 /* NETSWarnToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSWarnToast.h; sourceTree = "<group>"; };
+		5ECB15A227CDC2E6008FF3A2 /* NETSAnchorBottomPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAnchorBottomPanel.h; sourceTree = "<group>"; };
+		5ECB15A327CDC2E7008FF3A2 /* NETSAnchorBottomPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAnchorBottomPanel.m; sourceTree = "<group>"; };
+		5ECB15A527CDC2FA008FF3A2 /* UIControl+repeatclick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+repeatclick.m"; sourceTree = "<group>"; };
+		5ECB15A627CDC2FB008FF3A2 /* UIControl+repeatclick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+repeatclick.h"; sourceTree = "<group>"; };
+		5ECB15A827CDC374008FF3A2 /* NETSAnchorCoverSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAnchorCoverSetting.h; sourceTree = "<group>"; };
+		5ECB15A927CDC375008FF3A2 /* NETSAnchorCoverSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAnchorCoverSetting.m; sourceTree = "<group>"; };
+		5ECB15AB27CDC391008FF3A2 /* UIButton+NTES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+NTES.h"; sourceTree = "<group>"; };
+		5ECB15AC27CDC392008FF3A2 /* UIButton+NTES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+NTES.m"; sourceTree = "<group>"; };
+		5ECB15AF27CDEB95008FF3A2 /* NETSAnchorTopInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAnchorTopInfoView.h; sourceTree = "<group>"; };
+		5ECB15B027CDEB9A008FF3A2 /* NETSAnchorTopInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAnchorTopInfoView.m; sourceTree = "<group>"; };
+		5ED2AA4327F724C000FF072A /* NMCLiveStreaming.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NMCLiveStreaming.framework; sourceTree = "<group>"; };
+		5ED89D3D27CCC68000C76510 /* NEOnlinePKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NEOnlinePKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ED89D4027CCC68000C76510 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5ED89D4127CCC68000C76510 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5ED89D4A27CCC68000C76510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5ED89D4C27CCC69700C76510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5ED89D4F27CCC69700C76510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5ED89D5127CCC69700C76510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ED89D5227CCC69700C76510 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5EEC2EF027E57E67000AC2D9 /* NETSInvitingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSInvitingBar.h; sourceTree = "<group>"; };
+		5EEC2EF127E57E68000AC2D9 /* NETSInvitingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSInvitingBar.m; sourceTree = "<group>"; };
+		5EEC2EF327E57EDF000AC2D9 /* UIView+Gradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Gradient.m"; sourceTree = "<group>"; };
+		5EEC2EF427E57EDF000AC2D9 /* UIView+Gradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Gradient.h"; sourceTree = "<group>"; };
+		5EEC2EF627E58292000AC2D9 /* NETSPkStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSPkStatusBar.m; sourceTree = "<group>"; };
+		5EEC2EF727E58292000AC2D9 /* NETSPkStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSPkStatusBar.h; sourceTree = "<group>"; };
+		5EEC2EF927E582BD000AC2D9 /* NETSPkTimeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSPkTimeLabel.h; sourceTree = "<group>"; };
+		5EEC2EFA27E582BE000AC2D9 /* NETSPkTimeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSPkTimeLabel.m; sourceTree = "<group>"; };
+		5EEC2EFC27E58521000AC2D9 /* NETSInviteeInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSInviteeInfoView.m; sourceTree = "<group>"; };
+		5EEC2EFD27E58522000AC2D9 /* NETSInviteeInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSInviteeInfoView.h; sourceTree = "<group>"; };
+		5EEC2F0E27E6CAD2000AC2D9 /* NETSAudienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NETSAudienceViewController.h; sourceTree = "<group>"; };
+		5EEC2F0F27E6CAD2000AC2D9 /* NETSAudienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceViewController.m; sourceTree = "<group>"; };
+		5EEC2F1127E6D17A000AC2D9 /* NETSAudienceBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSAudienceBottomBar.h; sourceTree = "<group>"; };
+		5EEC2F1227E6D17B000AC2D9 /* NETSAudienceBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSAudienceBottomBar.m; sourceTree = "<group>"; };
+		5EEC2F1427E6D3B5000AC2D9 /* NETSGiftAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSGiftAnimationView.m; sourceTree = "<group>"; };
+		5EEC2F1527E6D3B5000AC2D9 /* NETSGiftAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSGiftAnimationView.h; sourceTree = "<group>"; };
+		5EEC2F1927E6D3D4000AC2D9 /* LOTRenderNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTRenderNode.m; sourceTree = "<group>"; };
+		5EEC2F1A27E6D3D4000AC2D9 /* LOTAnimatorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimatorNode.h; sourceTree = "<group>"; };
+		5EEC2F1B27E6D3D4000AC2D9 /* LOTRenderNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTRenderNode.h; sourceTree = "<group>"; };
+		5EEC2F1D27E6D3D4000AC2D9 /* LOTTrimPathNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTTrimPathNode.h; sourceTree = "<group>"; };
+		5EEC2F1E27E6D3D4000AC2D9 /* LOTTrimPathNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTTrimPathNode.m; sourceTree = "<group>"; };
+		5EEC2F2027E6D3D4000AC2D9 /* LOTColorInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTColorInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2127E6D3D4000AC2D9 /* LOTPathInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTPathInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2227E6D3D4000AC2D9 /* LOTSizeInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTSizeInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2327E6D3D4000AC2D9 /* LOTValueInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTValueInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2427E6D3D4000AC2D9 /* LOTPointInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTPointInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2527E6D3D4000AC2D9 /* LOTNumberInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTNumberInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2627E6D3D4000AC2D9 /* LOTTransformInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTTransformInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2727E6D3D4000AC2D9 /* LOTArrayInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTArrayInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2827E6D3D4000AC2D9 /* LOTColorInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTColorInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2927E6D3D4000AC2D9 /* LOTSizeInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTSizeInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2A27E6D3D4000AC2D9 /* LOTPathInterpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTPathInterpolator.h; sourceTree = "<group>"; };
+		5EEC2F2B27E6D3D4000AC2D9 /* LOTPointInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTPointInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2C27E6D3D4000AC2D9 /* LOTValueInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTValueInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2D27E6D3D4000AC2D9 /* LOTTransformInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTTransformInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2E27E6D3D4000AC2D9 /* LOTArrayInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTArrayInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F2F27E6D3D4000AC2D9 /* LOTNumberInterpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTNumberInterpolator.m; sourceTree = "<group>"; };
+		5EEC2F3027E6D3D4000AC2D9 /* LOTAnimatorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAnimatorNode.m; sourceTree = "<group>"; };
+		5EEC2F3227E6D3D4000AC2D9 /* LOTPathAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTPathAnimator.m; sourceTree = "<group>"; };
+		5EEC2F3327E6D3D4000AC2D9 /* LOTPolystarAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTPolystarAnimator.m; sourceTree = "<group>"; };
+		5EEC2F3427E6D3D4000AC2D9 /* LOTPolygonAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTPolygonAnimator.m; sourceTree = "<group>"; };
+		5EEC2F3527E6D3D4000AC2D9 /* LOTRoundedRectAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTRoundedRectAnimator.h; sourceTree = "<group>"; };
+		5EEC2F3627E6D3D4000AC2D9 /* LOTCircleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTCircleAnimator.m; sourceTree = "<group>"; };
+		5EEC2F3727E6D3D4000AC2D9 /* LOTPolystarAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTPolystarAnimator.h; sourceTree = "<group>"; };
+		5EEC2F3827E6D3D4000AC2D9 /* LOTPathAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTPathAnimator.h; sourceTree = "<group>"; };
+		5EEC2F3927E6D3D4000AC2D9 /* LOTCircleAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTCircleAnimator.h; sourceTree = "<group>"; };
+		5EEC2F3A27E6D3D4000AC2D9 /* LOTRoundedRectAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTRoundedRectAnimator.m; sourceTree = "<group>"; };
+		5EEC2F3B27E6D3D4000AC2D9 /* LOTPolygonAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTPolygonAnimator.h; sourceTree = "<group>"; };
+		5EEC2F3D27E6D3D4000AC2D9 /* LOTRenderGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTRenderGroup.m; sourceTree = "<group>"; };
+		5EEC2F3E27E6D3D4000AC2D9 /* LOTGradientFillRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTGradientFillRender.m; sourceTree = "<group>"; };
+		5EEC2F3F27E6D3D4000AC2D9 /* LOTFillRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTFillRenderer.h; sourceTree = "<group>"; };
+		5EEC2F4027E6D3D4000AC2D9 /* LOTStrokeRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTStrokeRenderer.h; sourceTree = "<group>"; };
+		5EEC2F4127E6D3D4000AC2D9 /* LOTRepeaterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTRepeaterRenderer.h; sourceTree = "<group>"; };
+		5EEC2F4227E6D3D4000AC2D9 /* LOTRenderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTRenderGroup.h; sourceTree = "<group>"; };
+		5EEC2F4327E6D3D4000AC2D9 /* LOTStrokeRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTStrokeRenderer.m; sourceTree = "<group>"; };
+		5EEC2F4427E6D3D4000AC2D9 /* LOTFillRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTFillRenderer.m; sourceTree = "<group>"; };
+		5EEC2F4527E6D3D4000AC2D9 /* LOTGradientFillRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTGradientFillRender.h; sourceTree = "<group>"; };
+		5EEC2F4627E6D3D4000AC2D9 /* LOTRepeaterRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTRepeaterRenderer.m; sourceTree = "<group>"; };
+		5EEC2F4827E6D3D4000AC2D9 /* UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColor.h; sourceTree = "<group>"; };
+		5EEC2F4927E6D3D4000AC2D9 /* UIBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBezierPath.m; sourceTree = "<group>"; };
+		5EEC2F4A27E6D3D4000AC2D9 /* CALayer+Compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Compat.h"; sourceTree = "<group>"; };
+		5EEC2F4B27E6D3D4000AC2D9 /* NSValue+Compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+Compat.h"; sourceTree = "<group>"; };
+		5EEC2F4C27E6D3D4000AC2D9 /* UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColor.m; sourceTree = "<group>"; };
+		5EEC2F4D27E6D3D4000AC2D9 /* LOTPlatformCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTPlatformCompat.h; sourceTree = "<group>"; };
+		5EEC2F4E27E6D3D4000AC2D9 /* UIBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBezierPath.h; sourceTree = "<group>"; };
+		5EEC2F4F27E6D3D4000AC2D9 /* NSValue+Compat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+Compat.m"; sourceTree = "<group>"; };
+		5EEC2F5027E6D3D4000AC2D9 /* CALayer+Compat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Compat.m"; sourceTree = "<group>"; };
+		5EEC2F5227E6D3D4000AC2D9 /* LOTMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTMask.m; sourceTree = "<group>"; };
+		5EEC2F5327E6D3D4000AC2D9 /* LOTLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTLayer.m; sourceTree = "<group>"; };
+		5EEC2F5427E6D3D4000AC2D9 /* LOTAssetGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAssetGroup.m; sourceTree = "<group>"; };
+		5EEC2F5527E6D3D4000AC2D9 /* LOTShapeRectangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeRectangle.h; sourceTree = "<group>"; };
+		5EEC2F5627E6D3D4000AC2D9 /* LOTShapeRepeater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeRepeater.h; sourceTree = "<group>"; };
+		5EEC2F5727E6D3D4000AC2D9 /* LOTAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAsset.h; sourceTree = "<group>"; };
+		5EEC2F5827E6D3D4000AC2D9 /* LOTShapeCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeCircle.h; sourceTree = "<group>"; };
+		5EEC2F5927E6D3D4000AC2D9 /* LOTLayerGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTLayerGroup.m; sourceTree = "<group>"; };
+		5EEC2F5A27E6D3D4000AC2D9 /* LOTShapeStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeStar.m; sourceTree = "<group>"; };
+		5EEC2F5B27E6D3D4000AC2D9 /* LOTShapeTrimPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeTrimPath.m; sourceTree = "<group>"; };
+		5EEC2F5C27E6D3D4000AC2D9 /* LOTShapeGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeGroup.h; sourceTree = "<group>"; };
+		5EEC2F5D27E6D3D4000AC2D9 /* LOTShapePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapePath.h; sourceTree = "<group>"; };
+		5EEC2F5E27E6D3D4000AC2D9 /* LOTShapeStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeStroke.h; sourceTree = "<group>"; };
+		5EEC2F5F27E6D3D4000AC2D9 /* LOTShapeGradientFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeGradientFill.m; sourceTree = "<group>"; };
+		5EEC2F6027E6D3D4000AC2D9 /* LOTShapeFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeFill.h; sourceTree = "<group>"; };
+		5EEC2F6127E6D3D4000AC2D9 /* LOTShapeTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeTransform.h; sourceTree = "<group>"; };
+		5EEC2F6227E6D3D4000AC2D9 /* LOTAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAsset.m; sourceTree = "<group>"; };
+		5EEC2F6327E6D3D4000AC2D9 /* LOTModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTModels.h; sourceTree = "<group>"; };
+		5EEC2F6427E6D3D4000AC2D9 /* LOTShapeRepeater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeRepeater.m; sourceTree = "<group>"; };
+		5EEC2F6527E6D3D4000AC2D9 /* LOTAssetGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAssetGroup.h; sourceTree = "<group>"; };
+		5EEC2F6627E6D3D4000AC2D9 /* LOTShapeRectangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeRectangle.m; sourceTree = "<group>"; };
+		5EEC2F6727E6D3D4000AC2D9 /* LOTLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTLayer.h; sourceTree = "<group>"; };
+		5EEC2F6827E6D3D4000AC2D9 /* LOTMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTMask.h; sourceTree = "<group>"; };
+		5EEC2F6927E6D3D4000AC2D9 /* LOTShapeStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeStar.h; sourceTree = "<group>"; };
+		5EEC2F6A27E6D3D4000AC2D9 /* LOTLayerGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTLayerGroup.h; sourceTree = "<group>"; };
+		5EEC2F6B27E6D3D4000AC2D9 /* LOTShapeCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeCircle.m; sourceTree = "<group>"; };
+		5EEC2F6C27E6D3D4000AC2D9 /* LOTShapePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapePath.m; sourceTree = "<group>"; };
+		5EEC2F6D27E6D3D4000AC2D9 /* LOTShapeGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeGroup.m; sourceTree = "<group>"; };
+		5EEC2F6E27E6D3D4000AC2D9 /* LOTShapeTrimPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeTrimPath.h; sourceTree = "<group>"; };
+		5EEC2F6F27E6D3D4000AC2D9 /* LOTShapeFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeFill.m; sourceTree = "<group>"; };
+		5EEC2F7027E6D3D4000AC2D9 /* LOTShapeTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeTransform.m; sourceTree = "<group>"; };
+		5EEC2F7127E6D3D4000AC2D9 /* LOTShapeGradientFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTShapeGradientFill.h; sourceTree = "<group>"; };
+		5EEC2F7227E6D3D4000AC2D9 /* LOTShapeStroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTShapeStroke.m; sourceTree = "<group>"; };
+		5EEC2F7427E6D3D4000AC2D9 /* LOTHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTHelpers.h; sourceTree = "<group>"; };
+		5EEC2F7527E6D3D4000AC2D9 /* LOTRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTRadialGradientLayer.h; sourceTree = "<group>"; };
+		5EEC2F7627E6D3D4000AC2D9 /* CGGeometry+LOTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CGGeometry+LOTAdditions.m"; sourceTree = "<group>"; };
+		5EEC2F7727E6D3D4000AC2D9 /* LOTBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTBezierPath.m; sourceTree = "<group>"; };
+		5EEC2F7827E6D3D4000AC2D9 /* UIColor+Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Expanded.h"; sourceTree = "<group>"; };
+		5EEC2F7927E6D3D4000AC2D9 /* LOTRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTRadialGradientLayer.m; sourceTree = "<group>"; };
+		5EEC2F7A27E6D3D4000AC2D9 /* CGGeometry+LOTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+LOTAdditions.h"; sourceTree = "<group>"; };
+		5EEC2F7B27E6D3D4000AC2D9 /* LOTBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTBezierPath.h; sourceTree = "<group>"; };
+		5EEC2F7C27E6D3D4000AC2D9 /* UIColor+Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Expanded.m"; sourceTree = "<group>"; };
+		5EEC2F7E27E6D3D4000AC2D9 /* LOTAnimationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAnimationCache.m; sourceTree = "<group>"; };
+		5EEC2F7F27E6D3D4000AC2D9 /* LOTComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTComposition.m; sourceTree = "<group>"; };
+		5EEC2F8027E6D3D4000AC2D9 /* LOTValueCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTValueCallback.m; sourceTree = "<group>"; };
+		5EEC2F8127E6D3D4000AC2D9 /* LOTBlockCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTBlockCallback.m; sourceTree = "<group>"; };
+		5EEC2F8227E6D3D4000AC2D9 /* LOTAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAnimationView.m; sourceTree = "<group>"; };
+		5EEC2F8327E6D3D4000AC2D9 /* LOTAnimationTransitionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAnimationTransitionController.m; sourceTree = "<group>"; };
+		5EEC2F8427E6D3D4000AC2D9 /* LOTAnimationView_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimationView_Internal.h; sourceTree = "<group>"; };
+		5EEC2F8527E6D3D4000AC2D9 /* LOTKeypath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTKeypath.m; sourceTree = "<group>"; };
+		5EEC2F8627E6D3D4000AC2D9 /* LOTCacheProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTCacheProvider.m; sourceTree = "<group>"; };
+		5EEC2F8727E6D3D4000AC2D9 /* LOTAnimatedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAnimatedControl.m; sourceTree = "<group>"; };
+		5EEC2F8827E6D3D4000AC2D9 /* LOTInterpolatorCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTInterpolatorCallback.m; sourceTree = "<group>"; };
+		5EEC2F8927E6D3D4000AC2D9 /* LOTAnimatedSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTAnimatedSwitch.m; sourceTree = "<group>"; };
+		5EEC2F8B27E6D3D4000AC2D9 /* LOTKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTKeyframe.m; sourceTree = "<group>"; };
+		5EEC2F8C27E6D3D4000AC2D9 /* LOTBezierData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTBezierData.m; sourceTree = "<group>"; };
+		5EEC2F8D27E6D3D4000AC2D9 /* LOTKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTKeyframe.h; sourceTree = "<group>"; };
+		5EEC2F8E27E6D3D4000AC2D9 /* LOTBezierData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTBezierData.h; sourceTree = "<group>"; };
+		5EEC2F9027E6D3D4000AC2D9 /* LOTLayerContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTLayerContainer.m; sourceTree = "<group>"; };
+		5EEC2F9127E6D3D4000AC2D9 /* LOTCompositionContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTCompositionContainer.h; sourceTree = "<group>"; };
+		5EEC2F9227E6D3D4000AC2D9 /* LOTMaskContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTMaskContainer.h; sourceTree = "<group>"; };
+		5EEC2F9327E6D3D4000AC2D9 /* LOTLayerContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTLayerContainer.h; sourceTree = "<group>"; };
+		5EEC2F9427E6D3D4000AC2D9 /* LOTCompositionContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTCompositionContainer.m; sourceTree = "<group>"; };
+		5EEC2F9527E6D3D4000AC2D9 /* LOTMaskContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LOTMaskContainer.m; sourceTree = "<group>"; };
+		5EEC2F9727E6D3D4000AC2D9 /* LOTValueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTValueDelegate.h; sourceTree = "<group>"; };
+		5EEC2F9827E6D3D4000AC2D9 /* LOTAnimatedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimatedControl.h; sourceTree = "<group>"; };
+		5EEC2F9927E6D3D4000AC2D9 /* LOTCacheProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTCacheProvider.h; sourceTree = "<group>"; };
+		5EEC2F9A27E6D3D4000AC2D9 /* LOTKeypath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTKeypath.h; sourceTree = "<group>"; };
+		5EEC2F9B27E6D3D4000AC2D9 /* LOTInterpolatorCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTInterpolatorCallback.h; sourceTree = "<group>"; };
+		5EEC2F9C27E6D3D4000AC2D9 /* LOTAnimatedSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimatedSwitch.h; sourceTree = "<group>"; };
+		5EEC2F9D27E6D3D4000AC2D9 /* LOTAnimationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimationCache.h; sourceTree = "<group>"; };
+		5EEC2F9E27E6D3D4000AC2D9 /* Lottie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lottie.h; sourceTree = "<group>"; };
+		5EEC2F9F27E6D3D4000AC2D9 /* LOTComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTComposition.h; sourceTree = "<group>"; };
+		5EEC2FA027E6D3D4000AC2D9 /* LOTAnimationTransitionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimationTransitionController.h; sourceTree = "<group>"; };
+		5EEC2FA127E6D3D4000AC2D9 /* LOTAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimationView.h; sourceTree = "<group>"; };
+		5EEC2FA227E6D3D4000AC2D9 /* LOTAnimationView_Compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTAnimationView_Compat.h; sourceTree = "<group>"; };
+		5EEC2FA327E6D3D4000AC2D9 /* LOTValueCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTValueCallback.h; sourceTree = "<group>"; };
+		5EEC2FA427E6D3D4000AC2D9 /* LOTBlockCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOTBlockCallback.h; sourceTree = "<group>"; };
+		5EEC2FE227E7149C000AC2D9 /* NETSToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NETSToast.m; sourceTree = "<group>"; };
+		5EEC2FE327E7149E000AC2D9 /* NETSToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NETSToast.h; sourceTree = "<group>"; };
+		8EA33411BF719E7319BB6B93 /* Pods-NEOnlinePKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NEOnlinePKDemo.debug.xcconfig"; path = "Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		E6EFDC94C0F8620E25D300C4 /* Pods-NEOnlinePKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NEOnlinePKDemo.release.xcconfig"; path = "Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		53B221B627F5A8FE00268D17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ED89D3A27CCC68000C76510 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ED2AA4427F724C000FF072A /* NMCLiveStreaming.framework in Frameworks */,
+				8D05C3BC61DB7C88A928598A /* Pods_NEOnlinePKDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		53AE76FB27EB1DF900856BE6 /* mask */ = {
+			isa = PBXGroup;
+			children = (
+				53AE76FD27EB1DF900856BE6 /* NETSAudienceMask.h */,
+				53AE76FC27EB1DF900856BE6 /* NETSAudienceMask.m */,
+			);
+			path = mask;
+			sourceTree = "<group>";
+		};
+		53B221BA27F5A8FE00268D17 /* NEOnlinePKDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				53B221BB27F5A8FE00268D17 /* NEOnlinePKDemoTests.m */,
+			);
+			path = NEOnlinePKDemoTests;
+			sourceTree = "<group>";
+		};
+		5E21A39127DF319400DF7429 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5E5A792527E76B9900610488 /* NETSLiveUtils.h */,
+				5E5A792627E76B9A00610488 /* NETSLiveUtils.m */,
+				5E5A791F27E75BE400610488 /* NETSGiftModel.h */,
+				5E5A792027E75BE400610488 /* NETSGiftModel.m */,
+				5E21A39727DF31C900DF7429 /* NETSLiveChatCell.h */,
+				5E21A39827DF31D300DF7429 /* NETSLiveChatCell.m */,
+				5E21A3B127DF6A0400DF7429 /* NETSLiveChatView.h */,
+				5E21A39027DF318900DF7429 /* NETSLiveChatView.m */,
+				5E21A39527DF31BD00DF7429 /* NETSMessageModel.h */,
+				5E21A39427DF31B300DF7429 /* NETSMessageModel.m */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		5E21A39A27DF36BF00DF7429 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				5E21A3A727DF380C00DF7429 /* NETSBaseActionSheet.h */,
+				5E21A3A827DF381400DF7429 /* NETSBaseActionSheet.m */,
+				5E21A3A527DF377E00DF7429 /* NETSMoreSettingCell.h */,
+				5E21A3A427DF377300DF7429 /* NETSMoreSettingCell.m */,
+				5E21A3A127DF375A00DF7429 /* TopmostView.h */,
+				5E21A3A227DF376300DF7429 /* TopmostView.m */,
+				5E21A39F27DF36FB00DF7429 /* NETSMoreSettingModel.h */,
+				5E21A39E27DF36F200DF7429 /* NETSMoreSettingModel.m */,
+				5E21A39B27DF36DB00DF7429 /* NETSMoreSettingActionSheet.h */,
+				5E21A39C27DF36E400DF7429 /* NETSMoreSettingActionSheet.m */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		5E2C6E1427E813FD00876F01 /* Beauty */ = {
+			isa = PBXGroup;
+			children = (
+				5E2C6E1E27E814EA00876F01 /* authpack.h */,
+				5E2C6E1B27E8144000876F01 /* NETSFUManger.h */,
+				5E2C6E1C27E8144000876F01 /* NETSFUManger.m */,
+				5E2C6E1927E8142500876F01 /* NETSBeautyParam.h */,
+				5E2C6E1827E8142400876F01 /* NETSBeautyParam.m */,
+				5E2C6E1627E8140E00876F01 /* NETSBeautySettingActionSheet.h */,
+				5E2C6E1527E8140E00876F01 /* NETSBeautySettingActionSheet.m */,
+				5E2C6E1F27E8159C00876F01 /* NETSFilterSettingActionSheet.h */,
+				5E2C6E2027E8159C00876F01 /* NETSFilterSettingActionSheet.m */,
+			);
+			path = Beauty;
+			sourceTree = "<group>";
+		};
+		5E5A793227E780A200610488 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				5E5A793F27E7814E00610488 /* SKVObject.h */,
+				5E5A793E27E7814C00610488 /* SKVObject.m */,
+				5E5A793C27E7814200610488 /* NETSService.h */,
+				5E5A793B27E7814000610488 /* NETSService.m */,
+				5E5A793827E780D300610488 /* NETSApiModelMapping.h */,
+				5E5A793927E780D500610488 /* NETSApiModelMapping.m */,
+				5E5A793527E780BA00610488 /* NETSApiOptions.h */,
+				5E5A793627E780BB00610488 /* NETSApiOptions.m */,
+				5E5A793327E780A200610488 /* NETSRequest.h */,
+				5E5A793127E7809E00610488 /* NETSRequest.m */,
+				5E5A792E27E7805300610488 /* NETSLiveApi.h */,
+				5E5A792F27E7805500610488 /* NETSLiveApi.m */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
+		5E864C4427E8CB6E003B2AD1 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				5E864C4527E8CB6E003B2AD1 /* anim_gift_01.json */,
+				5E864C4627E8CB6E003B2AD1 /* anim_gift_04.json */,
+				5E864C4727E8CB6E003B2AD1 /* anim_gift_02.json */,
+				5E864C4827E8CB6E003B2AD1 /* anim_gift_03.json */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		5E91D85027CCCEE30019D7EB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5E7C87EA27F1B136000C3213 /* Reachability.h */,
+				5E7C87E927F1B135000C3213 /* Reachability.m */,
+				5E7C87E127F1AE74000C3213 /* UIViewController+Gesture.h */,
+				5E7C87E027F1AE73000C3213 /* UIViewController+Gesture.m */,
+				5E5A793227E780A200610488 /* HTTP */,
+				5EEC2FE327E7149E000AC2D9 /* NETSToast.h */,
+				5EEC2FE227E7149C000AC2D9 /* NETSToast.m */,
+				5EEC2F1727E6D3D4000AC2D9 /* lottie-ios */,
+				5EEC2EF427E57EDF000AC2D9 /* UIView+Gradient.h */,
+				5EEC2EF327E57EDF000AC2D9 /* UIView+Gradient.m */,
+				5E9301B027E2D32E0075503D /* NENavigator.h */,
+				5E9301B127E2D32F0075503D /* NENavigator.m */,
+				5ECB15AB27CDC391008FF3A2 /* UIButton+NTES.h */,
+				5ECB15AC27CDC392008FF3A2 /* UIButton+NTES.m */,
+				5ECB15A627CDC2FB008FF3A2 /* UIControl+repeatclick.h */,
+				5ECB15A527CDC2FA008FF3A2 /* UIControl+repeatclick.m */,
+				5ECB159927CDB8AE008FF3A2 /* UIView+NTES.h */,
+				5ECB159A27CDB8AE008FF3A2 /* UIView+NTES.m */,
+				5E91D87F27CCE7EC0019D7EB /* UIImage+NTES.h */,
+				5E91D87E27CCE7E10019D7EB /* UIImage+NTES.m */,
+				5E91D85127CCCEE30019D7EB /* NSMacro.m */,
+				5E91D85227CCCEE30019D7EB /* NSMacro.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5E91D85327CCCEE30019D7EB /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				5E7C87FB27F1E9D4000C3213 /* NEBaseWebViewController.h */,
+				5E7C87FC27F1E9D6000C3213 /* NEBaseWebViewController.m */,
+				5E91D85527CCCEE30019D7EB /* NEBaseTableViewController.h */,
+				5E91D85727CCCEE30019D7EB /* NEBaseTableViewController.m */,
+				5E91D85427CCCEE30019D7EB /* NEBaseViewController.h */,
+				5E91D85827CCCEE30019D7EB /* NEBaseViewController.m */,
+				5E91D85927CCCEE30019D7EB /* NETabbarController.h */,
+				5E91D85627CCCEE30019D7EB /* NETabbarController.m */,
+			);
+			path = BaseVC;
+			sourceTree = "<group>";
+		};
+		5E91D85A27CCCEE30019D7EB /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				5E464B2727F2A01600910F24 /* NENicknameVC.h */,
+				5E464B2827F2A01700910F24 /* NENicknameVC.m */,
+				5E464B2527F2A00C00910F24 /* NEPersonTextCell.h */,
+				5E464B2427F2A00C00910F24 /* NEPersonTextCell.m */,
+				5E464B2127F29FF700910F24 /* NEPersonInfoVC.h */,
+				5E464B2227F29FF800910F24 /* NEPersonInfoVC.m */,
+				5E7C87F827F1E983000C3213 /* NEAboutViewController.h */,
+				5E7C87F927F1E984000C3213 /* NEAboutViewController.m */,
+				5E7C87F227F1E871000C3213 /* NEPersonTableViewCell.h */,
+				5E7C87F327F1E872000C3213 /* NEPersonTableViewCell.m */,
+				5E91D85B27CCCEE30019D7EB /* NEPersonViewController.h */,
+				5E91D85C27CCCEE30019D7EB /* NEPersonViewController.m */,
+				5E7C87F627F1E880000C3213 /* NEPersonView.h */,
+				5E7C87F527F1E87E000C3213 /* NEPersonView.m */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		5E91D85D27CCCEE30019D7EB /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5E91D86D27CCD1400019D7EB /* NEMenuCell.h */,
+				5E91D86E27CCD1480019D7EB /* NEMenuCell.m */,
+				5E91D86B27CCD1330019D7EB /* NEMenuHeader.h */,
+				5E91D86A27CCD12B0019D7EB /* NEMenuHeader.m */,
+				5E91D86727CCD0FA0019D7EB /* NENavCustomView.h */,
+				5E91D86827CCD0FF0019D7EB /* NENavCustomView.m */,
+				5E91D85E27CCCEE30019D7EB /* NEMenuViewController.m */,
+				5E91D85F27CCCEE30019D7EB /* NEMenuViewController.h */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		5E91D87027CCE2D10019D7EB /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				5E21A39A27DF36BF00DF7429 /* More */,
+				5E21A39127DF319400DF7429 /* Chat */,
+				5ECB15AE27CDEAA5008FF3A2 /* PK */,
+				5E91D87427CCE3D00019D7EB /* List */,
+				5ECB159C27CDBE7F008FF3A2 /* NEPkLiveViewController.h */,
+				5ECB159D27CDBE7F008FF3A2 /* NEPkLiveViewController.m */,
+				5ECB15A027CDC1FC008FF3A2 /* NETSWarnToast.h */,
+				5ECB159F27CDC1FB008FF3A2 /* NETSWarnToast.m */,
+				5ECB15A227CDC2E6008FF3A2 /* NETSAnchorBottomPanel.h */,
+				5ECB15A327CDC2E7008FF3A2 /* NETSAnchorBottomPanel.m */,
+				5ECB15A827CDC374008FF3A2 /* NETSAnchorCoverSetting.h */,
+				5ECB15A927CDC375008FF3A2 /* NETSAnchorCoverSetting.m */,
+				5E21A38B27DF2EF500DF7429 /* NETSAudienceNum.h */,
+				5E21A38A27DF2EF000DF7429 /* NETSAudienceNum.m */,
+				5E21A38727DF2D9400DF7429 /* NETSInputToolBar.h */,
+				5E21A38827DF2D9900DF7429 /* NETSInputToolBar.m */,
+				5ECB15AF27CDEB95008FF3A2 /* NETSAnchorTopInfoView.h */,
+				5ECB15B027CDEB9A008FF3A2 /* NETSAnchorTopInfoView.m */,
+				5E21A38D27DF310B00DF7429 /* NTESKeyboardToolbarView.h */,
+				5E21A38E27DF311300DF7429 /* NTESKeyboardToolbarView.m */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		5E91D87427CCE3D00019D7EB /* List */ = {
+			isa = PBXGroup;
+			children = (
+				5E91D87B27CCE5C20019D7EB /* NETSEmptyListView.h */,
+				5E91D87827CCE5B10019D7EB /* NETSEmptyListView.m */,
+				5E91D87A27CCE5BC0019D7EB /* NETSLiveListCell.h */,
+				5E91D87927CCE5B70019D7EB /* NETSLiveListCell.m */,
+				5E91D87527CCE3FE0019D7EB /* NETSLiveListVM.h */,
+				5E91D87627CCE4070019D7EB /* NETSLiveListVM.m */,
+				5E91D87127CCE2FE0019D7EB /* NETSLiveListViewController.h */,
+				5E91D87227CCE2FE0019D7EB /* NETSLiveListViewController.m */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		5ECB15AE27CDEAA5008FF3A2 /* PK */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2EFD27E58522000AC2D9 /* NETSInviteeInfoView.h */,
+				5EEC2EFC27E58521000AC2D9 /* NETSInviteeInfoView.m */,
+				5EEC2EF927E582BD000AC2D9 /* NETSPkTimeLabel.h */,
+				5EEC2EFA27E582BE000AC2D9 /* NETSPkTimeLabel.m */,
+				5EEC2EF727E58292000AC2D9 /* NETSPkStatusBar.h */,
+				5EEC2EF627E58292000AC2D9 /* NETSPkStatusBar.m */,
+				5EEC2EF027E57E67000AC2D9 /* NETSInvitingBar.h */,
+				5EEC2EF127E57E68000AC2D9 /* NETSInvitingBar.m */,
+				5E21A3AE27DF479B00DF7429 /* NETSChoosePKCell.h */,
+				5E21A3AD27DF479A00DF7429 /* NETSChoosePKCell.m */,
+				5E21A3AA27DF478600DF7429 /* NETSChoosePKSheet.h */,
+				5E21A3AB27DF478600DF7429 /* NETSChoosePKSheet.m */,
+			);
+			path = PK;
+			sourceTree = "<group>";
+		};
+		5ED89D3427CCC68000C76510 = {
+			isa = PBXGroup;
+			children = (
+				5ED2AA4327F724C000FF072A /* NMCLiveStreaming.framework */,
+				5ED89D3F27CCC68000C76510 /* NEOnlinePKDemo */,
+				53B221BA27F5A8FE00268D17 /* NEOnlinePKDemoTests */,
+				5ED89D3E27CCC68000C76510 /* Products */,
+				6F7D3D64F3E1FF605C18F702 /* Pods */,
+				83E5FA8A9680BF762BCED10A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5ED89D3E27CCC68000C76510 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5ED89D3D27CCC68000C76510 /* NEOnlinePKDemo.app */,
+				53B221B927F5A8FE00268D17 /* NEOnlinePKDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5ED89D3F27CCC68000C76510 /* NEOnlinePKDemo */ = {
+			isa = PBXGroup;
+			children = (
+				5E2C6E1427E813FD00876F01 /* Beauty */,
+				5EEC2F0727E6C77A000AC2D9 /* Audience */,
+				5E91D87027CCE2D10019D7EB /* Live */,
+				5E91D85327CCCEE30019D7EB /* BaseVC */,
+				5E91D85D27CCCEE30019D7EB /* Menu */,
+				5E91D85A27CCCEE30019D7EB /* Person */,
+				5E91D85027CCCEE30019D7EB /* Utils */,
+				5ED89D4027CCC68000C76510 /* AppDelegate.h */,
+				5ED89D4127CCC68000C76510 /* AppDelegate.m */,
+				5ED89D4927CCC68000C76510 /* Main.storyboard */,
+				5ED89D4C27CCC69700C76510 /* Assets.xcassets */,
+				5ED89D4E27CCC69700C76510 /* LaunchScreen.storyboard */,
+				5ED89D5127CCC69700C76510 /* Info.plist */,
+				5ED89D5227CCC69700C76510 /* main.m */,
+				5E91D86627CCCEEB0019D7EB /* PrefixHeader.pch */,
+				5E80EBDC27D9EAB6008E0BF5 /* TestViewController.h */,
+				5E80EBDD27D9EAB6008E0BF5 /* TestViewController.m */,
+				5E80EBDE27D9EAB6008E0BF5 /* TestViewController.xib */,
+			);
+			path = NEOnlinePKDemo;
+			sourceTree = "<group>";
+		};
+		5EEC2F0727E6C77A000AC2D9 /* Audience */ = {
+			isa = PBXGroup;
+			children = (
+				5E864C4427E8CB6E003B2AD1 /* json */,
+				5E5A792B27E76D1E00610488 /* NETSAudienceSendGiftCell.h */,
+				5E5A792C27E76D1F00610488 /* NETSAudienceSendGiftCell.m */,
+				5E5A792927E76CF200610488 /* NETSAudienceSendGiftSheet.h */,
+				5E5A792827E76CF100610488 /* NETSAudienceSendGiftSheet.m */,
+				5EEC2F1527E6D3B5000AC2D9 /* NETSGiftAnimationView.h */,
+				5EEC2F1427E6D3B5000AC2D9 /* NETSGiftAnimationView.m */,
+				5EEC2F1127E6D17A000AC2D9 /* NETSAudienceBottomBar.h */,
+				5EEC2F1227E6D17B000AC2D9 /* NETSAudienceBottomBar.m */,
+				5EEC2F0E27E6CAD2000AC2D9 /* NETSAudienceViewController.h */,
+				5EEC2F0F27E6CAD2000AC2D9 /* NETSAudienceViewController.m */,
+				53AE76F927EAB0FE00856BE6 /* NETSAudienceChatRoomCell.h */,
+				53AE76F827EAB0FE00856BE6 /* NETSAudienceChatRoomCell.m */,
+				5E7C87E427F1B103000C3213 /* NETSPullStreamErrorView.h */,
+				5E7C87E327F1B103000C3213 /* NETSPullStreamErrorView.m */,
+				5E7C87E627F1B11E000C3213 /* NETSLiveEndView.h */,
+				5E7C87E727F1B11E000C3213 /* NETSLiveEndView.m */,
+				5E7C87EC27F1B272000C3213 /* NETSLiveBaseErrorView.h */,
+				5E7C87ED27F1B272000C3213 /* NETSLiveBaseErrorView.m */,
+				5E7C87F027F1C3A1000C3213 /* NETSViewFactory.h */,
+				5E7C87EF27F1C39F000C3213 /* NETSViewFactory.m */,
+				53AE76FB27EB1DF900856BE6 /* mask */,
+			);
+			path = Audience;
+			sourceTree = "<group>";
+		};
+		5EEC2F1727E6D3D4000AC2D9 /* lottie-ios */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F1827E6D3D4000AC2D9 /* RenderSystem */,
+				5EEC2F4727E6D3D4000AC2D9 /* MacCompatibility */,
+				5EEC2F5127E6D3D4000AC2D9 /* Models */,
+				5EEC2F7327E6D3D4000AC2D9 /* Extensions */,
+				5EEC2F7D27E6D3D4000AC2D9 /* Private */,
+				5EEC2F8A27E6D3D4000AC2D9 /* AnimatableProperties */,
+				5EEC2F8F27E6D3D4000AC2D9 /* AnimatableLayers */,
+				5EEC2F9627E6D3D4000AC2D9 /* PublicHeaders */,
+			);
+			path = "lottie-ios";
+			sourceTree = "<group>";
+		};
+		5EEC2F1827E6D3D4000AC2D9 /* RenderSystem */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F1927E6D3D4000AC2D9 /* LOTRenderNode.m */,
+				5EEC2F1A27E6D3D4000AC2D9 /* LOTAnimatorNode.h */,
+				5EEC2F1B27E6D3D4000AC2D9 /* LOTRenderNode.h */,
+				5EEC2F1C27E6D3D4000AC2D9 /* ManipulatorNodes */,
+				5EEC2F1F27E6D3D4000AC2D9 /* InterpolatorNodes */,
+				5EEC2F3027E6D3D4000AC2D9 /* LOTAnimatorNode.m */,
+				5EEC2F3127E6D3D4000AC2D9 /* AnimatorNodes */,
+				5EEC2F3C27E6D3D4000AC2D9 /* RenderNodes */,
+			);
+			path = RenderSystem;
+			sourceTree = "<group>";
+		};
+		5EEC2F1C27E6D3D4000AC2D9 /* ManipulatorNodes */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F1D27E6D3D4000AC2D9 /* LOTTrimPathNode.h */,
+				5EEC2F1E27E6D3D4000AC2D9 /* LOTTrimPathNode.m */,
+			);
+			path = ManipulatorNodes;
+			sourceTree = "<group>";
+		};
+		5EEC2F1F27E6D3D4000AC2D9 /* InterpolatorNodes */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F2027E6D3D4000AC2D9 /* LOTColorInterpolator.m */,
+				5EEC2F2127E6D3D4000AC2D9 /* LOTPathInterpolator.m */,
+				5EEC2F2227E6D3D4000AC2D9 /* LOTSizeInterpolator.h */,
+				5EEC2F2327E6D3D4000AC2D9 /* LOTValueInterpolator.h */,
+				5EEC2F2427E6D3D4000AC2D9 /* LOTPointInterpolator.h */,
+				5EEC2F2527E6D3D4000AC2D9 /* LOTNumberInterpolator.h */,
+				5EEC2F2627E6D3D4000AC2D9 /* LOTTransformInterpolator.h */,
+				5EEC2F2727E6D3D4000AC2D9 /* LOTArrayInterpolator.h */,
+				5EEC2F2827E6D3D4000AC2D9 /* LOTColorInterpolator.h */,
+				5EEC2F2927E6D3D4000AC2D9 /* LOTSizeInterpolator.m */,
+				5EEC2F2A27E6D3D4000AC2D9 /* LOTPathInterpolator.h */,
+				5EEC2F2B27E6D3D4000AC2D9 /* LOTPointInterpolator.m */,
+				5EEC2F2C27E6D3D4000AC2D9 /* LOTValueInterpolator.m */,
+				5EEC2F2D27E6D3D4000AC2D9 /* LOTTransformInterpolator.m */,
+				5EEC2F2E27E6D3D4000AC2D9 /* LOTArrayInterpolator.m */,
+				5EEC2F2F27E6D3D4000AC2D9 /* LOTNumberInterpolator.m */,
+			);
+			path = InterpolatorNodes;
+			sourceTree = "<group>";
+		};
+		5EEC2F3127E6D3D4000AC2D9 /* AnimatorNodes */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F3227E6D3D4000AC2D9 /* LOTPathAnimator.m */,
+				5EEC2F3327E6D3D4000AC2D9 /* LOTPolystarAnimator.m */,
+				5EEC2F3427E6D3D4000AC2D9 /* LOTPolygonAnimator.m */,
+				5EEC2F3527E6D3D4000AC2D9 /* LOTRoundedRectAnimator.h */,
+				5EEC2F3627E6D3D4000AC2D9 /* LOTCircleAnimator.m */,
+				5EEC2F3727E6D3D4000AC2D9 /* LOTPolystarAnimator.h */,
+				5EEC2F3827E6D3D4000AC2D9 /* LOTPathAnimator.h */,
+				5EEC2F3927E6D3D4000AC2D9 /* LOTCircleAnimator.h */,
+				5EEC2F3A27E6D3D4000AC2D9 /* LOTRoundedRectAnimator.m */,
+				5EEC2F3B27E6D3D4000AC2D9 /* LOTPolygonAnimator.h */,
+			);
+			path = AnimatorNodes;
+			sourceTree = "<group>";
+		};
+		5EEC2F3C27E6D3D4000AC2D9 /* RenderNodes */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F3D27E6D3D4000AC2D9 /* LOTRenderGroup.m */,
+				5EEC2F3E27E6D3D4000AC2D9 /* LOTGradientFillRender.m */,
+				5EEC2F3F27E6D3D4000AC2D9 /* LOTFillRenderer.h */,
+				5EEC2F4027E6D3D4000AC2D9 /* LOTStrokeRenderer.h */,
+				5EEC2F4127E6D3D4000AC2D9 /* LOTRepeaterRenderer.h */,
+				5EEC2F4227E6D3D4000AC2D9 /* LOTRenderGroup.h */,
+				5EEC2F4327E6D3D4000AC2D9 /* LOTStrokeRenderer.m */,
+				5EEC2F4427E6D3D4000AC2D9 /* LOTFillRenderer.m */,
+				5EEC2F4527E6D3D4000AC2D9 /* LOTGradientFillRender.h */,
+				5EEC2F4627E6D3D4000AC2D9 /* LOTRepeaterRenderer.m */,
+			);
+			path = RenderNodes;
+			sourceTree = "<group>";
+		};
+		5EEC2F4727E6D3D4000AC2D9 /* MacCompatibility */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F4827E6D3D4000AC2D9 /* UIColor.h */,
+				5EEC2F4927E6D3D4000AC2D9 /* UIBezierPath.m */,
+				5EEC2F4A27E6D3D4000AC2D9 /* CALayer+Compat.h */,
+				5EEC2F4B27E6D3D4000AC2D9 /* NSValue+Compat.h */,
+				5EEC2F4C27E6D3D4000AC2D9 /* UIColor.m */,
+				5EEC2F4D27E6D3D4000AC2D9 /* LOTPlatformCompat.h */,
+				5EEC2F4E27E6D3D4000AC2D9 /* UIBezierPath.h */,
+				5EEC2F4F27E6D3D4000AC2D9 /* NSValue+Compat.m */,
+				5EEC2F5027E6D3D4000AC2D9 /* CALayer+Compat.m */,
+			);
+			path = MacCompatibility;
+			sourceTree = "<group>";
+		};
+		5EEC2F5127E6D3D4000AC2D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F5227E6D3D4000AC2D9 /* LOTMask.m */,
+				5EEC2F5327E6D3D4000AC2D9 /* LOTLayer.m */,
+				5EEC2F5427E6D3D4000AC2D9 /* LOTAssetGroup.m */,
+				5EEC2F5527E6D3D4000AC2D9 /* LOTShapeRectangle.h */,
+				5EEC2F5627E6D3D4000AC2D9 /* LOTShapeRepeater.h */,
+				5EEC2F5727E6D3D4000AC2D9 /* LOTAsset.h */,
+				5EEC2F5827E6D3D4000AC2D9 /* LOTShapeCircle.h */,
+				5EEC2F5927E6D3D4000AC2D9 /* LOTLayerGroup.m */,
+				5EEC2F5A27E6D3D4000AC2D9 /* LOTShapeStar.m */,
+				5EEC2F5B27E6D3D4000AC2D9 /* LOTShapeTrimPath.m */,
+				5EEC2F5C27E6D3D4000AC2D9 /* LOTShapeGroup.h */,
+				5EEC2F5D27E6D3D4000AC2D9 /* LOTShapePath.h */,
+				5EEC2F5E27E6D3D4000AC2D9 /* LOTShapeStroke.h */,
+				5EEC2F5F27E6D3D4000AC2D9 /* LOTShapeGradientFill.m */,
+				5EEC2F6027E6D3D4000AC2D9 /* LOTShapeFill.h */,
+				5EEC2F6127E6D3D4000AC2D9 /* LOTShapeTransform.h */,
+				5EEC2F6227E6D3D4000AC2D9 /* LOTAsset.m */,
+				5EEC2F6327E6D3D4000AC2D9 /* LOTModels.h */,
+				5EEC2F6427E6D3D4000AC2D9 /* LOTShapeRepeater.m */,
+				5EEC2F6527E6D3D4000AC2D9 /* LOTAssetGroup.h */,
+				5EEC2F6627E6D3D4000AC2D9 /* LOTShapeRectangle.m */,
+				5EEC2F6727E6D3D4000AC2D9 /* LOTLayer.h */,
+				5EEC2F6827E6D3D4000AC2D9 /* LOTMask.h */,
+				5EEC2F6927E6D3D4000AC2D9 /* LOTShapeStar.h */,
+				5EEC2F6A27E6D3D4000AC2D9 /* LOTLayerGroup.h */,
+				5EEC2F6B27E6D3D4000AC2D9 /* LOTShapeCircle.m */,
+				5EEC2F6C27E6D3D4000AC2D9 /* LOTShapePath.m */,
+				5EEC2F6D27E6D3D4000AC2D9 /* LOTShapeGroup.m */,
+				5EEC2F6E27E6D3D4000AC2D9 /* LOTShapeTrimPath.h */,
+				5EEC2F6F27E6D3D4000AC2D9 /* LOTShapeFill.m */,
+				5EEC2F7027E6D3D4000AC2D9 /* LOTShapeTransform.m */,
+				5EEC2F7127E6D3D4000AC2D9 /* LOTShapeGradientFill.h */,
+				5EEC2F7227E6D3D4000AC2D9 /* LOTShapeStroke.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5EEC2F7327E6D3D4000AC2D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F7427E6D3D4000AC2D9 /* LOTHelpers.h */,
+				5EEC2F7527E6D3D4000AC2D9 /* LOTRadialGradientLayer.h */,
+				5EEC2F7627E6D3D4000AC2D9 /* CGGeometry+LOTAdditions.m */,
+				5EEC2F7727E6D3D4000AC2D9 /* LOTBezierPath.m */,
+				5EEC2F7827E6D3D4000AC2D9 /* UIColor+Expanded.h */,
+				5EEC2F7927E6D3D4000AC2D9 /* LOTRadialGradientLayer.m */,
+				5EEC2F7A27E6D3D4000AC2D9 /* CGGeometry+LOTAdditions.h */,
+				5EEC2F7B27E6D3D4000AC2D9 /* LOTBezierPath.h */,
+				5EEC2F7C27E6D3D4000AC2D9 /* UIColor+Expanded.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5EEC2F7D27E6D3D4000AC2D9 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F7E27E6D3D4000AC2D9 /* LOTAnimationCache.m */,
+				5EEC2F7F27E6D3D4000AC2D9 /* LOTComposition.m */,
+				5EEC2F8027E6D3D4000AC2D9 /* LOTValueCallback.m */,
+				5EEC2F8127E6D3D4000AC2D9 /* LOTBlockCallback.m */,
+				5EEC2F8227E6D3D4000AC2D9 /* LOTAnimationView.m */,
+				5EEC2F8327E6D3D4000AC2D9 /* LOTAnimationTransitionController.m */,
+				5EEC2F8427E6D3D4000AC2D9 /* LOTAnimationView_Internal.h */,
+				5EEC2F8527E6D3D4000AC2D9 /* LOTKeypath.m */,
+				5EEC2F8627E6D3D4000AC2D9 /* LOTCacheProvider.m */,
+				5EEC2F8727E6D3D4000AC2D9 /* LOTAnimatedControl.m */,
+				5EEC2F8827E6D3D4000AC2D9 /* LOTInterpolatorCallback.m */,
+				5EEC2F8927E6D3D4000AC2D9 /* LOTAnimatedSwitch.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
+		5EEC2F8A27E6D3D4000AC2D9 /* AnimatableProperties */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F8B27E6D3D4000AC2D9 /* LOTKeyframe.m */,
+				5EEC2F8C27E6D3D4000AC2D9 /* LOTBezierData.m */,
+				5EEC2F8D27E6D3D4000AC2D9 /* LOTKeyframe.h */,
+				5EEC2F8E27E6D3D4000AC2D9 /* LOTBezierData.h */,
+			);
+			path = AnimatableProperties;
+			sourceTree = "<group>";
+		};
+		5EEC2F8F27E6D3D4000AC2D9 /* AnimatableLayers */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F9027E6D3D4000AC2D9 /* LOTLayerContainer.m */,
+				5EEC2F9127E6D3D4000AC2D9 /* LOTCompositionContainer.h */,
+				5EEC2F9227E6D3D4000AC2D9 /* LOTMaskContainer.h */,
+				5EEC2F9327E6D3D4000AC2D9 /* LOTLayerContainer.h */,
+				5EEC2F9427E6D3D4000AC2D9 /* LOTCompositionContainer.m */,
+				5EEC2F9527E6D3D4000AC2D9 /* LOTMaskContainer.m */,
+			);
+			path = AnimatableLayers;
+			sourceTree = "<group>";
+		};
+		5EEC2F9627E6D3D4000AC2D9 /* PublicHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				5EEC2F9727E6D3D4000AC2D9 /* LOTValueDelegate.h */,
+				5EEC2F9827E6D3D4000AC2D9 /* LOTAnimatedControl.h */,
+				5EEC2F9927E6D3D4000AC2D9 /* LOTCacheProvider.h */,
+				5EEC2F9A27E6D3D4000AC2D9 /* LOTKeypath.h */,
+				5EEC2F9B27E6D3D4000AC2D9 /* LOTInterpolatorCallback.h */,
+				5EEC2F9C27E6D3D4000AC2D9 /* LOTAnimatedSwitch.h */,
+				5EEC2F9D27E6D3D4000AC2D9 /* LOTAnimationCache.h */,
+				5EEC2F9E27E6D3D4000AC2D9 /* Lottie.h */,
+				5EEC2F9F27E6D3D4000AC2D9 /* LOTComposition.h */,
+				5EEC2FA027E6D3D4000AC2D9 /* LOTAnimationTransitionController.h */,
+				5EEC2FA127E6D3D4000AC2D9 /* LOTAnimationView.h */,
+				5EEC2FA227E6D3D4000AC2D9 /* LOTAnimationView_Compat.h */,
+				5EEC2FA327E6D3D4000AC2D9 /* LOTValueCallback.h */,
+				5EEC2FA427E6D3D4000AC2D9 /* LOTBlockCallback.h */,
+			);
+			path = PublicHeaders;
+			sourceTree = "<group>";
+		};
+		6F7D3D64F3E1FF605C18F702 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8EA33411BF719E7319BB6B93 /* Pods-NEOnlinePKDemo.debug.xcconfig */,
+				E6EFDC94C0F8620E25D300C4 /* Pods-NEOnlinePKDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		83E5FA8A9680BF762BCED10A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E0E86809F5CE294BC680564 /* Pods_NEOnlinePKDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		53B221B827F5A8FE00268D17 /* NEOnlinePKDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53B221C127F5A8FE00268D17 /* Build configuration list for PBXNativeTarget "NEOnlinePKDemoTests" */;
+			buildPhases = (
+				53B221B527F5A8FE00268D17 /* Sources */,
+				53B221B627F5A8FE00268D17 /* Frameworks */,
+				53B221B727F5A8FE00268D17 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				53B221BE27F5A8FE00268D17 /* PBXTargetDependency */,
+			);
+			name = NEOnlinePKDemoTests;
+			productName = NEOnlinePKDemoTests;
+			productReference = 53B221B927F5A8FE00268D17 /* NEOnlinePKDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5ED89D3C27CCC68000C76510 /* NEOnlinePKDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5ED89D5627CCC69700C76510 /* Build configuration list for PBXNativeTarget "NEOnlinePKDemo" */;
+			buildPhases = (
+				5A88E5B1F2598D8038F8D961 /* [CP] Check Pods Manifest.lock */,
+				5ED89D3927CCC68000C76510 /* Sources */,
+				5ED89D3A27CCC68000C76510 /* Frameworks */,
+				5ED89D3B27CCC68000C76510 /* Resources */,
+				F4B6105376FC2C905A1AC6A3 /* [CP] Embed Pods Frameworks */,
+				52063E039CADFE700573DDD5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NEOnlinePKDemo;
+			productName = NEOnlinePKDemo;
+			productReference = 5ED89D3D27CCC68000C76510 /* NEOnlinePKDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5ED89D3527CCC68000C76510 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					53B221B827F5A8FE00268D17 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 5ED89D3C27CCC68000C76510;
+					};
+					5ED89D3C27CCC68000C76510 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 5ED89D3827CCC68000C76510 /* Build configuration list for PBXProject "NEOnlinePKDemo" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5ED89D3427CCC68000C76510;
+			productRefGroup = 5ED89D3E27CCC68000C76510 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5ED89D3C27CCC68000C76510 /* NEOnlinePKDemo */,
+				53B221B827F5A8FE00268D17 /* NEOnlinePKDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		53B221B727F5A8FE00268D17 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ED89D3B27CCC68000C76510 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E864C4B27E8CB6E003B2AD1 /* anim_gift_02.json in Resources */,
+				5E864C4C27E8CB6E003B2AD1 /* anim_gift_03.json in Resources */,
+				5E864C4A27E8CB6E003B2AD1 /* anim_gift_04.json in Resources */,
+				5ED89D5027CCC69700C76510 /* LaunchScreen.storyboard in Resources */,
+				5ED89D4D27CCC69700C76510 /* Assets.xcassets in Resources */,
+				5E80EBE027D9EAB6008E0BF5 /* TestViewController.xib in Resources */,
+				5ED89D4B27CCC68000C76510 /* Main.storyboard in Resources */,
+				5E864C4927E8CB6E003B2AD1 /* anim_gift_01.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52063E039CADFE700573DDD5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A88E5B1F2598D8038F8D961 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NEOnlinePKDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4B6105376FC2C905A1AC6A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NEOnlinePKDemo/Pods-NEOnlinePKDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		53B221B527F5A8FE00268D17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53B221BC27F5A8FE00268D17 /* NEOnlinePKDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5ED89D3927CCC68000C76510 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EEC2FC827E6D3D5000AC2D9 /* LOTShapeCircle.m in Sources */,
+				5E7C87FD27F1E9D6000C3213 /* NEBaseWebViewController.m in Sources */,
+				5ECB15A427CDC2E7008FF3A2 /* NETSAnchorBottomPanel.m in Sources */,
+				5EEC2FAA27E6D3D4000AC2D9 /* LOTPointInterpolator.m in Sources */,
+				5EEC2F1627E6D3B5000AC2D9 /* NETSGiftAnimationView.m in Sources */,
+				5EEC2FBF27E6D3D5000AC2D9 /* LOTLayer.m in Sources */,
+				5E91D86527CCCEE30019D7EB /* NEMenuViewController.m in Sources */,
+				5E7C87F727F1E880000C3213 /* NEPersonView.m in Sources */,
+				5E91D87727CCE4080019D7EB /* NETSLiveListVM.m in Sources */,
+				5EEC2FCD27E6D3D5000AC2D9 /* LOTShapeStroke.m in Sources */,
+				5EEC2FDA27E6D3D5000AC2D9 /* LOTAnimatedControl.m in Sources */,
+				5EEC2FCC27E6D3D5000AC2D9 /* LOTShapeTransform.m in Sources */,
+				5EEC2FB627E6D3D4000AC2D9 /* LOTGradientFillRender.m in Sources */,
+				5E5A792A27E76CF200610488 /* NETSAudienceSendGiftSheet.m in Sources */,
+				5ECB159E27CDBE7F008FF3A2 /* NEPkLiveViewController.m in Sources */,
+				5EEC2FB327E6D3D4000AC2D9 /* LOTCircleAnimator.m in Sources */,
+				53AE76FA27EAB0FE00856BE6 /* NETSAudienceChatRoomCell.m in Sources */,
+				5E5A792D27E76D1F00610488 /* NETSAudienceSendGiftCell.m in Sources */,
+				5E91D87D27CCE5C20019D7EB /* NETSLiveListCell.m in Sources */,
+				5EEC2EF827E58292000AC2D9 /* NETSPkStatusBar.m in Sources */,
+				5E91D87C27CCE5C20019D7EB /* NETSEmptyListView.m in Sources */,
+				5E7C87F427F1E872000C3213 /* NEPersonTableViewCell.m in Sources */,
+				5E2C6E1A27E8142500876F01 /* NETSBeautyParam.m in Sources */,
+				5E5A792727E76B9A00610488 /* NETSLiveUtils.m in Sources */,
+				5E21A3AC27DF478600DF7429 /* NETSChoosePKSheet.m in Sources */,
+				5E91D86927CCD1000019D7EB /* NENavCustomView.m in Sources */,
+				5E21A3A027DF36FB00DF7429 /* NETSMoreSettingModel.m in Sources */,
+				5E91D86F27CCD1480019D7EB /* NEMenuCell.m in Sources */,
+				5E2C6E1D27E8144000876F01 /* NETSFUManger.m in Sources */,
+				5E91D86327CCCEE30019D7EB /* NEBaseViewController.m in Sources */,
+				5EEC2FCF27E6D3D5000AC2D9 /* LOTBezierPath.m in Sources */,
+				5E7C87EE27F1B272000C3213 /* NETSLiveBaseErrorView.m in Sources */,
+				5E5A793A27E780D500610488 /* NETSApiModelMapping.m in Sources */,
+				5E2C6E1727E8140E00876F01 /* NETSBeautySettingActionSheet.m in Sources */,
+				5EEC2FBB27E6D3D4000AC2D9 /* UIColor.m in Sources */,
+				5EEC2FB827E6D3D4000AC2D9 /* LOTFillRenderer.m in Sources */,
+				5EEC2FC327E6D3D5000AC2D9 /* LOTShapeTrimPath.m in Sources */,
+				5EEC2FC927E6D3D5000AC2D9 /* LOTShapePath.m in Sources */,
+				5EEC2FD827E6D3D5000AC2D9 /* LOTKeypath.m in Sources */,
+				5EEC2FD627E6D3D5000AC2D9 /* LOTAnimationView.m in Sources */,
+				5E21A38C27DF2EF500DF7429 /* NETSAudienceNum.m in Sources */,
+				5ED89D4227CCC68000C76510 /* AppDelegate.m in Sources */,
+				5E21A39D27DF36E400DF7429 /* NETSMoreSettingActionSheet.m in Sources */,
+				5E5A792127E75BE400610488 /* NETSGiftModel.m in Sources */,
+				5E7C87E827F1B11E000C3213 /* NETSLiveEndView.m in Sources */,
+				5EEC2FD127E6D3D5000AC2D9 /* UIColor+Expanded.m in Sources */,
+				5E21A38F27DF311300DF7429 /* NTESKeyboardToolbarView.m in Sources */,
+				5E21A3A627DF377E00DF7429 /* NETSMoreSettingCell.m in Sources */,
+				5E5A794027E7814E00610488 /* SKVObject.m in Sources */,
+				5E91D86427CCCEE30019D7EB /* NEPersonViewController.m in Sources */,
+				5E464B2327F29FF800910F24 /* NEPersonInfoVC.m in Sources */,
+				5EEC2FA727E6D3D4000AC2D9 /* LOTColorInterpolator.m in Sources */,
+				5ECB15AD27CDC392008FF3A2 /* UIButton+NTES.m in Sources */,
+				5EEC2FD427E6D3D5000AC2D9 /* LOTValueCallback.m in Sources */,
+				5EEC2FD727E6D3D5000AC2D9 /* LOTAnimationTransitionController.m in Sources */,
+				5EEC2F1027E6CAD2000AC2D9 /* NETSAudienceViewController.m in Sources */,
+				5EEC2FB527E6D3D4000AC2D9 /* LOTRenderGroup.m in Sources */,
+				5EEC2FAD27E6D3D4000AC2D9 /* LOTArrayInterpolator.m in Sources */,
+				5E9301B227E2D32F0075503D /* NENavigator.m in Sources */,
+				5EEC2FA827E6D3D4000AC2D9 /* LOTPathInterpolator.m in Sources */,
+				5E5A793D27E7814200610488 /* NETSService.m in Sources */,
+				5EEC2EF527E57EDF000AC2D9 /* UIView+Gradient.m in Sources */,
+				5EEC2FDE27E6D3D5000AC2D9 /* LOTBezierData.m in Sources */,
+				5EEC2FB227E6D3D4000AC2D9 /* LOTPolygonAnimator.m in Sources */,
+				5ED89D5327CCC69700C76510 /* main.m in Sources */,
+				5E91D87327CCE2FE0019D7EB /* NETSLiveListViewController.m in Sources */,
+				5EEC2FC527E6D3D5000AC2D9 /* LOTAsset.m in Sources */,
+				5E7C87FA27F1E984000C3213 /* NEAboutViewController.m in Sources */,
+				5E80EBDF27D9EAB6008E0BF5 /* TestViewController.m in Sources */,
+				5EEC2FB927E6D3D4000AC2D9 /* LOTRepeaterRenderer.m in Sources */,
+				5EEC2FC027E6D3D5000AC2D9 /* LOTAssetGroup.m in Sources */,
+				5EEC2FC227E6D3D5000AC2D9 /* LOTShapeStar.m in Sources */,
+				5EEC2FE427E7149E000AC2D9 /* NETSToast.m in Sources */,
+				5EEC2FD527E6D3D5000AC2D9 /* LOTBlockCallback.m in Sources */,
+				5EEC2FC727E6D3D5000AC2D9 /* LOTShapeRectangle.m in Sources */,
+				5EEC2FAC27E6D3D4000AC2D9 /* LOTTransformInterpolator.m in Sources */,
+				5EEC2FDD27E6D3D5000AC2D9 /* LOTKeyframe.m in Sources */,
+				5EEC2FB727E6D3D4000AC2D9 /* LOTStrokeRenderer.m in Sources */,
+				5E21A39327DF319400DF7429 /* NETSLiveChatView.m in Sources */,
+				5EEC2FD327E6D3D5000AC2D9 /* LOTComposition.m in Sources */,
+				5E91D86C27CCD1330019D7EB /* NEMenuHeader.m in Sources */,
+				5E21A39927DF31D300DF7429 /* NETSLiveChatCell.m in Sources */,
+				5E91D86227CCCEE30019D7EB /* NEBaseTableViewController.m in Sources */,
+				5EEC2FD227E6D3D5000AC2D9 /* LOTAnimationCache.m in Sources */,
+				5EEC2FAE27E6D3D4000AC2D9 /* LOTNumberInterpolator.m in Sources */,
+				5E21A3A927DF381400DF7429 /* NETSBaseActionSheet.m in Sources */,
+				5EEC2FE027E6D3D5000AC2D9 /* LOTCompositionContainer.m in Sources */,
+				5EEC2EFB27E582BE000AC2D9 /* NETSPkTimeLabel.m in Sources */,
+				5EEC2FBE27E6D3D5000AC2D9 /* LOTMask.m in Sources */,
+				5EEC2FC427E6D3D5000AC2D9 /* LOTShapeGradientFill.m in Sources */,
+				5EEC2FE127E6D3D5000AC2D9 /* LOTMaskContainer.m in Sources */,
+				5E464B2627F2A00C00910F24 /* NEPersonTextCell.m in Sources */,
+				5E91D86127CCCEE30019D7EB /* NETabbarController.m in Sources */,
+				5ECB15B127CDEB9A008FF3A2 /* NETSAnchorTopInfoView.m in Sources */,
+				5E21A3A327DF376300DF7429 /* TopmostView.m in Sources */,
+				5E7C87F127F1C3A1000C3213 /* NETSViewFactory.m in Sources */,
+				5EEC2FA527E6D3D4000AC2D9 /* LOTRenderNode.m in Sources */,
+				5E2C6E2127E8159C00876F01 /* NETSFilterSettingActionSheet.m in Sources */,
+				5EEC2F1327E6D17B000AC2D9 /* NETSAudienceBottomBar.m in Sources */,
+				5EEC2FA627E6D3D4000AC2D9 /* LOTTrimPathNode.m in Sources */,
+				5EEC2FAF27E6D3D4000AC2D9 /* LOTAnimatorNode.m in Sources */,
+				5E464B2927F2A01700910F24 /* NENicknameVC.m in Sources */,
+				5EEC2EFE27E58522000AC2D9 /* NETSInviteeInfoView.m in Sources */,
+				5EEC2FC627E6D3D5000AC2D9 /* LOTShapeRepeater.m in Sources */,
+				5EEC2FA927E6D3D4000AC2D9 /* LOTSizeInterpolator.m in Sources */,
+				5EEC2FB427E6D3D4000AC2D9 /* LOTRoundedRectAnimator.m in Sources */,
+				5ECB15A127CDC1FC008FF3A2 /* NETSWarnToast.m in Sources */,
+				5EEC2EF227E57E68000AC2D9 /* NETSInvitingBar.m in Sources */,
+				5E21A38927DF2D9900DF7429 /* NETSInputToolBar.m in Sources */,
+				5E5A793727E780BB00610488 /* NETSApiOptions.m in Sources */,
+				5EEC2FBD27E6D3D5000AC2D9 /* CALayer+Compat.m in Sources */,
+				5EEC2FC127E6D3D5000AC2D9 /* LOTLayerGroup.m in Sources */,
+				5E7C87E227F1AE74000C3213 /* UIViewController+Gesture.m in Sources */,
+				5EEC2FBC27E6D3D5000AC2D9 /* NSValue+Compat.m in Sources */,
+				5EEC2FBA27E6D3D4000AC2D9 /* UIBezierPath.m in Sources */,
+				5E21A3AF27DF479B00DF7429 /* NETSChoosePKCell.m in Sources */,
+				5E5A793027E7805500610488 /* NETSLiveApi.m in Sources */,
+				5ECB15AA27CDC375008FF3A2 /* NETSAnchorCoverSetting.m in Sources */,
+				5EEC2FD927E6D3D5000AC2D9 /* LOTCacheProvider.m in Sources */,
+				5EEC2FB127E6D3D4000AC2D9 /* LOTPolystarAnimator.m in Sources */,
+				5E91D86027CCCEE30019D7EB /* NSMacro.m in Sources */,
+				5EEC2FDB27E6D3D5000AC2D9 /* LOTInterpolatorCallback.m in Sources */,
+				5E91D88027CCE7EC0019D7EB /* UIImage+NTES.m in Sources */,
+				5E7C87E527F1B103000C3213 /* NETSPullStreamErrorView.m in Sources */,
+				5E7C87EB27F1B136000C3213 /* Reachability.m in Sources */,
+				5E5A793427E780A300610488 /* NETSRequest.m in Sources */,
+				5EEC2FD027E6D3D5000AC2D9 /* LOTRadialGradientLayer.m in Sources */,
+				5EEC2FB027E6D3D4000AC2D9 /* LOTPathAnimator.m in Sources */,
+				5EEC2FCE27E6D3D5000AC2D9 /* CGGeometry+LOTAdditions.m in Sources */,
+				5EEC2FCB27E6D3D5000AC2D9 /* LOTShapeFill.m in Sources */,
+				5EEC2FDF27E6D3D5000AC2D9 /* LOTLayerContainer.m in Sources */,
+				5EEC2FAB27E6D3D4000AC2D9 /* LOTValueInterpolator.m in Sources */,
+				5EEC2FDC27E6D3D5000AC2D9 /* LOTAnimatedSwitch.m in Sources */,
+				5E21A39627DF31BD00DF7429 /* NETSMessageModel.m in Sources */,
+				5EEC2FCA27E6D3D5000AC2D9 /* LOTShapeGroup.m in Sources */,
+				5ECB159B27CDB8AE008FF3A2 /* UIView+NTES.m in Sources */,
+				5ECB15A727CDC2FB008FF3A2 /* UIControl+repeatclick.m in Sources */,
+				53AE76FE27EB1DF900856BE6 /* NETSAudienceMask.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		53B221BE27F5A8FE00268D17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5ED89D3C27CCC68000C76510 /* NEOnlinePKDemo */;
+			targetProxy = 53B221BD27F5A8FE00268D17 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5ED89D4927CCC68000C76510 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5ED89D4A27CCC68000C76510 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5ED89D4E27CCC69700C76510 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5ED89D4F27CCC69700C76510 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		53B221BF27F5A8FE00268D17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DynamicDemo.NEOnlinePKDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NEOnlinePKDemo.app/NEOnlinePKDemo";
+			};
+			name = Debug;
+		};
+		53B221C027F5A8FE00268D17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.DynamicDemo.NEOnlinePKDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NEOnlinePKDemo.app/NEOnlinePKDemo";
+			};
+			name = Release;
+		};
+		5ED89D5427CCC69700C76510 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5ED89D5527CCC69700C76510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5ED89D5727CCC69700C76510 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EA33411BF719E7319BB6B93 /* Pods-NEOnlinePKDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/NEOnlinePKDemo/PrefixHeader.pch";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NEOnlinePKDemo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.NEOnlinePKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5ED89D5827CCC69700C76510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6EFDC94C0F8620E25D300C4 /* Pods-NEOnlinePKDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 569GNZ5392;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/NEOnlinePKDemo/PrefixHeader.pch";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NEOnlinePKDemo/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.netease.NEOnlinePKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = enterpriseForWildCard;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		53B221C127F5A8FE00268D17 /* Build configuration list for PBXNativeTarget "NEOnlinePKDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53B221BF27F5A8FE00268D17 /* Debug */,
+				53B221C027F5A8FE00268D17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ED89D3827CCC68000C76510 /* Build configuration list for PBXProject "NEOnlinePKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ED89D5427CCC69700C76510 /* Debug */,
+				5ED89D5527CCC69700C76510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5ED89D5627CCC69700C76510 /* Build configuration list for PBXNativeTarget "NEOnlinePKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5ED89D5727CCC69700C76510 /* Debug */,
+				5ED89D5827CCC69700C76510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5ED89D3527CCC68000C76510 /* Project object */;
+}
