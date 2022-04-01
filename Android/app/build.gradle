@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.netease.yunxin.app.pklive"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "3.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        jniLibs.pickFirsts.add("lib/arm64-v8a/libc++_shared.so")
+        jniLibs.pickFirsts.add("lib/armeabi-v7a/libc++_shared.so")
+    }
+    sourceSets["main"].jniLibs.srcDirs("libs")
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+    implementation ("androidx.appcompat:appcompat:1.4.1")
+    implementation("com.gyf.immersionbar:immersionbar:3.0.0")
+    implementation("com.netease.yunxin.kit.auth:auth-yunxin-login:1.0.1")
+    implementation("com.netease.yunxin.kit.live:livekit:1.0.0")
+    implementation(project(":lib-beauty-faceunity"))
+    implementation ("com.netease.nimlib:neliveplayer:3.1.1")
+    implementation ("com.netease.yunxin.kit:alog:1.0.2")
+    implementation ("com.blankj:utilcodex:1.30.6")
+    implementation ("com.netease:gslb:1.1.0")
+    implementation("jp.wasabeef:glide-transformations:4.3.0")
+    implementation("com.blankj:utilcodex:1.30.6")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("com.scwang.smart:refresh-layout-kernel:2.0.1")
+    implementation("com.airbnb.android:lottie:3.5.0")
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.14.7'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
