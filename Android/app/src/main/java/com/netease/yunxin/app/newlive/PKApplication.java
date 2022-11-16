@@ -38,7 +38,7 @@ public class PKApplication extends Application {
         wrapperUncaughtExceptionHandler();
         application = this;
         //初始化登录模块
-        AuthorConfig authorConfig = new AuthorConfig(AppConfig.getAppKey(), AppConfig.getParentScope(), AppConfig.getScope(), !AppConfig.isOnline);
+        AuthorConfig authorConfig = new AuthorConfig(AppConfig.getAppKey(), AppConfig.getParentScope(), AppConfig.getScope(), false);
         authorConfig.setLoginType(LoginType.LANGUAGE_SWITCH);
         AuthorManager.INSTANCE.initAuthor(getApplicationContext(), authorConfig);
         AuthorManager.INSTANCE.registerLoginObserver(new LoginObserver<LoginEvent>() {
@@ -89,9 +89,6 @@ public class PKApplication extends Application {
         }
         //初始化livekit
         Map<String, String> extras = new HashMap<String, String>();
-        if(!AppConfig.isOnline) {
-            extras.put("serverUrl", "test");
-        }
         LiveKitManager.getInstance().init(this, new NELiveKitOptions(AppConfig.getAppKey(), extras), null);
         LiveKitManager.getInstance().addLiveListener(new MyLiveListener(){
 
