@@ -6,6 +6,9 @@ pluginManagement {
         maven{
             url 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
+        maven {
+            setUrl("https://maven.faceunity.com/repository/maven-public/")
+        }
         jcenter()
     }
 }
@@ -17,10 +20,17 @@ dependencyResolutionManagement {
         maven{
             url 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
+        maven {
+            setUrl("https://maven.faceunity.com/repository/maven-public/")
+        }
         jcenter()
     }
 }
 rootProject.name = "Android"
-include ':app'
 
-include(":lib-beauty-faceunity", "lib-beauty-faceunity")
+include(":app")
+include(":beauty-faceunity")
+include(":entertainment-common")
+include(":livestreamkit")
+include(":livestreamkit-ui")
+include(":voiceroomkit")
