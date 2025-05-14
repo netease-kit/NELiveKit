@@ -18,7 +18,6 @@ public class AppConfig {
 
   public static final String BASE_URL_OVERSEA = "https://yiyong-sg.netease.im/"; //云信派对服务端海外的体验地址
   private static final int ONLINE_CONFIG_ID = 22; //替换成控制台上对应模版的ID
-  private static final int OVERSEA_CONFIG_ID = 1112;
 
   @SuppressLint("StaticFieldLeak")
   private static Context sContext;
@@ -53,7 +52,7 @@ public class AppConfig {
 
   public static int getLiveStreamConfigId() {
     if (isOversea()) {
-      return OVERSEA_CONFIG_ID;
+      return ONLINE_CONFIG_ID;
     } else {
       return ONLINE_CONFIG_ID;
     }
