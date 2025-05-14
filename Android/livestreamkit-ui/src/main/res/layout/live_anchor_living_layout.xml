@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:clipToPadding="false"
+                                                   android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_pause_living"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_pause_live"
+        android:visibility="gone">
+
+        <TextView
+            app:layout_constraintBottom_toTopOf="@+id/resume_living"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/live_living_already_pause"
+            android:textSize="16sp"
+            android:textColor="@color/color_white"
+            android:layout_marginBottom="10dp"
+        />
+
+        <TextView
+            android:id="@+id/resume_living"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="100dp"
+            android:layout_width="178dp"
+            android:layout_height="36dp"
+            android:text="@string/live_resume_living"
+            android:textSize="14sp"
+            android:textColor="@color/color_white"
+            android:background="@drawable/bg_pause_btn"
+            android:gravity="center"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/dimen_8_dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="8dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_anchor_info"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/live_shape_anchor_info_bg"
+                android:paddingStart="4dp"
+                android:paddingEnd="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- 主播头像 -->
+                <ImageView
+                    android:id="@+id/iv_anchor_avatar"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginVertical="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <!-- 主播信息 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_anchor_avatar"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!-- 主播昵称 -->
+                    <TextView
+                        android:id="@+id/tv_live_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxWidth="120dp"
+                        android:maxLines="1"
+                        android:textColor="@color/color_white"
+                        android:textSize="12sp"
+                        tools:text="主播昵称"/>
+
+                    <!-- 主播ID -->
+                    <TextView
+                        android:id="@+id/tv_live_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxWidth="120dp"
+                        android:maxLines="1"
+                        android:textColor="#80FFFFFF"
+                        android:textSize="10sp"
+                        tools:text="ID: 12345678" tools:ignore="SmallSp"/>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 在线人数 -->
+            <LinearLayout
+                android:id="@+id/ll_audience_info"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                app:layout_constraintRight_toLeftOf="@+id/iv_power"
+                app:layout_constraintTop_toTopOf="@+id/cl_anchor_info"
+                app:layout_constraintBottom_toBottomOf="@+id/cl_anchor_info"
+                android:layout_marginEnd="10dp">
+
+                <!-- 观众头像列表 -->
+                <LinearLayout
+                    android:id="@+id/ll_audience_avatars"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginEnd="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_audience_avatar1"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"/>
+
+                    <ImageView
+                        android:id="@+id/iv_audience_avatar2"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"/>
+
+                    <ImageView
+                        android:id="@+id/iv_audience_avatar3"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_member_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:background="@drawable/live_shape_member_count_bg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:textColor="@color/color_white"
+                    android:textSize="12sp"
+                    android:text="0"
+                    tools:text="9999"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_power"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/live_icon_power"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cl_anchor_info"
+                app:layout_constraintBottom_toBottomOf="@+id/cl_anchor_info"
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.netease.yunxin.kit.livestreamkit.ui.view.anchor.AnchorLinkSeatsAudienceView
+            android:id="@+id/audience_seats_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="64dp" />
+
+        <FrameLayout
+            android:id="@+id/rcy_chat_message_list_group"
+            android:layout_width="280dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="@dimen/dimen_7_dp"
+            android:layout_marginBottom="@dimen/dimen_16_dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/tv_input_text"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.netease.yunxin.kit.livestreamkit.ui.view.ChatRoomMsgRecyclerView
+                android:id="@+id/rcy_chat_message_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:overScrollMode="never"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_input_text"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_36_dp"
+            android:layout_marginStart="@dimen/dimen_8_dp"
+            android:layout_marginBottom="@dimen/dimen_8_dp"
+            android:background="@drawable/live_shape_corner_18_bg"
+            android:drawablePadding="@dimen/dimen_2_dp"
+            android:gravity="center_vertical"
+            android:hint="@string/live_chat_hint"
+            android:paddingStart="@dimen/dimen_16_dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/color_4cffffff"
+            app:drawableStartCompat="@drawable/live_alpha_chat_room_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_bottom_tools"
+        />
+
+        <!-- 底部功能按钮区域 -->
+        <LinearLayout
+            android:id="@+id/ll_bottom_tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_input_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_input_text">
+
+            <!-- PK按钮 -->
+            <ImageView
+                android:id="@+id/iv_pk"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/dimen_10_dp"
+                android:src="@drawable/live_pk"
+                android:visibility="gone"
+            />
+
+            <!-- 连麦按钮 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/dimen_10_dp">
+
+                <ImageView
+                    android:id="@+id/iv_link_mic"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_live_link_mic"/>
+
+                <ImageView
+                    android:id="@+id/iv_link_mic_red_dot"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/red_dot"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="@id/iv_link_mic"
+                    app:layout_constraintEnd_toEndOf="@id/iv_link_mic"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 美颜按钮 -->
+            <ImageView
+                android:id="@+id/iv_beauty"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/dimen_10_dp"
+                android:contentDescription="@string/app_default_content_description"
+                android:src="@drawable/ic_live_beauty"/>
+
+            <ImageView
+                android:id="@+id/iv_order_song"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/dimen_10_dp"
+                android:contentDescription="@string/app_default_content_description"
+                android:visibility="gone"
+                android:src="@drawable/ic_live_order_song"/>
+
+            <ImageView
+                android:id="@+id/iv_gift"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="@dimen/dimen_10_dp"
+                android:contentDescription="@string/app_default_content_description"
+                android:src="@drawable/live_gift"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:id="@+id/iv_room_more"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/app_default_content_description"
+                android:src="@drawable/live_more"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt_input_text"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_48_dp"
+            android:layout_marginHorizontal="-8dp"
+            android:background="@drawable/live_input_text_bg"
+            android:hint="@string/live_chat_hint"
+            android:imeOptions="actionSend"
+            android:paddingHorizontal="@dimen/dimen_20_dp"
+            android:paddingVertical="@dimen/dimen_8_dp"
+            android:singleLine="true"
+            android:textColor="@color/color_ff222222"
+            android:textColorHint="@color/color_bfbfbf"
+            android:textSize="@dimen/text_size_14"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

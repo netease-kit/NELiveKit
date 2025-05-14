@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#007AFF" android:state_enabled="true" /> <!-- 启用时蓝色 -->
+    <item android:color="#999999" android:state_enabled="false" /> <!-- 禁用时灰色 -->
+</selector>

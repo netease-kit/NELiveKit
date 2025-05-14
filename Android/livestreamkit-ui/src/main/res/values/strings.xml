@@ -1,0 +1,153 @@
+<resources>
+    <!--******************************************************************-->
+    <string name="live_room">直播房</string>
+    <string name="live_room_desc">主播实时PK连麦，粉丝助阵跟，嗨翻全场</string>
+    <string name="live_mic">麦克风</string>
+    <string name="live_earback">耳返</string>
+    <string name="live_mixer">调音台</string>
+    <string name="live_mixing">音效</string>
+    <string name="live_end">结束</string>
+    <string name="live_pause_living">暂停直播</string>
+    <string name="live_resume_living">继续直播</string>
+    <string name="live_cancel">取消</string>
+    <string name="live_sure">确认</string>
+    <string name="live_leave_room">退出房间</string>
+    <string name="live_operate_fail">操作失败</string>
+    <string name="live_notify">通知</string>
+    <string name="live_get_it">知道了</string>
+    <string name="live_chat_message_tips">聊天室信息不能为空</string>
+    <string name="live_people_online">在线%s人</string>
+    <string name="live_host_close_room">该房间已被主播解散</string>
+    <string name="live_mic_off">话筒已关闭</string>
+    <string name="live_mic_on">话筒已打开</string>
+    <string name="live_no_mute_members">暂无禁言成员</string>
+    <string name="live_seat">麦位%d</string>
+    <string name="live_enter_room">进入直播间</string>
+    <string name="live_bgm">音效</string>
+    <string name="live_mixing_play_error">伴音播放错误</string>
+    <string name="live_more">更多</string>
+    <string name="live_more_setting">更多设置</string>
+    <string name="live_select_member">选择成员</string>
+    <string name="live_already_seat">已上麦</string>
+    <string name="live_down_seat">已下麦</string>
+    <string name="live_notice_tips">本应用为示例产品，请勿商用。</string>
+    <string name="live_notice">公告</string>
+    <string name="live_loading_fail">加载失败</string>
+    <string name="live_loading">加载中...</string>
+    <string name="live_chat_hint">聊聊吧</string>
+    <string name="live_applause">鼓掌声</string>
+    <string name="live_laughter">笑声</string>
+    <string name="live_earback_tip">插入耳机后可使用耳返功能</string>
+    <string name="live_voice">人声</string>
+    <string name="live_bnacking">伴奏</string>
+    <string name="live_capture_volume">采集音量</string>
+    <string name="live_confirm_to_cancel">确认取消申请上麦</string>
+    <string name="live_dowmseat">下麦</string>
+    <string name="live_net_disconnected">网络异常，请稍后重试</string>
+    <string name="live_host_close_room_success">房间解散成功</string>
+
+    <string name="live_end_live_title">确认结束直播？</string>
+    <string name="live_end_live_tips">请确认是否结束直播</string>
+
+    <string name="live_start_live_error">开启语聊房失败</string>
+    <string name="live_join_live_error">私密房内人数已满</string>
+
+    <string name="live_glow_stick">荧光棒</string>
+    <string name="live_arrange">安排</string>
+    <string name="live_sports_car">跑车</string>
+    <string name="live_rockets">火箭</string>
+    <string name="live_send_gift">送礼物</string>
+    <string name="live_send">发送</string>
+    <string name="live_coin">coins</string>
+    <string name="live_reward_failed">打赏礼物失败</string>
+    <string name="live_donate">赠送了</string>
+    <string name="live_count">个</string>
+    <string name="live_song">听听歌</string>
+    <string name="live_pause">暂停</string>
+    <string name="live_play">播放</string>
+    <string name="live_next_song">切歌</string>
+    <string name="live_first_seat">麦位1</string>
+    <string name="live_song_loading">歌曲加载中</string>
+    <string name="live_song_ordered">点了歌曲《%s》</string>
+    <string name="live_song_deleted">删除了歌曲《%s》</string>
+    <string name="live_song_switched">已切歌</string>
+    <string name="live_song_pause">暂停了歌曲《%s》</string>
+    <string name="live_song_start">正在播放歌曲《%s》</string>
+
+
+    <string name="live_beauty">美颜</string>
+    <string name="live_switch">翻转</string>
+    <string name="live_small_window">小窗播放</string>
+    <string name="live_switch_camera">翻转镜头</string>
+    <string name="live_demo_user_warning">本应用为测试产品、请勿商用。单次直播最长10分钟</string>
+
+    <string name="voiceroom_empty_roomname_tips">房间名称为空</string>
+    <string name="voiceroom_click_create_room_tips">是否退出当前房间，并创建新房间</string>
+    <string name="input_room_name">请输入房间名称</string>
+
+    <string name="biz_live_has_end">直播已结束</string>
+    <string name="biz_live_back">返回</string>
+    <string name="biz_live_guide_tip">上下滑动，即可观看其他直播</string>
+    <string name="biz_live_reconnection">重新连接</string>
+    <string name="biz_live_live_is_end">直播已结束啦</string>
+    <string name="biz_live_follow_anchor_be_lost">跟主播走丢了</string>
+    <string name="live_living_already_pause">你已暂停直播，观众无法看到画面</string>
+    <string name="live_living_already_pause_audience">主播暂时离开</string>
+    <string name="live_living_already_pause_audience_tip">休息片刻，更多精彩马上到来</string>
+    <string name="live_existing_room_title">直播异常中断，恢复直播？</string>
+    <string name="live_recovery">恢复</string>
+    <string name="live_enter_existing_room">继续直播</string>
+    <string name="live_end_existing_room">结束直播</string>
+    <string name="live_error">直播错误</string>
+
+    <string name="live_creating_room">正在创建直播间...</string>
+
+    <!-- 网络相关 -->
+    <string name="network_error">网络异常，请检查网络设置</string>
+    
+    <!-- PK相关 -->
+    <string name="pk_invite_sent">PK邀请已发送</string>
+    <string name="pk_invite_failed">发送PK邀请失败</string>
+    <string name="no_pkable_anchor">当前没有可PK的主播</string>
+    <string name="get_pkable_list_failed">获取可PK主播列表失败</string>
+    
+    <!-- 连麦相关 -->
+    <string name="link_mic_enabled">已允许观众连麦</string>
+    <string name="link_mic_disabled">已禁止观众连麦</string>
+    <string name="operation_failed">操作失败，请重试</string>
+    <string name="live_sure_hanup_link_seat">是否挂断与%s的连麦？</string>
+    <string name="live_hangup">挂断</string>
+    <string name="live_apply_on_seat">申请上麦(%d)</string>
+    <string name="live_invite_join_seats">邀请上麦</string>
+    <string name="live_apply_seat">连麦申请</string>
+    <string name="live_cancel_on_seat">取消上麦</string>
+    <string name="live_apply_seat_manager">连麦管理</string>
+    <string name="live_accept">接受</string>
+    <string name="live_reject">拒绝</string>
+    <string name="live_anchor_invite_audience_join_seats">主播%s邀请你上麦</string>
+    <string name="live_join_seats">上麦</string>
+    <string name="live_reject_countdown">拒绝(%ds)</string>
+    <string name="live_audience_reject_link_seats_invited">对方已拒绝你的连麦邀请</string>
+    <string name="live_anchor_reject_link_seats_request">主播已拒绝你的连麦申请</string>
+    <string name="live_permission_deny_tips">您拒绝了权限申请，该功能将无法使用</string>
+    <string name="live_permission_error_tips">需要同意相机和麦克风权限才能正常连麦哦~</string>
+    <string name="live_anchor_invite_success">邀请已发送</string>
+    <string name="live_have_accepted">已接受</string>
+    <string name="live_have_reject">已拒绝</string>
+    <string name="live_have_leave_seat">已下麦</string>
+    <string name="live_apply_link_seat">申请连麦</string>
+    <string name="live_waiting_on_seat">待上麦队列</string>
+    <string name="live_have_kick_seat">已踢下麦</string>
+    <string name="live_has_been_kicked_seat">已被踢下麦</string>
+    <string name="live_waiting_confirm">等待确认上麦中</string>
+    <string name="live_seat_linked">连麦中...</string>
+    <string name="live_cancel_apply">撤销申请</string>
+    <string name="live_unlink_seat">结束连麦</string>
+
+    <string name="content_description_default"></string>
+    <string name="current_state_can_not_pause_living">当前状态不支持暂停直播</string>
+    <string name="current_state_can_not_switch_camera">未上麦观众不支持操作摄像头</string>
+
+
+
+</resources>
