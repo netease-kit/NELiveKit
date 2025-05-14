@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- avatar -->
+    <dimen name="live_avatar_size_default">50dip</dimen>
+    <dimen name="live_action_bar_height">48dp</dimen>
+
+</resources>
