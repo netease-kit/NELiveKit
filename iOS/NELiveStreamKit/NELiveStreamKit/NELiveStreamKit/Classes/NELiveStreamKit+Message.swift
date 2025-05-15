@@ -493,4 +493,14 @@ extension NELiveStreamKit: NERoomListener {
       }
     }
   }
+
+  public func onMemberJoinRtcChannel(members: [NERoomMember]) {
+    for member in members {
+      if member.uuid == localMember?.account {
+        // 默认上麦
+        roomContext?.rtcController.unmuteMyAudio()
+        return
+      }
+    }
+  }
 }

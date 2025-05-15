@@ -244,6 +244,8 @@ public extension NELiveStreamKit {
 
               // 默认开启视频
               self.roomContext?.rtcController.enableLocalVideo(enable: true)
+              self.roomContext?.rtcController.enableLocalAudio(channelName: self.roomContext?.roomUuid ?? "", enable: true)
+              self.roomContext?.rtcController.unmuteMyAudio()
 
               callback?(code, msg, nil)
             }
