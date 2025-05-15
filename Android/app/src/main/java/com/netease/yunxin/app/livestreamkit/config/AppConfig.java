@@ -14,7 +14,7 @@ public class AppConfig {
       "your AppSecret"; // 请填写应用对应的AppSecret，可在云信控制台的”AppKey管理“页面获取
   public static final boolean IS_OVERSEA = false; // 如果您的AppKey为海外，填ture；如果您的AppKey为中国国内，填false
   /** 默认的BASE_URL地址仅用于跑通体验Demo，请勿用于正式产品上线。在产品上线前，请换为您自己实际的服务端地址 */
-  public static final String BASE_URL = "https://yiyong-qa.netease.im/"; //云信派对服务端国内的体验地址
+  public static final String BASE_URL = "https://yiyong.netease.im/"; //云信派对服务端国内的体验地址
 
   public static final String BASE_URL_OVERSEA = "https://yiyong-sg.netease.im/"; //云信派对服务端海外的体验地址
   private static final int ONLINE_CONFIG_ID = 22; //替换成控制台上对应模版的ID
@@ -47,7 +47,7 @@ public class AppConfig {
     if (isOversea()) {
       return "oversea";
     }
-    return "test";
+    return "online";
   }
 
   public static int getLiveStreamConfigId() {
