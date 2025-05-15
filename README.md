@@ -1,3 +1,12 @@
+<div align="vertical-center">
+  <a href="https://deepwiki.com/netease-kit/NELiveKit">
+    <img src="https://devin.ai/assets/deepwiki-badge.png" alt="Ask the Deepwiki" height="20"/>
+  </a>
+  <p>单击跳转查看 <a href="https://deepwiki.com/netease-kit/NELiveKit">DeepWiki</a> 源码解读。</p>
+</div>
+
+-------------------------------
+
 # 简介
 
 网易云信直播房场景方案为您提供 iOS 和 Android 端的 Demo App 与示例项目源码。您可以安装对应 App，快速体验网易云信直播房。
