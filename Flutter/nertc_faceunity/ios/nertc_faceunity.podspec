@@ -18,7 +18,7 @@ A new Flutter plugin.
   s.dependency 'Flutter'
   s.platform = :ios, '9.0'
   s.dependency 'Nama-lite', '8.5.0'
-  s.dependency 'NERtcSDK/RtcBasic', '>=5.4.0'
+  s.dependency 'NERtcSDK_Special/RtcBasic', '5.6.2008'
   # s.static_framework = true
 #  arr = Array.new
 #  arr.push('./**/nertc.framework')
