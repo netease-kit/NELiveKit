@@ -22,7 +22,7 @@ class _NELiveHttpRepository {
       'seatCount': 9,
       'seatApplyMode': 1,
     };
-    var ret = await manager._post(_path('createLive'), body);
+    var ret = await manager._post(_path('createLiveV3'), body);
     var response = _NECreateLiveResponse.fromJson(ret.data);
     return NEResult(code: ret.code, msg: ret.msg, data: response);
   }

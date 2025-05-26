@@ -378,10 +378,8 @@ class _ApplySeatViewState extends State<ApplySeatView>
       child: TabBar(
         overlayColor: MaterialStateProperty.all(Colors.transparent),
         indicatorPadding: EdgeInsets.zero,
-        dividerHeight: ScreenUtils.setPx(0),
         controller: tabController,
         isScrollable: true,
-        tabAlignment: TabAlignment.center,
         tabs: [
           Tab(text: listTab[0]),
           Tab(text: listTab[1]),

@@ -82,7 +82,6 @@ class NELiveApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Application.context = context;
-    ScreenUtils.initialize(context);
     return MaterialApp(
         builder: BotToastInit(),
         color: Colors.black,
@@ -92,7 +91,12 @@ class NELiveApp extends StatelessWidget {
                 systemOverlayStyle: SystemUiOverlayStyle.light)),
         themeMode: ThemeMode.light,
         // navigatorKey: NavUtils.navigatorKey,
-        home: const WelcomePage(),
+        home: Builder( // 使用 Builder 获取正确上下文
+          builder: (context) {
+            ScreenUtils.initialize(context); // 此时 context 属于 MaterialApp 子节点
+            return const WelcomePage();
+          },
+        ),
         navigatorObservers: [BotToastNavigatorObserver(), routeObserver],
         // routes: RoutesRegister.routes,
         onGenerateRoute: (settings) {

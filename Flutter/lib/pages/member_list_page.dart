@@ -80,10 +80,10 @@ class MemberListPageState extends State<MemberListPage> {
   }
 
   Widget buildTitle() {
-    return const SizedBox(
+    return SizedBox(
       height: 48,
       child: Stack(
-        children: <Widget>[
+        children: const <Widget>[
           Center(
             child: Text(
               '观众',

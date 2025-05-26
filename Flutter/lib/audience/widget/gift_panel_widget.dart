@@ -89,8 +89,8 @@ class _GiftPanelWidgetState extends LifecycleBaseState<GiftPanelWidget> {
               side: const BorderSide(color: AppColors.globalBg),
               borderRadius:
                   BorderRadius.only(topLeft: _radius, topRight: _radius))),
-      child: const Stack(
-        children: <Widget>[
+      child: Stack(
+        children: const <Widget>[
           Align(
             alignment: Alignment.center,
             child: Text(
