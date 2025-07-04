@@ -49,6 +49,12 @@ extension NELiveAnchorViewController: NEliveStreamMicListDelegate {
       return
     }
 
+    guard status != .coHosting else {
+      NELiveStreamToast.show("当前正在PK中，无法进行连麦, 将拒绝连麦申请")
+      onReject(with: seatItem)
+      return
+    }
+
     NELiveStreamKit.getInstance().approveSeatRequest(account: user) { [weak self] code, msg, _ in
       DispatchQueue.main.async { [weak self] in
         if code == 0 {
@@ -110,6 +116,11 @@ extension NELiveAnchorViewController: NEliveStreamMicListDelegate {
   func onInvite(with seatItem: NELiveStreamSeatItem!) {
     guard let user = seatItem.user else {
       NELiveStreamUILog.errorLog(anchorControllerTag, desc: "Failed to invite seat request, user is null.")
+      return
+    }
+
+    guard status != .coHosting else {
+      NELiveStreamToast.show("当前正在PK中，无法进行连麦")
       return
     }
 
@@ -238,6 +249,10 @@ extension NELiveAnchorViewController {
   // 对方已拒绝你的连麦邀请
   func onSeatInvitationRejected(_ seatIndex: Int, account: String) {
     NELiveStreamToast.show("对方已拒绝你的连麦邀请")
+  }
+
+  func onMemberRoleChanged(_ member: NELiveStreamMember, oldRole: NELiveStreamRoomRole, newRole: NELiveStreamRoomRole) {
+    NELiveStreamUILog.infoLog(anchorControllerTag, desc: "onMemberRoleChanged: \(member.account) oldRole: \(oldRole) newRole: \(newRole)")
   }
 }
 

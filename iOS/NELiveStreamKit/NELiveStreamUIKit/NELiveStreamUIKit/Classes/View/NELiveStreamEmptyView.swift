@@ -47,4 +47,8 @@ import UIKit
     view.numberOfLines = 0
     return view
   }()
+
+  func setTip(tip: String) {
+    tipLabel.text = tip
+  }
 }

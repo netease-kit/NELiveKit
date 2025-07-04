@@ -39,11 +39,16 @@ enum NEAPI {
     static func audienceList(_ liveRecordId: Int64, page: Int, size: Int) -> NEAPIItem {
       NEAPIItem("\(prePath)/audience/list?liveRecordId=\(liveRecordId)&page=\(page)&size=\(size)", desc: "查询直播间观众列表", method: .get)
     }
-//    static func pauseLive(_ liveRecordId: Int64) -> NEAPIItem{
-//        return NEAPIItem("\(prePath)/pauseLive/liveRecordId=\(liveRecordId)", desc: "暂停直播")
-//    }
-//    static func resumeLive(_ liveRecordId: Int64) -> NEAPIItem{
-//        return NEAPIItem("\(prePath)/resumeLive/liveRecordId=\(liveRecordId)", desc: "恢复直播")
-//    }
+
+    static let coHostList = NEAPIItem("\(prePath)/available_connection_list", desc: "获取PK列表")
+  }
+
+  enum CoLive {
+    static let prePath = "/nemo/entertainmentLive/live"
+    static let requestHostConnection = NEAPIItem("\(prePath)/request_connection", desc: "申请主播连线")
+    static let cancelRequestHostConnection = NEAPIItem("\(prePath)/cancel_connection", desc: "取消主播连线申请")
+    static let acceptRequestHostConnection = NEAPIItem("\(prePath)/accept_connection", desc: "接受主播连线")
+    static let rejectRequestHostConnection = NEAPIItem("\(prePath)/reject_connection", desc: "拒绝主播连线")
+    static let disconnectHostConnection = NEAPIItem("\(prePath)/disconnect_connection", desc: "结束主播连线")
   }
 }

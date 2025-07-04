@@ -45,16 +45,17 @@ class NELiveAnchorViewController: UIViewController {
   private var isLiving: Bool = false
 
   // 当前状态
-  private var status: NELiveStreamAnchorStatus {
+  var status: NELiveStreamAnchorStatus {
     guard isLiving else {
       return .idle
     }
 
-    let takenCount = NELiveStreamKit.getInstance().localSeats?.filter { $0.status == .taken }.count ?? 0
-    if takenCount == 1 {
-      return .soloLive
-    } else if takenCount > 1 {
+    let seatTakenCount = NELiveStreamKit.getInstance().localSeats?.filter { $0.status == .taken }.count ?? 0
+    let cohostCount = NELiveStreamKit.getInstance().coHostManager.coHostUserList.count
+    if seatTakenCount > 1 {
       return .audienceLink
+    } else if cohostCount > 0 {
+      return .coHosting
     } else {
       return .soloLive
     }
@@ -62,6 +63,12 @@ class NELiveAnchorViewController: UIViewController {
 
   // 添加定时器属性
   private var audienceListTimer: Timer?
+
+  // 缓存 PK 邀请列表 VC
+  private lazy var pkInviteListVC: NELiveStreamPKInviteListViewController = {
+    let listVC = NELiveStreamPKInviteListViewController()
+    return listVC
+  }()
 
   // MARK: - Preview UI
 
@@ -131,6 +138,15 @@ class NELiveAnchorViewController: UIViewController {
     return view
   }()
 
+  lazy var pkUIView: NELiveStreamPKUIView = {
+    let view = NELiveStreamPKUIView(localRenderView: localRender)
+    view.delegate = self
+    return view
+  }()
+
+  // 当前显示的PK邀请弹框
+  var currentPKInviteView: NELiveStreamPKInviteViewController?
+
   private lazy var localRender: UIView = {
     let view = UIView()
     view.backgroundColor = .black
@@ -197,6 +213,14 @@ class NELiveAnchorViewController: UIViewController {
     return reachability
   }()
 
+  private lazy var backgroundImageView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.image = NELiveStreamUI.ne_livestream_imageName("live_bg")
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
+    return imageView
+  }()
+
   // MARK: - Lifecycle
 
   override func viewDidLoad() {
@@ -222,6 +246,7 @@ class NELiveAnchorViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: true)
+    UIApplication.shared.isIdleTimerDisabled = true
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -230,6 +255,7 @@ class NELiveAnchorViewController: UIViewController {
     stopPreview()
     // 停止定时器
     stopAudienceListTimer()
+    UIApplication.shared.isIdleTimerDisabled = false
   }
 
   deinit {
@@ -245,10 +271,12 @@ class NELiveAnchorViewController: UIViewController {
   private func addRoomObserver() {
     // 添加房间结束监听
     NELiveStreamKit.getInstance().addLiveStreamListener(self)
+    NELiveStreamKit.getInstance().addCoHostListener(self)
   }
 
   private func removeRoomObserver() {
     NELiveStreamKit.getInstance().removeLiveStreamListener(self)
+    NELiveStreamKit.getInstance().removeCoHostListener(self)
   }
 
   private func addSystemObserver() {
@@ -290,7 +318,10 @@ class NELiveAnchorViewController: UIViewController {
   private func setupUI() {
     view.backgroundColor = .black
     // Add preview UI
-    view.addSubview(localRender)
+    view.addSubview(backgroundImageView)
+    view.addSubview(pkUIView)
+    pkUIView.delegate = self
+
     view.addSubview(mutiConnectView)
     view.addSubview(backButton)
     view.addSubview(titleLabel)
@@ -318,7 +349,10 @@ class NELiveAnchorViewController: UIViewController {
 
   private func setupConstraints() {
     // Preview UI constraints
-    localRender.snp.makeConstraints { make in
+    backgroundImageView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+    pkUIView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
 
@@ -391,18 +425,36 @@ class NELiveAnchorViewController: UIViewController {
     }
 
     chatroomView.snp.makeConstraints { make in
-      make.bottom.greaterThanOrEqualTo(footerView.snp.top).offset(-16)
-      make.height.greaterThanOrEqualTo(100)
+      make.height.equalTo(120)
       make.bottom.equalTo(footerView.snp.top).offset(-16)
       make.left.equalToSuperview().offset(8)
       make.width.lessThanOrEqualTo(280)
     }
   }
 
+  func layoutSingleUI() {
+    pkUIView.snp.remakeConstraints { make in
+      make.edges.equalToSuperview()
+    }
+
+    pkUIView.layoutSingleUI()
+  }
+
+  func layoutPKUI() {
+    pkUIView.snp.remakeConstraints { make in
+      make.left.right.equalToSuperview()
+      make.top.equalTo(anchorInfoView.snp.bottom).offset(22)
+      make.height.equalTo(NEUIScreenAdapter.screenHeight / 2)
+    }
+
+    pkUIView.layoutPKUI()
+    pkUIView.startCountdown(duration: 180)
+  }
+
   private func startPreview() {
     NELiveStreamUtils.getMeidaPermissions(mediaType: .video) { granted in
       if granted {
-        NERoomKit.shared().roomService.previewRoom { [weak self] code, str, context in
+        NERoomKit.shared().roomService.previewRoom { [weak self] code, msg, context in
           guard let self = self,
                 let context = context else { return }
 
@@ -410,7 +462,7 @@ class NELiveAnchorViewController: UIViewController {
           canvas.container = self.localRender
           canvas.renderMode = .cropFill
 
-          let ret = context.previewController.setLocalVideoConfig(width: 540, height: 960, fps: 15)
+          _ = context.previewController.setLocalVideoConfig(width: 1280, height: 720, fps: 15)
           context.previewController.startPreview(canvas: canvas)
           context.previewController.setVideoFrameDelegate(self)
           self.previewRoomContext = context
@@ -465,6 +517,7 @@ class NELiveAnchorViewController: UIViewController {
     bottomPanel.isHidden = true
 
     // Show live UI
+    pkUIView.isHidden = false
     anchorInfoView.isHidden = false
     audienceNumView.isHidden = false
     footerView.isHidden = false
@@ -850,6 +903,14 @@ extension NELiveAnchorViewController: NELiveStreamFooterDelegate {
 
   func footerDidLinkMicClick() {
     let nav = NEUIActionSheetNavigationController(rootViewController: micVc)
+    nav.dismissOnTouchOutside = true
+    nav.modalPresentationStyle = .custom
+    present(nav, animated: true)
+  }
+
+  func footerDidReceivePKClickAction() {
+    // 处理PK点击
+    let nav = NEUIActionSheetNavigationController(rootViewController: pkInviteListVC)
     nav.dismissOnTouchOutside = true
     nav.modalPresentationStyle = .custom
     present(nav, animated: true)

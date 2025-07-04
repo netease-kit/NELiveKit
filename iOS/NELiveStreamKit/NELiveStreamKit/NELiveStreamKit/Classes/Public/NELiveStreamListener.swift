@@ -30,6 +30,12 @@ public protocol NELiveStreamListener: NSObjectProtocol {
   /// - Parameter reason: 房间结束原因
   @objc optional func onRoomEnded(_ reason: NELiveStreamEndReason)
 
+  /// 成员角色变更回调
+  /// - Parameter member: 成员
+  /// - Parameter oldRole: 旧角色
+  /// - Parameter newRole: 新角色
+  @objc optional func onMemberRoleChanged(_ member: NELiveStreamMember, oldRole: NELiveStreamRoomRole, newRole: NELiveStreamRoomRole)
+
   /// Rtc频道错误回调
   /// - Parameter code: 错误码
   @objc optional func onRtcChannelError(_ code: Int)

@@ -43,6 +43,9 @@ let kitTag = "NELiveStreamKit"
   /// 上次收到服务器下发的麦位列表
   public var localSeats: [NELiveStreamSeatItem]?
 
+  /// 连麦管理器
+  public var coHostManager: NECoHostManager { _coHostManager }
+
   // MARK: - Internal Properties
 
   /// 房间服务
@@ -79,6 +82,11 @@ let kitTag = "NELiveStreamKit"
 
   /// 房间服务实例
   var _roomService = NELiveStreamRoomService()
+
+  /// 连麦管理器
+  var _coHostManager = NECoHostManager()
+
+  var useNewSeatCallback: Bool = false
 
   // MARK: - Initialization
 
@@ -121,6 +129,18 @@ let kitTag = "NELiveStreamKit"
   public func removeLiveStreamListener(_ listener: NELiveStreamListener) {
     NELiveStreamLog.apiLog(kitTag, desc: "Remove LiveStream listener.")
     listeners.removeWeakObject(listener)
+  }
+
+  /// 添加连麦监听器
+  public func addCoHostListener(_ listener: NECoHostListener) {
+    NELiveStreamLog.apiLog(kitTag, desc: "Add CoHost listener.")
+    coHostManager.addListener(listener)
+  }
+
+  /// 移除连麦监听器
+  public func removeCoHostListener(_ listener: NECoHostListener) {
+    NELiveStreamLog.apiLog(kitTag, desc: "Remove CoHost listener.")
+    coHostManager.removeListener(listener)
   }
 
   // MARK: - Private Methods

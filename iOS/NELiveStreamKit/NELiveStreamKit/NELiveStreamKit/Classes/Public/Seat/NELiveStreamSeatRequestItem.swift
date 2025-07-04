@@ -34,3 +34,33 @@ public class NELiveStreamSeatRequestItem: NSObject {
     roomUuid = item.roomUuid
   }
 }
+
+@objcMembers
+public class NELiveStreamSeatInvitationItem: NSObject {
+  /// 麦位位置，如果为-1，表示未指定位置。
+  public var index: Int = -1
+  /// 申请人
+  public var user: String = ""
+  /// 用户名
+  public var userName: String?
+  /// 用户头像
+  public var icon: String?
+  /// 房间号
+  var roomUuid: String = ""
+  /// 邀请扩展信息
+  public var ext: String?
+
+  override public init() {
+    super.init()
+  }
+
+  convenience init(_ item: NESeatInvitationItem) {
+    self.init()
+    index = item.index
+    user = item.user
+    userName = item.userName
+    icon = item.icon
+    roomUuid = item.roomUuid
+    ext = item.ext
+  }
+}

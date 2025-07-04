@@ -92,11 +92,6 @@
   self.nickNameLabel.text = userModel.userName;
   [self.headImageView sd_setImageWithURL:[NSURL URLWithString:userModel.icon]
                         placeholderImage:[UIImage imageNamed:@"avator"]];
-
-  // 设置麦克风
-#warning ya
-  //    _micButton.selected = userModel.audioState ? NO : YES;
-  //    _videoButton.selected = userModel.videoState ? NO : YES;
 }
 
 #pragma mark - priviteMethod

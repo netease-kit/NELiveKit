@@ -434,6 +434,24 @@ public extension NELiveStreamKit {
       }
     }, failure: callback)
   }
+
+  /// 获取主播连麦房间列表的信息
+  func fetchCoLiveRooms(_ pageNum: Int,
+                        pageSize: Int,
+                        callback: NELiveStreamCallback<NELiveStreamRoomList>? = nil) {
+    NELiveStreamLog.apiLog(kitTag, desc: "get CoLive Rooms.")
+
+    Judge.initCondition({
+      self.roomService.getCoLiveRooms(pageNum, pageSize: pageSize) { list in
+        NELiveStreamLog.successLog(kitTag, desc: "Successfully get CoLive Rooms.")
+        callback?(NELiveStreamErrorCode.success, nil, NELiveStreamRoomList(list))
+      } failure: { error in
+        NELiveStreamLog.errorLog(kitTag, desc: "Failed to get CoLive Rooms. Code: \(error.code). Msg: \(error.localizedDescription)")
+        callback?(error.code, error.localizedDescription, nil)
+      }
+
+    }, failure: callback)
+  }
 }
 
 extension NELiveStreamKit {
@@ -461,6 +479,7 @@ extension NELiveStreamKit {
 
     if role == NELiveStreamRoomRole.host.toString() {
       group.enter()
+      context.rtcController.setLocalVideoConfig(width: 720, height: 1280, fps: 15)
       NELiveStreamLog.infoLog(kitTag, desc: "joinRtcChannel Timestamp: \(timestamp)")
       context.rtcController.joinRtcChannel { code, msg, _ in
         timestamp = Date().timeIntervalSince1970
@@ -476,7 +495,6 @@ extension NELiveStreamKit {
         group.leave()
       }
     }
-
     // 加入聊天室
     group.enter()
     timestamp = Date().timeIntervalSince1970
@@ -548,6 +566,7 @@ extension NELiveStreamKit {
     joinParams.role = role
     let joinOptions = NEJoinRoomOptions()
     joinOptions.enableMyAudioDeviceOnJoinRtc = true
+    joinOptions.autoStartVideo = true
 
     // 观众通过 observer
     if role == NELiveStreamRoomRole.audience.toString() {
@@ -569,6 +588,7 @@ extension NELiveStreamKit {
       self.roomContext = context
       self.roomContext?.rtcController.setParameters([NERoomRtcParameters.kNERoomRtcKeyRecordAudioEnabled: true, NERoomRtcParameters.kNERoomRtcKeyRecordVideoEnabled: true])
       context.addRoomListener(listener: self)
+      context.addRoomListener(listener: self.coHostManager)
       context.seatController.addSeatListener(self)
       // 加入chatroom、rtc
       self._joinRoom(context, role: role, isRejoin: isRejoin, callback: callback)
