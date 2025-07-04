@@ -96,13 +96,14 @@ public class BaseAudienceContentView extends BaseView {
         }
 
         @Override
-        public void onMemberJoinRtcChannel(@NonNull List<? extends NERoomMember> members) {
+        public void onLocalMemberJoinRtcChannel() {
+          onLocalUserJoinSeat();
+        }
+
+        @Override
+        public void onRemoteMemberJoinRtcChannel(@NonNull List<? extends NERoomMember> members) {
           for (NERoomMember member : members) {
-            if (TextUtils.equals(member.getUuid(), LiveStreamUtils.getLocalAccount())) {
-              onLocalUserJoinSeat();
-            } else {
-              onRemoteUserJoinSeat(member);
-            }
+            onRemoteUserJoinSeat(member);
           }
         }
 
