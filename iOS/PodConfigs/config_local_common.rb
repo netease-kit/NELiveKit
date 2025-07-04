@@ -38,7 +38,7 @@ module NECommonUIKit
   end
 
   def self.version
-    "9.7.7"
+    "9.7.9"
   end
 
   def self.path

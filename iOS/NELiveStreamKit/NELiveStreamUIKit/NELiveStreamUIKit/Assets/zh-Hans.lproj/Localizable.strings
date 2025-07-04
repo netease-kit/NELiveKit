@@ -130,3 +130,4 @@ Audience_Apply_List_Empty = "暂无待上麦观众";
 Microphone_Permission_Disabled = "麦克风权限已关闭，请开启后重试";
 Camera_Permission_Disabled = "摄像头权限已关闭，请开启后重试";
 Microphone_Camera_Permission_Disabled = "麦克风和摄像头权限已关闭，请开启后重试";
+Host_Apply_List_Empty = "暂无可邀请主播";

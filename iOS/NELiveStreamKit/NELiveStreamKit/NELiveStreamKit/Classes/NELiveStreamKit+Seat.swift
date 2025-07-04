@@ -123,6 +123,38 @@ public extension NELiveStreamKit {
     }, failure: callback)
   }
 
+  /// 获取麦位邀请列表。按照邀请时间正序排序，先邀请的成员排在列表前面
+  ///
+  /// 使用前提：该方法仅在调用[login]方法登录成功后调用有效
+  /// - Parameter callback: 回调
+  func getSeatInvitationList(_ callback: NELiveStreamCallback<[NELiveStreamSeatInvitationItem]>? = nil) {
+    NELiveStreamLog.apiLog(kitTag, desc: "Get seat invitation list.")
+
+    Judge.preCondition({
+      self.roomContext!.seatController.getSeatInvitationList { code, msg, items in
+        if code == 0 {
+          guard let items = items else {
+            NELiveStreamLog.errorLog(
+              kitTag,
+              desc: "Failed to get seat invitation list. Data structure error."
+            )
+            callback?(NELiveStreamErrorCode.failed, "Failed to get seat invitation list. Data structure error.", nil)
+            return
+          }
+          let invitationItems = items.map { NELiveStreamSeatInvitationItem($0) }
+          NELiveStreamLog.successLog(kitTag, desc: "Successfully get seat invitation list.")
+          callback?(NELiveStreamErrorCode.success, nil, invitationItems)
+        } else {
+          NELiveStreamLog.errorLog(
+            kitTag,
+            desc: "Failed to get seat invitation list. Code: \(code). Msg: \(msg ?? "")"
+          )
+          callback?(code, msg, nil)
+        }
+      }
+    }, failure: callback)
+  }
+
   /// 房主向成员[user]发送上麦邀请，指定位置为[seatIndex]，非管理员执行该操作会失败。
   /// - Parameters:
   ///   - account: 用户Id

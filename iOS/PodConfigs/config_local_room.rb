@@ -9,7 +9,7 @@ module NERoomKit
   end
 
   def self.version
-    "1.38.0"
+    "1.39.0"
   end
 
   def self.path

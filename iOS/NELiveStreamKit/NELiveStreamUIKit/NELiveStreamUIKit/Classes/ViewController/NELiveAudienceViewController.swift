@@ -149,11 +149,13 @@ class NELiveAudienceViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: true)
+    UIApplication.shared.isIdleTimerDisabled = true
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     navigationController?.setNavigationBarHidden(false, animated: true)
+    UIApplication.shared.isIdleTimerDisabled = false
   }
 
   deinit {

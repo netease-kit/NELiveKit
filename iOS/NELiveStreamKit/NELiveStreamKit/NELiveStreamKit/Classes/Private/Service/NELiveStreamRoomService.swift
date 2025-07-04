@@ -215,4 +215,21 @@ class NELiveStreamRoomService {
       success?()
     }, failed: failure)
   }
+
+  func getCoLiveRooms(_ pageNum: Int,
+                      pageSize: Int,
+                      success: ((_NELiveStreamRoomListResponse?) -> Void)? = nil,
+                      failure: ((NSError) -> Void)? = nil) {
+    let params: [String: Any] = [
+      "pageNum": pageNum,
+      "pageSize": pageSize,
+      "liveType": NELiveStreamLiveRoomType.liveStream.rawValue,
+      "liveStatus": [1],
+    ]
+    NEAPI.Room.coHostList.request(params, returnType: _NELiveStreamRoomListResponse.self) { resp in
+      success?(resp)
+    } failed: { error in
+      failure?(error)
+    }
+  }
 }

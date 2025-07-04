@@ -14,8 +14,8 @@ public class NELiveStreamCoverSetting: UIView {
   // MARK: - Public Properties
 
   public var roomName: String {
-    get { textView.text ?? "" }
-    set { textView.text = newValue }
+    get { textField.text ?? "" }
+    set { textField.text = newValue }
   }
 
   public var roomId: String {
@@ -40,8 +40,9 @@ public class NELiveStreamCoverSetting: UIView {
     field.tintColor = .white
     field.attributedPlaceholder = NSAttributedString(
       string: "请输入房间名称",
-      attributes: [.foregroundColor: UIColor(white: 0, alpha: 0.3)]
+      attributes: [.foregroundColor: UIColor(white: 1, alpha: 0.5)]
     )
+    field.delegate = self
 
     return field
   }()
@@ -60,27 +61,11 @@ public class NELiveStreamCoverSetting: UIView {
     return imageView
   }()
 
-  /// 签名输入框
-  private lazy var textView: NETextView = {
-    let textView = NETextView()
-    textView.font = .systemFont(ofSize: 16)
-    textView.textColor = .white
-    textView.placeholderLabel.numberOfLines = 1
-    textView.placeholder = "请输入房间名称"
-    textView.backgroundColor = .clear
-    textView.delegate = self
-    textView.layer.cornerRadius = 8
-    textView.clipsToBounds = true
-    textView.translatesAutoresizingMaskIntoConstraints = false
-    return textView
-  }()
-
   // MARK: - Initialization
 
   override public init(frame: CGRect) {
     super.init(frame: frame)
     setupUI()
-    setupNotifications()
   }
 
   required init?(coder: NSCoder) {
@@ -91,12 +76,11 @@ public class NELiveStreamCoverSetting: UIView {
 
   private func setupUI() {
     addSubview(containerView)
-    containerView.addSubview(textView)
+    containerView.addSubview(textField)
     containerView.addSubview(editImageView)
 
     containerView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
-      make.height.equalTo(44)
     }
 
     editImageView.snp.makeConstraints { make in
@@ -105,87 +89,25 @@ public class NELiveStreamCoverSetting: UIView {
       make.size.equalTo(CGSize(width: 20, height: 20))
     }
 
-    textView.snp.makeConstraints { make in
+    textField.snp.makeConstraints { make in
       make.left.equalToSuperview().offset(12)
-      make.centerY.equalToSuperview()
       make.right.equalTo(editImageView.snp.left).offset(-8)
-      make.height.equalTo(44)
+      make.height.equalToSuperview()
     }
-  }
-
-  private func setupNotifications() {
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(textViewDidChangeText(_:)),
-                                           name: UITextView.textDidChangeNotification,
-                                           object: textView)
-  }
-
-  @objc private func textViewDidChangeText(_ notification: Notification) {
-    let kMaxLength = 20
-    guard let textView = notification.object as? UITextView else { return }
-    let toBeString = textView.text ?? ""
-
-    let lang = textView.textInputMode?.primaryLanguage
-    if lang == "zh-Hans" {
-      if let selectedRange = textView.markedTextRange {
-        let position = textView.position(from: selectedRange.start, offset: 0)
-        if position == nil, toBeString.count > kMaxLength {
-          textView.text = String(toBeString.prefix(kMaxLength))
-        }
-      } else if toBeString.count > kMaxLength {
-        textView.text = String(toBeString.prefix(kMaxLength))
-      }
-    } else if toBeString.count > kMaxLength {
-      textView.text = String(toBeString.prefix(kMaxLength))
-    }
-  }
-
-  // MARK: - Public Methods
-
-  func getTopic() -> String {
-    textView.text ?? ""
-  }
-
-  // MARK: - Deinit
-
-  deinit {
-    NotificationCenter.default.removeObserver(self)
-  }
-
-  /// 设置编辑图标
-  public func setEditIcon(_ image: UIImage?) {
-    editImageView.image = image
-  }
-
-  /// 设置文本框代理
-  public func setTextFieldDelegate(_ delegate: UITextFieldDelegate) {
-    textField.delegate = delegate
-  }
-
-  /// 设置占位文字
-  public func setPlaceholder(_ text: String, color: UIColor = UIColor(white: 1, alpha: 0.5)) {
-    textField.attributedPlaceholder = NSAttributedString(
-      string: text,
-      attributes: [.foregroundColor: color]
-    )
-  }
-
-  // 添加回调闭包
-  public var onTextFieldDidEndEditing: ((String) -> Void)?
-
-  // 在相应的位置调用回调
-  @objc private func textFieldDidEndOnExit(_ textField: UITextField) {
-    textField.resignFirstResponder()
-    onTextFieldDidEndEditing?(textField.text ?? "")
   }
 }
 
-extension NELiveStreamCoverSetting: UITextViewDelegate {
-  public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    if text == "\n" {
-      textView.resignFirstResponder()
+extension NELiveStreamCoverSetting: UITextFieldDelegate {
+  public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+
+  public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if string == "\n" {
+      textField.resignFirstResponder()
       return false
     }
-    return textView.text.count + (text.count - range.length) <= 20
+    return (textField.text?.count ?? 0) + (string.count - range.length) <= 20
   }
 }

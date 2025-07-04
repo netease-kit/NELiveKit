@@ -210,17 +210,31 @@ extension NELiveAudienceViewController {
     NELiveStreamKit.getInstance().changeMemberRole(userUuid: account, role: NELiveStreamRoomRole.audience.toString()) { [weak self] code, msg, _ in
       DispatchQueue.main.async { [weak self] in
         if code == 0 {
+          NELiveStreamUILog.successLog(anchorControllerTag, desc: "Successfully changeMemberRole.")
+          // changeMemberRole 下麦调用即认为成功
           self?.role = .audience
           self?.seatItems = nil
-          NELiveStreamUILog.successLog(anchorControllerTag, desc: "Successfully changeMemberRole.")
           self?.startStream()
         } else {
           NELiveStreamUILog.errorLog(anchorControllerTag,
                                      desc: "Failed to change Member Role. Code: \(code). Msg: \(msg ?? "")")
-
-          NELiveStreamToast.show("Failed to change Member Role. Code: \(code). Msg: \(msg ?? "")")
         }
       }
+    }
+  }
+
+  func onMemberRoleChanged(_ member: NELiveStreamMember, oldRole: NELiveStreamRoomRole, newRole: NELiveStreamRoomRole) {
+    guard member.account == NELiveStreamKit.getInstance().localMember?.account else {
+      NELiveStreamUILog.successLog(audienceControllerTag, desc: "onMemberRoleChanged. is not me so ignore")
+      return
+    }
+
+    // 如果变为 audience 也需要切到 audience 布局
+    NELiveStreamUILog.infoLog(audienceControllerTag, desc: "onMemberRoleChanged: \(member.account) oldRole: \(oldRole) newRole: \(newRole)")
+    if newRole == NELiveStreamRoomRole.audience {
+      role = .audience
+      seatItems = nil
+      startStream()
     }
   }
 }

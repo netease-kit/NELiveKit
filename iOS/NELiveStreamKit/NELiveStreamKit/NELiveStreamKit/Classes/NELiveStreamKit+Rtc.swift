@@ -102,8 +102,6 @@ public extension NELiveStreamKit {
     }
   }
 
-  // ... 继续其他方法的转换，保持相同的模式替换 NEVoiceRoom 为 NELiveStream ...
-
   /// 启用说话者音量提示
   ///
   /// 该方法允许 SDK 定期向 App 反馈本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息，

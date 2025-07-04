@@ -308,7 +308,23 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onMemberRoleChanged(member: NERoomMember, oldRole: NERoomRole, newRole: NERoomRole) {
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onMemberRoleChanged(_:oldRole:newRole:))) {
+          let oldLiveStreamRole = convertToLiveStreamRole(oldRole)
+          let newLiveStreamRole = convertToLiveStreamRole(newRole)
+          listener.onMemberRoleChanged?(NELiveStreamMember(member), oldRole: oldLiveStreamRole, newRole: newLiveStreamRole)
+        }
+      }
+    }
+  }
+
   public func onSeatRequestSubmitted(_ seatIndex: Int, user: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -321,7 +337,24 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatRequestSubmitted(_ requestItem: NESeatRequestItem) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener
+          .responds(to: #selector(NELiveStreamListener.onSeatRequestSubmitted(_:account:))) {
+          listener.onSeatRequestSubmitted?(requestItem.index, account: requestItem.user)
+        }
+      }
+    }
+  }
+
   public func onSeatRequestCancelled(_ seatIndex: Int, user: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -334,8 +367,25 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatRequestCancelled(_ requestItem: NESeatRequestItem) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener
+          .responds(to: #selector(NELiveStreamListener.onSeatRequestCancelled(_:account:))) {
+          listener.onSeatRequestCancelled?(requestItem.index, account: requestItem.user)
+        }
+      }
+    }
+  }
+
   public func onSeatRequestApproved(_ seatIndex: Int, user: String, operateBy: String,
                                     isAutoAgree: Bool) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -354,7 +404,30 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatRequestApproved(_ requestItem: NESeatRequestItem, operateByUser: NERoomUser, isAutoAgree: Bool) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener
+          .responds(to: #selector(NELiveStreamListener
+              .onSeatRequestApproved(_:account:operateBy:isAutoAgree:))) {
+          listener.onSeatRequestApproved?(
+            requestItem.index,
+            account: requestItem.user,
+            operateBy: operateByUser.uuid,
+            isAutoAgree: isAutoAgree
+          )
+        }
+      }
+    }
+  }
+
   public func onSeatRequestRejected(_ seatIndex: Int, user: String, operateBy: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -368,7 +441,25 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatRequestRejected(_ requestItem: NESeatRequestItem, operateByUser: NERoomUser) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener
+          .responds(to: #selector(NELiveStreamListener
+              .onSeatRequestRejected(_:account:operateBy:))) {
+          listener.onSeatRequestRejected?(requestItem.index, account: requestItem.user, operateBy: operateByUser.uuid)
+        }
+      }
+    }
+  }
+
   public func onSeatLeave(_ seatIndex: Int, user: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -380,7 +471,24 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatLeave(_ seatItem: NESeatItem) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+        guard let user = seatItem.user else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onSeatLeave(_:account:))) {
+          listener.onSeatLeave?(seatItem.index, account: user)
+        }
+      }
+    }
+  }
+
   public func onSeatKicked(_ seatIndex: Int, user: String, operateBy: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -393,7 +501,24 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatKicked(_ seatItem: NESeatItem, operateByUser: NERoomUser) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+        guard let user = seatItem.user else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onSeatKicked(_:account:operateBy:))) {
+          listener.onSeatKicked?(seatItem.index, account: user, operateBy: operateByUser.uuid)
+        }
+      }
+    }
+  }
+
   public func onSeatInvitationReceived(_ seatIndex: Int, user: String, operateBy: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -406,7 +531,23 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
+  public func onSeatInvitationReceived(_ invitationItem: NESeatInvitationItem, operateByUser: NERoomUser) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onSeatInvitationReceived(_:account:operateBy:))) {
+          listener.onSeatInvitationReceived?(invitationItem.index, account: invitationItem.user, operateBy: operateByUser.uuid)
+        }
+      }
+    }
+  }
+
   public func onSeatInvitationCancelled(_ seatIndex: Int, user: String, operateBy: String) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -414,6 +555,20 @@ extension NELiveStreamKit: NERoomListener {
         if listener
           .responds(to: #selector(NELiveStreamListener.onSeatInvitationCancelled(_:account:operateBy:))) {
           listener.onSeatInvitationCancelled?(seatIndex, account: user, operateBy: operateBy)
+        }
+      }
+    }
+  }
+
+  public func onSeatInvitationCancelled(_ invitationItem: NESeatInvitationItem, operateByUser: NERoomUser) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onSeatInvitationCancelled(_:account:operateBy:))) {
+          listener.onSeatInvitationCancelled?(invitationItem.index, account: invitationItem.user, operateBy: operateByUser.uuid)
         }
       }
     }
@@ -465,6 +620,8 @@ extension NELiveStreamKit: NERoomListener {
   }
 
   public func onSeatInvitationAccepted(_ seatIndex: Int, user: String, isAutoAgree: Bool) {
+    guard !useNewSeatCallback else { return }
+
     DispatchQueue.main.async {
       for pointListener in self.listeners.allObjects {
         guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
@@ -482,14 +639,46 @@ extension NELiveStreamKit: NERoomListener {
     }
   }
 
-  public func onSeatInvitationRejected(_ seatIndex: Int, user: String) {
-    for pointListener in listeners.allObjects {
-      guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+  public func onSeatInvitationAccepted(_ invitationItem: NESeatInvitationItem, isAutoAgree: Bool) {
+    guard useNewSeatCallback else { return }
 
-      if listener
-        .responds(to: #selector(NELiveStreamListener
-            .onSeatInvitationRejected(_:account:))) {
-        listener.onSeatInvitationRejected?(seatIndex, account: user)
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onSeatInvitationAccepted(_:account:isAutoAgree:))) {
+          listener.onSeatInvitationAccepted?(invitationItem.index, account: invitationItem.user, isAutoAgree: isAutoAgree)
+        }
+      }
+    }
+  }
+
+  public func onSeatInvitationRejected(_ seatIndex: Int, user: String) {
+    guard !useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener
+          .responds(to: #selector(NELiveStreamListener
+              .onSeatInvitationRejected(_:account:))) {
+          listener.onSeatInvitationRejected?(seatIndex, account: user)
+        }
+      }
+    }
+  }
+
+  public func onSeatInvitationRejected(_ invitationItem: NESeatInvitationItem) {
+    guard useNewSeatCallback else { return }
+
+    DispatchQueue.main.async {
+      for pointListener in self.listeners.allObjects {
+        guard pointListener is NELiveStreamListener, let listener = pointListener as? NELiveStreamListener else { continue }
+
+        if listener.responds(to: #selector(NELiveStreamListener.onSeatInvitationRejected(_:account:))) {
+          listener.onSeatInvitationRejected?(invitationItem.index, account: invitationItem.user)
+        }
       }
     }
   }

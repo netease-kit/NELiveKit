@@ -24,7 +24,7 @@ module NIMSDK
   end
 
   def self.version10
-    "10.8.30"
+    "10.9.10"
   end
 
   def self.FCS
@@ -39,7 +39,7 @@ module NERtcSDK
   end
 
   def self.version
-    "5.8.15"
+    "5.9.1"
   end
 
   def self.RtcBasic

@@ -13,21 +13,6 @@ import UIKit
 public class NELiveStreamFooterView: UIView, UITextFieldDelegate {
   // MARK: - Public Properties
 
-  /// 输入框点击回调
-  public var onInputClick: (() -> Void)?
-  /// PK按钮点击回调
-  public var onPKClick: (() -> Void)?
-  /// 连麦按钮点击回调
-  public var onLinkMicClick: (() -> Void)?
-  /// 美颜按钮点击回调
-  public var onBeautyClick: (() -> Void)?
-  /// 音乐按钮点击回调
-  public var onMusicClick: (() -> Void)?
-  /// 礼物按钮点击回调
-  public var onGiftClick: (() -> Void)?
-  /// 更多按钮点击回调
-  public var onMoreClick: (() -> Void)?
-
   /// 代理
   public weak var delegate: NELiveStreamFooterDelegate?
 
@@ -239,12 +224,18 @@ public class NELiveStreamFooterView: UIView, UITextFieldDelegate {
 
     if isAnchor {
       // 主播UI
-      for item in [linkMicButton, beautyButton, moreButton] {
+      for item in [pkButton, linkMicButton, beautyButton, moreButton] {
         item.isHidden = false
       }
 
-      linkMicButton.snp.makeConstraints { make in
+      pkButton.snp.makeConstraints { make in
         make.left.equalTo(inputTextField.snp.right).offset(8)
+        make.centerY.equalToSuperview()
+        make.size.equalTo(CGSize(width: 36, height: 36))
+      }
+
+      linkMicButton.snp.makeConstraints { make in
+        make.left.equalTo(pkButton.snp.right).offset(8)
         make.centerY.equalToSuperview()
         make.size.equalTo(CGSize(width: 36, height: 36))
       }
@@ -297,7 +288,7 @@ public class NELiveStreamFooterView: UIView, UITextFieldDelegate {
   }
 
   @objc private func pkButtonClick() {
-    onPKClick?()
+    delegate?.footerDidReceivePKClickAction?()
   }
 
   @objc private func linkMicButtonClick() {
@@ -362,6 +353,9 @@ public class NELiveStreamFooterView: UIView, UITextFieldDelegate {
 
   /// 更多按钮点击
   @objc optional func footerDidReceiveMoreClickAction()
+
+  /// PK按钮点击事件
+  @objc optional func footerDidReceivePKClickAction()
 }
 
 // MARK: - 枚举定义

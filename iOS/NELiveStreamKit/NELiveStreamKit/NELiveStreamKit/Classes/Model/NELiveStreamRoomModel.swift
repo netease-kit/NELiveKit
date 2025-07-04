@@ -69,6 +69,8 @@ public class NELiveStreamRoomLiveModel: NSObject {
   public var liveRecordId: Int = 0
   /// 房间号
   public var roomUuid: String?
+  //
+  public var roomId: String?
   /// 创建人账号
   public var userUuid: String?
   /// 直播类型
@@ -96,6 +98,8 @@ public class NELiveStreamRoomLiveModel: NSObject {
 
   public var externalLiveConfig: NELiveStreamLiveConfig?
 
+  public var connectionStatus: Int = -1
+
   init(_ live: _NECreateLiveLive?) {
     if let live = live {
       roomUuid = live.roomUuid
@@ -115,6 +119,7 @@ public class NELiveStreamRoomLiveModel: NSObject {
       }
       gameName = live.gameName
       externalLiveConfig = live.externalLiveConfig
+      connectionStatus = live.connectionStatus ?? -1
     }
   }
 }
@@ -240,6 +245,8 @@ class _NECreateLiveLive: NSObject, Codable {
   var gameName: String?
   /// 直播频道配置信息
   var externalLiveConfig: NELiveStreamLiveConfig?
+  /// 主播连麦状态 (0:空闲, 1:申请中, 2:已接受, 3:已拒绝, 4:已取消, 6:已断开, 7:已连线, 8:已超时)
+  var connectionStatus: Int?
 }
 
 @objcMembers

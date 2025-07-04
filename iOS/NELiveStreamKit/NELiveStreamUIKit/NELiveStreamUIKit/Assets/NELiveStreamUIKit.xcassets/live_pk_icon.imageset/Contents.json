@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "close_room.png",
+      "filename" : "live_pk_icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "close_room@2x.png",
+      "filename" : "live_pk_icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "close_room@3x.png",
+      "filename" : "live_pk_icon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
