@@ -7,6 +7,7 @@
 package com.netease.yunxin.kit.livestreamkit.impl.utils
 
 import android.text.TextUtils
+import com.google.gson.JsonObject
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit
 import com.netease.yunxin.kit.livestreamkit.api.NEVoiceRoomRole
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveConfig
@@ -23,6 +24,14 @@ import com.netease.yunxin.kit.roomkit.api.NERoomMember
 import com.netease.yunxin.kit.roomkit.api.service.NESeatRequestItem
 
 internal object LiveRoomUtils {
+
+    fun getLocalUuid(): String? {
+        return NELiveStreamKit.getInstance().localMember?.uuid
+    }
+
+    fun getLocalRoomUuid(): String? {
+        return NELiveStreamKit.getInstance().getCurrentRoomInfo()?.liveModel?.roomUuid
+    }
 
     fun isLocal(uuid: String?): Boolean {
         return NELiveStreamKit.getInstance().localMember != null &&
@@ -74,6 +83,7 @@ internal object LiveRoomUtils {
                         liveRoomInfo.liveModel.externalLiveConfig?.pullHlsUrl
                     )
                 },
+                liveRoomInfo.liveModel.connectionStatus,
                 liveRoomInfo.liveModel.seatUserReward?.map { seatUserReward2NESeatUserReward(it) },
                 liveRoomInfo.liveModel.gameName
             )
@@ -107,6 +117,22 @@ internal object LiveRoomUtils {
             seatRequestItem.userName,
             seatRequestItem.icon
         )
+    }
+
+    fun getType(json: String): Int? {
+        val jsonObject: JsonObject = GsonUtils.fromJson(
+            json,
+            JsonObject::class.java
+        )
+        return jsonObject["type"]?.asInt
+    }
+
+    fun getData(json: String): String? {
+        val jsonObject: JsonObject = GsonUtils.fromJson(
+            json,
+            JsonObject::class.java
+        )
+        return jsonObject["data"]?.toString()
     }
 }
 

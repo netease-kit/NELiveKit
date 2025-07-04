@@ -174,7 +174,7 @@ public class LiveStreamRoomListActivity extends BaseActivity
 
   protected void refresh() {
     NELiveStreamKit.getInstance()
-        .getLiveRoomList(
+        .fetchLiveRoomList(
             NELiveRoomLiveState.Live,
             NELiveType.LIVE_INTERACTION,
             tempPageNum,
@@ -208,7 +208,7 @@ public class LiveStreamRoomListActivity extends BaseActivity
 
   protected void loadMore() {
     NELiveStreamKit.getInstance()
-        .getLiveRoomList(
+        .fetchLiveRoomList(
             NELiveRoomLiveState.Live,
             NELiveType.LIVE_TYPE_TOGETHER_LISTEN,
             tempPageNum,

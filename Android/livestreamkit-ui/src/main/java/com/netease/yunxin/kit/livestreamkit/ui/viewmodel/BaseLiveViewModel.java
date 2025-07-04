@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import kotlin.*;
-import org.jetbrains.annotations.NotNull;
 
 /** 房间、麦位业务逻辑 */
 public class BaseLiveViewModel extends ViewModel {
@@ -84,7 +83,7 @@ public class BaseLiveViewModel extends ViewModel {
 
         @Override
         public void onMemberAudioMuteChanged(
-            @NotNull NERoomMember member, boolean mute, @Nullable NERoomMember operateBy) {}
+            @NonNull NERoomMember member, boolean mute, @Nullable NERoomMember operateBy) {}
 
         @Override
         public void onMemberJoinRoom(@NonNull List<? extends NERoomMember> members) {
@@ -125,17 +124,14 @@ public class BaseLiveViewModel extends ViewModel {
         }
 
         @Override
-        public void onSeatRequestApproved(
-            int seatIndex, @NonNull String user, @NonNull String operateBy, boolean isAutoAgree) {}
-
-        @Override
-        public void onSeatLeave(int seatIndex, @NonNull String account) {
-          if (TextUtils.equals(account, SeatUtils.getCurrentUuid())) {
+        public void onSeatLeave(@NonNull NESeatItem seatItem) {
+          LiveRoomLog.d(TAG, "onSeatLeave seatItem" + seatItem);
+          if (TextUtils.equals(seatItem.getUser(), SeatUtils.getCurrentUuid())) {
             currentSeatState.postValue(CURRENT_SEAT_STATE_IDLE);
             currentSeatEvent.postValue(
-                new SeatEvent(account, seatIndex, VoiceRoomSeat.Reason.LEAVE));
+                new SeatEvent(seatItem.getUser(), seatItem.getIndex(), VoiceRoomSeat.Reason.LEAVE));
           }
-          buildSeatEventMessage(account, getString(R.string.live_down_seat));
+          buildSeatEventMessage(seatItem.getUserName(), getString(R.string.live_down_seat));
         }
 
         @Override

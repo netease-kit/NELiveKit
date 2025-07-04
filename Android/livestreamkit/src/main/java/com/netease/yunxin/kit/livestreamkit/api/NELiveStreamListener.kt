@@ -28,6 +28,20 @@ import com.netease.yunxin.kit.roomkit.api.service.NESeatEventListener
 
 open class NELiveStreamListener : NESeatEventListener(), NERoomListener {
 
+    open fun onRemoteMemberJoinRoom(members: List<NERoomMember>) {
+    }
+
+    open fun onRemoteMemberLeaveRoom(members: List<NERoomMember>) {
+    }
+
+    open fun onLocalMemberJoinRtcChannel() {}
+
+    open fun onRemoteMemberJoinRtcChannel(members: List<NERoomMember>) {}
+
+    open fun onLocalMemberLeaveRtcChannel() {}
+
+    open fun onRemoteMemberLeaveRtcChannel(members: List<NERoomMember>) {}
+
     open fun onMemberJoinChatroom2(members: List<NERoomMember>) {
     }
 

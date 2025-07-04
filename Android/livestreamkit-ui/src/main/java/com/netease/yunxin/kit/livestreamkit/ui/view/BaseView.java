@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import com.netease.yunxin.kit.livestreamkit.api.*;
 
 public abstract class BaseView extends FrameLayout {
   protected Context mContext;
@@ -43,6 +44,7 @@ public abstract class BaseView extends FrameLayout {
   @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
+    NELiveStreamKit.getInstance().getCoHostManager().disconnect();
     if (mIsAddObserver) {
       removeObserver();
       mIsAddObserver = false;

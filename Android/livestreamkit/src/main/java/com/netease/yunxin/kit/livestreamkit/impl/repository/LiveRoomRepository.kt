@@ -14,6 +14,7 @@ import com.netease.yunxin.kit.livestreamkit.impl.model.AudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomDefaultConfig
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomList
+import com.netease.yunxin.kit.livestreamkit.impl.model.RequestConnectionResponse
 import com.netease.yunxin.kit.roomkit.api.NERoomKit
 import com.netease.yunxin.kit.roomkit.impl.repository.ServerConfig
 import java.util.Locale
@@ -44,7 +45,7 @@ class LiveRoomRepository {
         serviceCreator.addHeader(key, value)
     }
 
-    suspend fun getLiveRoomList(
+    suspend fun fetchLiveRoomList(
         liveType: Int,
         live: Int,
         pageNum: Int,
@@ -56,7 +57,22 @@ class LiveRoomRepository {
             "pageNum" to pageNum,
             "pageSize" to pageSize
         )
-        liveRoomApi.getLiveRoomList(params)
+        liveRoomApi.fetchLiveRoomList(params)
+    }
+
+    suspend fun fetchCoLiveRooms(
+        liveType: Int,
+        liveStatus: List<Int>,
+        pageNum: Int,
+        pageSize: Int
+    ): Response<LiveRoomList> = withContext(Dispatchers.IO) {
+        val params = mapOf<String, Any?>(
+            "liveType" to liveType,
+            "liveStatus" to liveStatus,
+            "pageNum" to pageNum,
+            "pageSize" to pageSize
+        )
+        liveRoomApi.fetchCoLiveRooms(params)
     }
 
     suspend fun createLiveRoom(
@@ -123,23 +139,23 @@ class LiveRoomRepository {
         val params = mapOf(
             "liveRecordId" to liveRecordId
         )
-        liveRoomApi.getRoomInfo(params)
+        liveRoomApi.fetchRoomInfo(params)
     }
 
     suspend fun getDefaultLiveInfo(): Response<LiveRoomDefaultConfig> = withContext(Dispatchers.IO) {
-        liveRoomApi.getDefaultLiveInfo()
+        liveRoomApi.fetchDefaultLiveInfo()
     }
 
     suspend fun getLiveRoomAudienceList(liveRecordId: Long, page: Int, size: Int): Response<AudienceInfoList> = withContext(
         Dispatchers.IO
     ) {
-        liveRoomApi.getAudienceList(liveRecordId, page, size)
+        liveRoomApi.fetchAudienceList(liveRecordId, page, size)
     }
 
     suspend fun getLivingRoomInfo(): Response<LiveRoomInfo> = withContext(
         Dispatchers.IO
     ) {
-        liveRoomApi.getLivingRoomInfo()
+        liveRoomApi.fetchLivingRoomInfo()
     }
 
     suspend fun batchReward(liveRecordId: Long, giftId: Int, giftCount: Int, userUuids: List<String>): Response<Unit> = withContext(
@@ -162,5 +178,47 @@ class LiveRoomRepository {
             "cardNo" to cardNo
         )
         liveRoomApi.realNameAuthentication(params)
+    }
+
+    suspend fun requestHostConnection(roomUuids: List<String>, timeout: Long, ext: String?): Response<RequestConnectionResponse> = withContext(
+        Dispatchers.IO
+    ) {
+        val params = mapOf(
+            "roomUuids" to roomUuids,
+            "timeout" to timeout,
+            "ext" to ext
+        )
+        liveRoomApi.requestHostConnection(params)
+    }
+
+    suspend fun cancelRequestHostConnection(roomUuids: List<String>): Response<Unit> = withContext(
+        Dispatchers.IO
+    ) {
+        val params = mapOf(
+            "roomUuids" to roomUuids
+        )
+        liveRoomApi.cancelRequestHostConnection(params)
+    }
+
+    suspend fun acceptRequestHostConnection(roomUuid: String): Response<Unit> = withContext(
+        Dispatchers.IO
+    ) {
+        val params = mapOf(
+            "roomUuid" to roomUuid
+        )
+        liveRoomApi.acceptRequestHostConnection(params)
+    }
+    suspend fun rejectRequestHostConnection(roomUuid: String): Response<Unit> = withContext(
+        Dispatchers.IO
+    ) {
+        val params = mapOf(
+            "roomUuid" to roomUuid
+        )
+        liveRoomApi.rejectRequestHostConnection(params)
+    }
+    suspend fun disconnectHostConnection(): Response<Unit> = withContext(
+        Dispatchers.IO
+    ) {
+        liveRoomApi.disconnectHostConnection()
     }
 }

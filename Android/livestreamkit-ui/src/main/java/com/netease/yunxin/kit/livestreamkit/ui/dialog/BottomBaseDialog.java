@@ -64,7 +64,7 @@ public abstract class BottomBaseDialog extends Dialog {
       rootView.findViewById(R.id.divide).setVisibility(View.GONE);
     }
 
-    renderBottomView(rootView.findViewById(R.id.fl_dialog_bottom));
+    renderContentView(rootView.findViewById(R.id.fl_dialog_bottom));
   }
 
   /**
@@ -84,7 +84,7 @@ public abstract class BottomBaseDialog extends Dialog {
    *
    * @param parent UI 容器
    */
-  protected abstract void renderBottomView(FrameLayout parent);
+  protected abstract void renderContentView(FrameLayout parent);
 
   @Override
   public void show() {

@@ -4,7 +4,7 @@
  * found in the LICENSE file.
  */
 
-package com.netease.yunxin.kit.livestreamkit.ui.dialog
+package com.netease.yunxin.kit.livestreamkit.ui.coaudience.dialog
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +13,12 @@ import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.netease.yunxin.kit.livestreamkit.ui.R
+import com.netease.yunxin.kit.livestreamkit.ui.coaudience.AudiencePageAdapter
 
 /**
  * 观众连麦dialog
  */
-class AnchorLinkSeatDialog : BaseLinkSeatDialog() {
+class HostLinkSeatDialog : BaseLinkSeatDialog() {
     private var tvInviteCount: TextView? = null
     private var tvApplyCount: TextView? = null
     private var tvConnectManage: TextView? = null

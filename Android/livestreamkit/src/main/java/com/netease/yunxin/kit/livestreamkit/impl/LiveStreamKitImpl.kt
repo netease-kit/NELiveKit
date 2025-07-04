@@ -16,12 +16,14 @@ import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamCallback
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKitConfig
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamListener
+import com.netease.yunxin.kit.livestreamkit.api.NELiveType
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.api.model.NECreateLiveRoomDefaultInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomList
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomSeatRequestItem
+import com.netease.yunxin.kit.livestreamkit.impl.manager.CoHostManager
 import com.netease.yunxin.kit.livestreamkit.impl.model.AudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomDefaultConfig
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomInfo
@@ -63,7 +65,7 @@ import com.netease.yunxin.kit.roomkit.api.service.NESeatRequestItem
 import com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView
 import com.netease.yunxin.kit.roomkit.impl.repository.ServerConfig
 import com.netease.yunxin.kit.roomkit.impl.utils.CoroutineRunner
-import java.util.Locale
+import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 
 internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
@@ -71,6 +73,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
     private var createLiveRoomInfo: NELiveRoomInfo? = null
     private var joinedRoomInfo: NELiveRoomInfo? = null
     private val myRoomService = LiveRoomService()
+    private lateinit var coHostManager: CoHostManager
     private val authListeners: CopyOnWriteArrayList<NEAuthListener> by lazy {
         CopyOnWriteArrayList()
     }
@@ -122,6 +125,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
         this.context = context
         this.config = config
         ScreenUtil.init(context)
+        coHostManager = CoHostManager(myRoomService)
         var realRoomServerUrl = ""
         var isOversea = false
         val realExtras = HashMap<String, Any?>()
@@ -329,7 +333,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
      * @param callback 房间列表回调
      *
      */
-    override fun getLiveRoomList(
+    override fun fetchLiveRoomList(
         liveState: NELiveRoomLiveState,
         type: Int,
         pageNum: Int,
@@ -339,7 +343,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
         LiveRoomLog.logApi(
             "getLiveRoomList: liveState=$liveState, pageNum=$pageNum, pageSize=$pageSize"
         )
-        roomHttpService.getLiveRoomList(
+        roomHttpService.fetchLiveRoomList(
             type,
             liveState.value,
             pageNum,
@@ -1300,6 +1304,44 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
                 }
             }
         )
+    }
+
+    override fun fetchCoLiveRooms(
+        pageNum: Int,
+        pageSize: Int,
+        callback: NELiveStreamCallback<NELiveRoomList>?
+    ) {
+        LiveRoomLog.logApi(
+            "fetchCoLiveRooms: pageNum=$pageNum, pageSize=$pageSize"
+        )
+        roomHttpService.fetchCoLiveRooms(
+            NELiveType.LIVE_INTERACTION,
+            listOf(NELiveRoomLiveState.Live.value),
+            pageNum,
+            pageSize,
+            object :
+                NetRequestCallback<LiveRoomList> {
+                override fun error(code: Int, msg: String?) {
+                    LiveRoomLog.e(tag, "getLiveRoomList error: code = $code msg = $msg")
+                    callback?.onFailure(code, msg)
+                }
+
+                override fun success(info: LiveRoomList?) {
+                    LiveRoomLog.i(tag, "getLiveRoomList success info = $info")
+                    callback?.onSuccess(
+                        info?.let {
+                            LiveRoomUtils.liveRoomList2NELiveRoomList(
+                                it
+                            )
+                        }
+                    )
+                }
+            }
+        )
+    }
+
+    override fun getCoHostManager(): CoHostManager {
+        return coHostManager
     }
 
     override fun authenticate(name: String, cardNo: String, callback: NELiveStreamCallback<Unit>?) {

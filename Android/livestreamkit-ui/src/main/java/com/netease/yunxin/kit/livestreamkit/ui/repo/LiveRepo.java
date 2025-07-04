@@ -22,7 +22,7 @@ public class LiveRepo {
       int configId,
       NELiveStreamCallback<NELiveRoomInfo> callback) {
 
-    NECreateLiveRoomParams createVoiceRoomParams =
+    NECreateLiveRoomParams createRoomParams =
         new NECreateLiveRoomParams(
             title,
             username,
@@ -35,7 +35,7 @@ public class LiveRepo {
             null);
     NELiveStreamKit.getInstance()
         .createRoom(
-            createVoiceRoomParams,
+            createRoomParams,
             new NECreateLiveRoomOptions(),
             new NELiveStreamCallback<NELiveRoomInfo>() {
               @Override

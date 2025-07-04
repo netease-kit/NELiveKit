@@ -7,13 +7,12 @@ package com.netease.yunxin.kit.livestreamkit.ui.viewmodel;
 import android.text.TextUtils;
 import androidx.lifecycle.MutableLiveData;
 import com.netease.yunxin.kit.common.ui.utils.ToastX;
-import com.netease.yunxin.kit.entertainment.common.*;
 import com.netease.yunxin.kit.livestreamkit.api.*;
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.roomkit.api.*;
-import com.netease.yunxin.kit.roomkit.api.model.NERoomRtcLastmileProbeResult;
+import com.netease.yunxin.kit.roomkit.api.model.*;
 import com.netease.yunxin.kit.roomkit.api.service.NEPreviewRoomOptions;
 import com.netease.yunxin.kit.roomkit.api.service.NEPreviewRoomParams;
 import com.netease.yunxin.kit.roomkit.api.service.NERoomService;
@@ -80,18 +79,20 @@ public class AudienceLiveViewModel extends BaseLiveViewModel {
     joinLive(
         username,
         avatar,
-        LiveConstants.ROLE_AUDIENCE,
+        LiveRoomRole.ROLE_AUDIENCE,
         roomInfo,
         new NELiveStreamCallback<NELiveRoomInfo>() {
 
           @Override
           public void onSuccess(@Nullable NELiveRoomInfo neLiveRoomInfo) {
-            liveStateData.setValue(AnchorLiveViewModel.LIVE_STATE_LIVING);
+            liveStateData.setValue(HostLiveViewModel.LIVE_STATE_LIVING);
             roomInfoData.setValue(neLiveRoomInfo);
           }
 
           @Override
           public void onFailure(int code, @Nullable String msg) {
+            leaveLive();
+            liveStateData.postValue(LIVE_STATE_FINISH);
             if (!TextUtils.isEmpty(msg)) {
               ToastX.showShortToast(msg);
             } else {

@@ -19,13 +19,13 @@ import com.netease.yunxin.kit.entertainment.common.utils.ClickUtils
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamCallback
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit
 import com.netease.yunxin.kit.livestreamkit.ui.R
-import com.netease.yunxin.kit.livestreamkit.ui.dialog.fragment.AnchorLinkSeatFragment
+import com.netease.yunxin.kit.livestreamkit.ui.coaudience.fragment.HostLinkSeatFragment
 import com.netease.yunxin.kit.livestreamkit.ui.view.SeatView
 
 /**
  * 观众列表
  */
-class AnchorLinkSeatListAdapter(context: Activity?, type: Int) :
+class HostLinkSeatListAdapter(context: Activity?, type: Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
     private val memberInfos: ArrayList<SeatView.SeatInfo> = ArrayList()
     private val type: Int = type
@@ -42,19 +42,19 @@ class AnchorLinkSeatListAdapter(context: Activity?, type: Int) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            AnchorLinkSeatFragment.TYPE_EMPTY -> {
+            HostLinkSeatFragment.TYPE_EMPTY -> {
                 val emptyView =
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.live_apply_seat_list_empty_layout, parent, false)
                 object : RecyclerView.ViewHolder(emptyView) {}
             }
 
-            AnchorLinkSeatFragment.TYPE_APPLY -> {
+            HostLinkSeatFragment.TYPE_APPLY -> {
                 val apply = LayoutInflater.from(parent.context)
                     .inflate(R.layout.live_view_item_link_seat_apply, parent, false)
                 LinkSeatApplyViewHolder(apply)
             }
-            AnchorLinkSeatFragment.TYPE_MANAGE -> {
+            HostLinkSeatFragment.TYPE_MANAGE -> {
                 val seat = LayoutInflater.from(parent.context)
                     .inflate(R.layout.live_view_item_link_seat_manager, parent, false)
                 LinkSeatManagerViewHolder(seat)
@@ -95,8 +95,11 @@ class AnchorLinkSeatListAdapter(context: Activity?, type: Int) :
                             if (ClickUtils.isFastClick()) {
                                 return@OnClickListener
                             }
-
-                            approveSeatRequest(member)
+                            if (NELiveStreamKit.getInstance().getCoHostManager().coHostState.connectedUserList.get().size > 0) {
+                                rejectSeatRequest(member)
+                            } else {
+                                approveSeatRequest(member)
+                            }
                         }
                     )
                     holder.mTvReject.setOnClickListener(
@@ -218,7 +221,7 @@ class AnchorLinkSeatListAdapter(context: Activity?, type: Int) :
 
     override fun getItemViewType(position: Int): Int {
         if (memberInfos.isEmpty()) {
-            return AnchorLinkSeatFragment.TYPE_EMPTY
+            return HostLinkSeatFragment.TYPE_EMPTY
         } else {
             return type
         }
@@ -291,7 +294,11 @@ class AnchorLinkSeatListAdapter(context: Activity?, type: Int) :
             object : NELiveStreamCallback<Unit> {
                 override fun onSuccess(t: Unit?) {
                     removeMember(seatInfo)
-                    ToastX.showShortToast(R.string.live_have_reject)
+                    if (NELiveStreamKit.getInstance().getCoHostManager().coHostState.connectedUserList.get().size > 0) {
+                        ToastX.showShortToast(R.string.co_host_can_not_on_seat)
+                    } else {
+                        ToastX.showShortToast(R.string.live_have_reject)
+                    }
                 }
 
                 override fun onFailure(code: Int, msg: String?) {

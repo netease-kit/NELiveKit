@@ -13,6 +13,7 @@ import com.netease.yunxin.kit.livestreamkit.impl.model.AudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomDefaultConfig
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomList
+import com.netease.yunxin.kit.livestreamkit.impl.model.RequestConnectionResponse
 import com.netease.yunxin.kit.livestreamkit.impl.model.StartLiveRoomParam
 import com.netease.yunxin.kit.livestreamkit.impl.repository.LiveRoomRepository
 import com.netease.yunxin.kit.livestreamkit.impl.utils.LiveRoomLog
@@ -45,7 +46,7 @@ object LiveRoomHttpServiceImpl : LiveRoomHttpService {
         liveRoomRepository.addHeader(key, value)
     }
 
-    override fun getLiveRoomList(
+    override fun fetchLiveRoomList(
         type: Int,
         live: Int,
         pageNum: Int,
@@ -55,7 +56,30 @@ object LiveRoomHttpServiceImpl : LiveRoomHttpService {
         liveRoomScope?.launch {
             Request.request(
                 {
-                    liveRoomRepository.getLiveRoomList(type, live, pageNum, pageSize)
+                    liveRoomRepository.fetchLiveRoomList(type, live, pageNum, pageSize)
+                },
+                success = {
+                    callback.success(it)
+                },
+                error = { code, msg ->
+                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
+                    callback.error(code, msg)
+                }
+            )
+        }
+    }
+
+    override fun fetchCoLiveRooms(
+        type: Int,
+        liveStatus: List<Int>,
+        pageNum: Int,
+        pageSize: Int,
+        callback: NetRequestCallback<LiveRoomList>
+    ) {
+        liveRoomScope?.launch {
+            Request.request(
+                {
+                    liveRoomRepository.fetchCoLiveRooms(type, liveStatus, pageNum, pageSize)
                 },
                 success = {
                     callback.success(it)
@@ -96,21 +120,6 @@ object LiveRoomHttpServiceImpl : LiveRoomHttpService {
                     }
                 },
                 error = { code, msg ->
-                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
-                    callback.error(code, msg)
-                }
-            )
-        }
-    }
-
-    override fun joinedVoiceRoom(liveRecodeId: Long, callback: NetRequestCallback<Unit>) {
-        liveRoomScope?.launch {
-            Request.request(
-                { liveRoomRepository.joinedLiveRoom(liveRecodeId) },
-                success = {
-                    callback.success(it)
-                },
-                error = { code: Int, msg: String ->
                     reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
                     callback.error(code, msg)
                 }
@@ -265,6 +274,89 @@ object LiveRoomHttpServiceImpl : LiveRoomHttpService {
         liveRoomScope?.launch {
             Request.request(
                 { liveRoomRepository.realNameAuthentication(name, cardNo) },
+                success = {
+                    callback.success(it)
+                },
+                error = { code: Int, msg: String ->
+                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
+                    callback.error(code, msg)
+                }
+            )
+        }
+    }
+
+    override fun requestHostConnection(roomUuids: List<String>, timeoutSeconds: Long, ext: String?, callback: NetRequestCallback<RequestConnectionResponse>) {
+        liveRoomScope?.launch {
+            Request.request(
+                { liveRoomRepository.requestHostConnection(roomUuids, timeoutSeconds, ext) },
+                success = {
+                    callback.success(it)
+                },
+                error = { code: Int, msg: String ->
+                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
+                    callback.error(code, msg)
+                }
+            )
+        }
+    }
+
+    override fun cancelRequestHostConnection(roomUuids: List<String>, callback: NetRequestCallback<Unit>) {
+        liveRoomScope?.launch {
+            Request.request(
+                { liveRoomRepository.cancelRequestHostConnection(roomUuids) },
+                success = {
+                    callback.success(it)
+                },
+                error = { code: Int, msg: String ->
+                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
+                    callback.error(code, msg)
+                }
+            )
+        }
+    }
+
+    override fun acceptRequestHostConnection(
+        roomUuid: String,
+        callback: NetRequestCallback<Unit>
+    ) {
+        liveRoomScope?.launch {
+            Request.request(
+                { liveRoomRepository.acceptRequestHostConnection(roomUuid) },
+                success = {
+                    callback.success(it)
+                },
+                error = { code: Int, msg: String ->
+                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
+                    callback.error(code, msg)
+                }
+            )
+        }
+    }
+
+    override fun rejectRequestHostConnection(
+        roomUuid: String,
+        callback: NetRequestCallback<Unit>
+    ) {
+        liveRoomScope?.launch {
+            Request.request(
+                { liveRoomRepository.rejectRequestHostConnection(roomUuid) },
+                success = {
+                    callback.success(it)
+                },
+                error = { code: Int, msg: String ->
+                    reportHttpErrorEvent(HttpErrorReporter.ErrorEvent(code, msg, ""))
+                    callback.error(code, msg)
+                }
+            )
+        }
+    }
+
+    override fun disconnectHostConnection(
+        callback: NetRequestCallback<Unit>
+    ) {
+        liveRoomScope?.launch {
+            Request.request(
+                { liveRoomRepository.disconnectHostConnection() },
                 success = {
                     callback.success(it)
                 },

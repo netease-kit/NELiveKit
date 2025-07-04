@@ -7,6 +7,7 @@ package com.netease.yunxin.kit.livestreamkit.ui.view;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
+import androidx.annotation.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.adapter.LiveBaseAdapter;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ChatMsgListAdapter extends LiveBaseAdapter<CharSequence> {
   }
 
   @Override
-  protected void onBindViewHolder(LiveViewHolder holder, CharSequence itemData) {
+  protected void onBindViewHolder(@NonNull LiveViewHolder holder, CharSequence itemData) {
     TextView tvContent = holder.getView(R.id.tv_chat_content);
     tvContent.setText(itemData);
   }

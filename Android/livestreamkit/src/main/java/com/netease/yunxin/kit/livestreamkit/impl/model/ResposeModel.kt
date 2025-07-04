@@ -22,17 +22,19 @@ data class LiveRoomLiveModel(
     val roomName: String?, // 房间名
     val liveRecordId: Long, // 直播Id
     val userUuid: String,
-    val status: Int, // 直播记录是否有效 1: 有效 -1 无效
+    val status: Int, // 直播记录是否有效 1: 有效 -1: 无效
     val liveType: Int, // 	直播状态
     val live: Int, // 直播标题
+    val liveStates: List<Int>?, // 直播状态列表(-1: 直播结束 0: 初始化 1: 单主播直播中 2: 观众连麦中 3: 主播连线中 4: 直播暂停)
     val liveTopic: String, // 直播封面
     val cover: String?, // 	打赏总额
     var rewardTotal: Long?, // 	观众人数
     val audienceCount: Int?, // 	上麦人数
     val onSeatCount: Int?,
     var externalLiveConfig: LiveConfig?,
+    var connectionStatus: Int? = 0, // 0 空闲 1 申请中 2 已接受 3 已拒绝 4 已取消 6 已断开 7 已连线 8 已超时
     var seatUserReward: List<SeatUserReward>?,
-    val gameName: String? // 麦上的打赏信息){}, val roomArchiveId: kotlin.String?){}){}
+    val gameName: String?
 ) : Serializable
 
 data class SeatUserReward(
@@ -109,6 +111,11 @@ data class VoiceRoomBatchGiftModel(
     val data: NEVoiceRoomBatchGiftModel
 )
 
+data class CoHostModel(
+    val roomUuid: String,
+    val userName: String
+)
+
 internal class VoiceRoomMemberVolumeInfo(
     private val memberVolumeInfo: NEMemberVolumeInfo
 ) : NEVoiceRoomMemberVolumeInfo {
@@ -136,4 +143,30 @@ data class StartLiveRoomParam(
     val seatApplyMode: Int,
     val seatInviteMode: Int,
     val ext: String?
+)
+
+data class RequestConnectionResponse(
+    val connectionGroupId: String,
+    val inviter: ConnectionUser,
+    val inviteeList: List<ConnectionUser>,
+    val ext: String
+)
+
+/**
+ * 连线用户信息
+ * @param roomUuid 用户所在的房间
+ * @param userUuid 用户id
+ * @param name 用户昵称
+ * @param avatar 用户头像
+ * @param connectionTime 连线时间
+ */
+data class ConnectionUser(
+    var roomUuid: String,
+    var userUuid: String,
+    @SerializedName("userName")
+    var name: String? = null,
+    @SerializedName("icon")
+    var avatar: String? = null,
+    @SerializedName("joinedTime")
+    var connectionTime: Long = 0
 )

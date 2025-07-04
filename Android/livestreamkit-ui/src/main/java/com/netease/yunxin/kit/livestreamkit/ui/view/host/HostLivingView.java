@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.livestreamkit.ui.view.anchor;
+package com.netease.yunxin.kit.livestreamkit.ui.view.host;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,34 +26,38 @@ import com.netease.yunxin.kit.entertainment.common.utils.ViewUtils;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamCallback;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit;
 import com.netease.yunxin.kit.livestreamkit.api.model.*;
+import com.netease.yunxin.kit.livestreamkit.impl.model.*;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.chatroom.ChatRoomMsgCreator;
+import com.netease.yunxin.kit.livestreamkit.ui.cohost.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.databinding.LiveAnchorLivingLayoutBinding;
 import com.netease.yunxin.kit.livestreamkit.ui.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.LiveStreamUtils;
 import com.netease.yunxin.kit.livestreamkit.ui.view.*;
 import com.netease.yunxin.kit.roomkit.api.*;
 import com.netease.yunxin.kit.roomkit.api.model.*;
+import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.*;
 import kotlin.Unit;
 
-public class AnchorLivingView extends BaseLivingView {
-  private final String TAG = "AnchorLiveView";
+public class HostLivingView extends BaseLivingView {
+  private final String TAG = "HostLivingView";
+  protected static final String CO_HOST_INVITED_DIALOG_TAG = "CoHostInvitedDialog";
   private LiveAnchorLivingLayoutBinding binding;
+  private HostPreviewView.OnBeautyClickListener onBeautyClickListener;
+  private CoHostInviteDialog coHostInviteDialog = null;
+  private CoHostInvitedDialog coHostInvitedDialog = null;
 
-  private AnchorPreviewView.OnBeautyClickListener onBeautyClickListener;
-
-  public AnchorLivingView(@NonNull Context context) {
+  public HostLivingView(@NonNull Context context) {
     this(context, null);
   }
 
-  public AnchorLivingView(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public HostLivingView(@NonNull Context context, @Nullable AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public AnchorLivingView(
-      @NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public HostLivingView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     startUpdateAudienceList();
   }
@@ -133,7 +137,14 @@ public class AnchorLivingView extends BaseLivingView {
             NELiveStreamKit.getInstance().resumeLive(null);
           }
         });
-
+    binding.ivPk.setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            coHostInviteDialog = new CoHostInviteDialog((Activity) getContext());
+            coHostInviteDialog.show();
+          }
+        });
     binding.ivGift.setVisibility(View.GONE);
     binding.ivGift.setOnClickListener(
         new OnClickListener() {
@@ -336,7 +347,7 @@ public class AnchorLivingView extends BaseLivingView {
   }
 
   public void setOnBeautyClickListener(
-      AnchorPreviewView.OnBeautyClickListener onBeautyClickListener) {
+      HostPreviewView.OnBeautyClickListener onBeautyClickListener) {
     this.onBeautyClickListener = onBeautyClickListener;
   }
 
@@ -444,7 +455,7 @@ public class AnchorLivingView extends BaseLivingView {
   }
 
   @Override
-  protected void onRemoteSeatRequestApproved(int seatIndex, String user, String operateBy) {
+  protected void onRemoteSeatRequestApproved(NESeatRequestItem requestItem, NERoomUser operateBy) {
     refreshRedDot();
   }
 
@@ -459,8 +470,82 @@ public class AnchorLivingView extends BaseLivingView {
   }
 
   @Override
-  protected void onLivingSeatInvitationRejected(int seatIndex, @NonNull String user) {
+  protected void onLivingSeatInvitationRejected(@NonNull NESeatInvitationItem invitationItem) {
     ToastX.showShortToast(R.string.live_audience_reject_link_seats_invited);
+  }
+
+  @Override
+  protected void onLivingConnectionRequestReceived(@NonNull ConnectionUser inviter) {
+    LiveRoomLog.i(TAG, "onLivingConnectionRequestReceived inviter = " + inviter);
+    if (coHostInviteDialog != null && coHostInviteDialog.isShowing()) {
+      coHostInviteDialog.dismiss();
+    }
+    coHostInvitedDialog =
+        new CoHostInvitedDialog(
+            inviter.getName(),
+            new TimeoutDialog.OnActionListener() {
+              @Override
+              public void onConfirm() {
+                NELiveStreamKit.getInstance()
+                    .getCoHostManager()
+                    .acceptConnection(
+                        inviter.getRoomUuid(),
+                        new NELiveStreamCallback<Unit>() {
+                          @Override
+                          public void onSuccess(@Nullable Unit unit) {
+                            coHostInvitedDialog.dismiss();
+                          }
+
+                          @Override
+                          public void onFailure(int code, @Nullable String msg) {}
+                        });
+              }
+
+              @Override
+              public void onCancel() {
+                NELiveStreamKit.getInstance()
+                    .getCoHostManager()
+                    .rejectConnection(
+                        inviter.getRoomUuid(),
+                        new NELiveStreamCallback<Unit>() {
+                          @Override
+                          public void onSuccess(@Nullable Unit unit) {}
+
+                          @Override
+                          public void onFailure(int code, @Nullable String msg) {}
+                        });
+              }
+            });
+    coHostInvitedDialog.setCancelable(false);
+    coHostInvitedDialog.show(
+        ((AppCompatActivity) getContext()).getSupportFragmentManager(), CO_HOST_INVITED_DIALOG_TAG);
+  }
+
+  @Override
+  protected void onLivingConnectionRequestCancelled(@NonNull ConnectionUser inviter) {
+    if (coHostInvitedDialog != null && coHostInvitedDialog.isVisible()) {
+      coHostInvitedDialog.dismiss();
+    }
+  }
+
+  @Override
+  protected void onLivingConnectionRequestAccept(@NonNull ConnectionUser invitee) {
+    if (coHostInviteDialog != null && coHostInviteDialog.isShowing()) {
+      coHostInviteDialog.dismiss();
+    }
+  }
+
+  @Override
+  protected void onLivingConnectionUserListChanged(
+      @NonNull List<ConnectionUser> connectedList,
+      @NonNull List<ConnectionUser> joinedList,
+      @NonNull List<ConnectionUser> leavedList) {
+    LiveRoomLog.i(TAG, "onLivingConnectionUserListChanged connectedList = " + connectedList);
+    if (connectedList.isEmpty()) {
+      if (coHostInviteDialog != null && coHostInviteDialog.isShowing()) {
+        coHostInviteDialog.dismiss();
+      }
+    }
   }
 
   private void showSingingTable() {

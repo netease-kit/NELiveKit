@@ -80,17 +80,16 @@ public class SeatAudienceContentView extends BaseAudienceContentView
     List<SeatMemberInfo> seatMemberInfoList = new ArrayList<>();
     for (NESeatItem item : seatItems) {
       LiveRoomLog.i(
-          TAG,
-          "onSeatListChanged user = "
-              + item.getUser()
-              + " userName = "
-              + item.getUserName()
-              + " status = "
-              + item.getStatus());
+          TAG, "onSeatListChanged user = " + item.getUser() + " status = " + item.getStatus());
       if (item.getStatus() == NESeatItemStatus.TAKEN
+          && item.getUser() != null
+          && item.getUserInfo() != null
           && !TextUtils.equals(item.getUser(), LiveStreamUtils.getLocalAccount())) {
         SeatView.SeatInfo seatInfo =
-            new SeatView.SeatInfo(item.getUser(), item.getUserName(), item.getIcon());
+            new SeatView.SeatInfo(
+                item.getUserInfo().getUser(),
+                item.getUserInfo().getUserName(),
+                item.getUserInfo().getIcon());
         SeatMemberInfo seatMemberInfo = new SeatMemberInfo(seatInfo, false);
         seatMemberInfoList.add(seatMemberInfo);
       }
@@ -179,14 +178,6 @@ public class SeatAudienceContentView extends BaseAudienceContentView
     //    if (showRoomMsg) {
     //      infoBinding.crvMsgList.appendItem(ChatRoomMsgCreator.createSeatEnter(member.seatInfo.nickName))
     //    }
-  }
-
-  protected void onRemoteUserLeaveSeat(String uuid) {
-    LiveRoomLog.i(TAG, "onRemoteLeaveSeat uuid = " + uuid);
-    //    if (showRoomMsg) {
-    //      infoBinding.crvMsgList.appendItem(ChatRoomMsgCreator.createSeatExit(member.seatInfo.nickName))
-    //    }
-
   }
 
   @Override

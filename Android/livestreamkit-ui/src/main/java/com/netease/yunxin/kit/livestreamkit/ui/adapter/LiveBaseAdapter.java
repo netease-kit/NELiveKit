@@ -54,7 +54,7 @@ public abstract class LiveBaseAdapter<T>
     onBindViewHolder(holder, itemData);
   }
 
-  protected void onBindViewHolder(LiveViewHolder holder, T itemData) {}
+  protected void onBindViewHolder(@NonNull LiveViewHolder holder, T itemData) {}
 
   public void updateDataSource(List<T> newDataSource) {
     this.dataSource.clear();

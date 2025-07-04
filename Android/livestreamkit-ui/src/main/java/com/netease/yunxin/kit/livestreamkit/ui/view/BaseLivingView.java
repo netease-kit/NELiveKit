@@ -16,12 +16,15 @@ import com.netease.yunxin.kit.entertainment.common.gift.GiftDialog2;
 import com.netease.yunxin.kit.livestreamkit.api.*;
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfo;
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfoList;
+import com.netease.yunxin.kit.livestreamkit.impl.manager.*;
+import com.netease.yunxin.kit.livestreamkit.impl.model.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.dialog.ChatRoomMoreDialog;
 import com.netease.yunxin.kit.livestreamkit.ui.helper.AudioPlayHelper;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.*;
 import com.netease.yunxin.kit.roomkit.api.*;
 import com.netease.yunxin.kit.roomkit.api.model.*;
+import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.List;
 import kotlin.Unit;
 import org.jetbrains.annotations.NotNull;
@@ -68,29 +71,31 @@ public abstract class BaseLivingView extends BaseView {
       new NELiveStreamListener() {
 
         @Override
-        public void onSeatRequestSubmitted(int seatIndex, @NonNull String user) {
+        public void onSeatRequestSubmitted(@NonNull NESeatRequestItem requestItem) {
           onLivingSeatRequestSubmitted();
         }
 
         @Override
         public void onSeatRequestApproved(
-            int seatIndex, @NonNull String user, @NonNull String operateBy, boolean isAutoAgree) {
-          if (TextUtils.equals(user, LiveStreamUtils.getLocalAccount())) {
+            @NonNull NESeatRequestItem requestItem,
+            @NonNull NERoomUser operateBy,
+            boolean isAutoAgree) {
+          if (TextUtils.equals(requestItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalSeatRequestApproved();
           } else {
-            onRemoteSeatRequestApproved(seatIndex, user, operateBy);
+            onRemoteSeatRequestApproved(requestItem, operateBy);
           }
         }
 
         @Override
-        public void onSeatRequestCancelled(int seatIndex, @NonNull String user) {
+        public void onSeatRequestCancelled(@NonNull NESeatRequestItem requestItem) {
           onLivingSeatRequestCancelled();
         }
 
         @Override
         public void onSeatRequestRejected(
-            int seatIndex, @NonNull String user, @NonNull String operateBy) {
-          if (TextUtils.equals(user, LiveStreamUtils.getLocalAccount())) {
+            @NonNull NESeatRequestItem requestItem, @NonNull NERoomUser operateBy) {
+          if (TextUtils.equals(requestItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalSeatRequestRejected();
           } else {
             onRemoteSeatRequestRejected();
@@ -99,27 +104,27 @@ public abstract class BaseLivingView extends BaseView {
 
         @Override
         public void onSeatInvitationReceived(
-            int seatIndex, @NonNull String user, @NonNull String operateBy) {
-          onLivingSeatInvitationReceived(seatIndex, user, operateBy);
+            @NonNull NESeatInvitationItem invitationItem, @NonNull NERoomUser operateBy) {
+          onLivingSeatInvitationReceived(invitationItem, operateBy);
         }
 
         @Override
         public void onSeatInvitationAccepted(
-            int seatIndex, @NonNull String user, boolean isAutoAgree) {
-          onLivingSeatInvitationAccepted(seatIndex, user, isAutoAgree);
+            @NonNull NESeatInvitationItem invitationItem, boolean isAutoAgree) {
+          onLivingSeatInvitationAccepted(invitationItem, isAutoAgree);
         }
 
         @Override
-        public void onSeatInvitationRejected(int seatIndex, @NonNull String user) {
-          onLivingSeatInvitationRejected(seatIndex, user);
+        public void onSeatInvitationRejected(@NonNull NESeatInvitationItem invitationItem) {
+          onLivingSeatInvitationRejected(invitationItem);
         }
 
         @Override
-        public void onSeatKicked(int seatIndex, @NotNull String user, @NotNull String operateBy) {
-          if (TextUtils.equals(user, LiveStreamUtils.getLocalAccount())) {
+        public void onSeatKicked(@NotNull NESeatItem seatItem, @NotNull NERoomUser operateBy) {
+          if (TextUtils.equals(seatItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalSeatKicked();
           } else {
-            onRemoteSeatKicked(seatIndex, user, operateBy);
+            onRemoteSeatKicked(seatItem, operateBy);
           }
         }
 
@@ -145,8 +150,56 @@ public abstract class BaseLivingView extends BaseView {
         }
       };
 
-  protected void onRemoteSeatKicked(
-      int seatIndex, @NotNull String user, @NotNull String operateBy) {}
+  private final NECoHostListener coHostListener =
+      new NECoHostListener() {
+        @Override
+        public void onConnectionUserListChanged(
+            @NonNull List<ConnectionUser> connectedList,
+            @NonNull List<ConnectionUser> joinedList,
+            @NonNull List<ConnectionUser> leavedList) {
+          onLivingConnectionUserListChanged(connectedList, joinedList, leavedList);
+        }
+
+        @Override
+        public void onConnectionRequestReceived(
+            @NonNull ConnectionUser inviter,
+            @NonNull List<ConnectionUser> inviteeList,
+            @Nullable String ext) {
+          onLivingConnectionRequestReceived(inviter);
+        }
+
+        @Override
+        public void onConnectionRequestCancelled(@NonNull ConnectionUser inviter) {
+          onLivingConnectionRequestCancelled(inviter);
+        }
+
+        @Override
+        public void onConnectionRequestAccept(@NonNull ConnectionUser invitee) {
+          onLivingConnectionRequestAccept(invitee);
+        }
+
+        @Override
+        public void onConnectionRequestReject(@NonNull ConnectionUser invitee) {}
+
+        @Override
+        public void onConnectionRequestTimeout(
+            @NonNull ConnectionUser inviter,
+            @NonNull List<ConnectionUser> inviteeList,
+            @Nullable String ext) {}
+      };
+
+  protected void onLivingConnectionUserListChanged(
+      @NonNull List<ConnectionUser> connectedList,
+      @NonNull List<ConnectionUser> joinedList,
+      @NonNull List<ConnectionUser> leavedList) {}
+
+  protected void onLivingConnectionRequestReceived(@NonNull ConnectionUser inviter) {}
+
+  protected void onLivingConnectionRequestAccept(@NonNull ConnectionUser invitee) {}
+
+  protected void onLivingConnectionRequestCancelled(@NonNull ConnectionUser inviter) {}
+
+  protected void onRemoteSeatKicked(@NotNull NESeatItem seatItem, @NotNull NERoomUser operateBy) {}
 
   protected void onLocalSeatKicked() {}
 
@@ -169,8 +222,14 @@ public abstract class BaseLivingView extends BaseView {
 
           case MORE_ITEM_MICRO_PHONE:
             {
-              if (NELiveStreamKit.getInstance().getOnSeatList() != null
-                  && NELiveStreamKit.getInstance().getOnSeatList().size() > 1) {
+              if ((NELiveStreamKit.getInstance().getOnSeatList() != null
+                      && NELiveStreamKit.getInstance().getOnSeatList().size() > 1)
+                  || (!NELiveStreamKit.getInstance()
+                      .getCoHostManager()
+                      .getCoHostState()
+                      .connectedUserList
+                      .get()
+                      .isEmpty())) {
                 ToastX.showShortToast(R.string.current_state_can_not_pause_living);
               } else {
                 if (item.enable) {
@@ -205,11 +264,13 @@ public abstract class BaseLivingView extends BaseView {
   @Override
   protected void addObserver() {
     NELiveStreamKit.getInstance().addLiveStreamListener(roomListener);
+    NELiveStreamKit.getInstance().getCoHostManager().addListener(coHostListener);
   }
 
   @Override
   protected void removeObserver() {
     NELiveStreamKit.getInstance().removeLiveStreamListener(roomListener);
+    NELiveStreamKit.getInstance().getCoHostManager().removeListener(coHostListener);
   }
 
   @Override
@@ -230,7 +291,7 @@ public abstract class BaseLivingView extends BaseView {
 
   protected void onLocalSeatRequestApproved() {}
 
-  protected void onRemoteSeatRequestApproved(int seatIndex, String user, String operateBy) {}
+  protected void onRemoteSeatRequestApproved(NESeatRequestItem requestItem, NERoomUser operateBy) {}
 
   protected void onLivingSeatRequestCancelled() {}
 
@@ -239,12 +300,12 @@ public abstract class BaseLivingView extends BaseView {
   protected void onRemoteSeatRequestRejected() {}
 
   protected void onLivingSeatInvitationReceived(
-      int seatIndex, @NonNull String user, @NonNull String operateBy) {}
+      @NonNull NESeatInvitationItem invitationItem, @NonNull NERoomUser operateBy) {}
 
   protected void onLivingSeatInvitationAccepted(
-      int seatIndex, @NonNull String user, boolean isAutoAgree) {}
+      @NonNull NESeatInvitationItem invitationItem, boolean isAutoAgree) {}
 
-  protected void onLivingSeatInvitationRejected(int seatIndex, @NonNull String user) {}
+  protected void onLivingSeatInvitationRejected(@NonNull NESeatInvitationItem invitationItem) {}
 
   protected abstract List<ChatRoomMoreDialog.MoreItem> getMoreItems();
 

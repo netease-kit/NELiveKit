@@ -23,13 +23,12 @@ import com.netease.yunxin.kit.entertainment.common.utils.*;
 import com.netease.yunxin.kit.livestreamkit.api.model.*;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
+import com.netease.yunxin.kit.livestreamkit.ui.coaudience.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.databinding.LiveActivityAnchorBinding;
-import com.netease.yunxin.kit.livestreamkit.ui.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.view.ChatRoomMsgRecyclerView;
 import com.netease.yunxin.kit.livestreamkit.ui.view.VolumeSetup;
-import com.netease.yunxin.kit.livestreamkit.ui.view.anchor.AnchorPreviewView;
-import com.netease.yunxin.kit.livestreamkit.ui.viewmodel.AnchorLiveViewModel;
-import com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView;
+import com.netease.yunxin.kit.livestreamkit.ui.view.host.HostPreviewView;
+import com.netease.yunxin.kit.livestreamkit.ui.viewmodel.HostLiveViewModel;
 import java.util.List;
 
 /** 主播页 */
@@ -58,13 +57,13 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
         .observe(
             this,
             liveState -> {
-              if (liveState == AnchorLiveViewModel.LIVE_STATE_LIVING) {
-                binding.anchorPreview.setVisibility(View.GONE);
-                binding.anchorLivingView.setVisibility(View.VISIBLE);
-              } else if (liveState == AnchorLiveViewModel.LIVE_STATE_PREVIEW) {
-                binding.anchorPreview.setVisibility(View.VISIBLE);
-                binding.anchorLivingView.setVisibility(View.GONE);
-              } else if (liveState == AnchorLiveViewModel.LIVE_STATE_FINISH) {
+              if (liveState == HostLiveViewModel.LIVE_STATE_LIVING) {
+                binding.hostPreview.setVisibility(View.GONE);
+                binding.hostLivingView.setVisibility(View.VISIBLE);
+              } else if (liveState == HostLiveViewModel.LIVE_STATE_PREVIEW) {
+                binding.hostPreview.setVisibility(View.VISIBLE);
+                binding.hostLivingView.setVisibility(View.GONE);
+              } else if (liveState == HostLiveViewModel.LIVE_STATE_FINISH) {
                 finish();
               }
             });
@@ -73,9 +72,9 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
         .observe(
             this,
             roomInfo -> {
-              binding.anchorLivingView.setLiveName(roomInfo.getLiveModel().getLiveTopic());
-              binding.anchorLivingView.setLiveId("ID：" + roomInfo.getLiveModel().getRoomUuid());
-              binding.anchorLivingView.setAnchorAvatar(roomInfo.getAnchor().getAvatar());
+              binding.hostLivingView.setLiveName(roomInfo.getLiveModel().getLiveTopic());
+              binding.hostLivingView.setLiveId("ID：" + roomInfo.getLiveModel().getRoomUuid());
+              binding.hostLivingView.setAnchorAvatar(roomInfo.getAnchor().getAvatar());
             });
 
     getLiveViewModel()
@@ -83,7 +82,7 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
         .observe(
             this,
             memberCount -> {
-              binding.anchorLivingView.setMemberCount(memberCount);
+              binding.hostLivingView.setMemberCount(memberCount);
             });
 
     // 监听已存在的直播间信息
@@ -114,16 +113,16 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
   }
 
   private void initListeners() {
-    binding.anchorPreview.setOnCloseClickListener(
-        new AnchorPreviewView.OnCloseClickListener() {
+    binding.hostPreview.setOnCloseClickListener(
+        new HostPreviewView.OnCloseClickListener() {
           @Override
           public void onCloseClick() {
             finish();
           }
         });
 
-    binding.anchorPreview.setOnBeautyClickListener(
-        new AnchorPreviewView.OnBeautyClickListener() {
+    binding.hostPreview.setOnBeautyClickListener(
+        new HostPreviewView.OnBeautyClickListener() {
           @Override
           public void onBeautyClick() {
             BeautyBottomDialog dialog =
@@ -133,8 +132,8 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
           }
         });
 
-    binding.anchorLivingView.setOnBeautyClickListener(
-        new AnchorPreviewView.OnBeautyClickListener() {
+    binding.hostLivingView.setOnBeautyClickListener(
+        new HostPreviewView.OnBeautyClickListener() {
           @Override
           public void onBeautyClick() {
             BeautyBottomDialog dialog =
@@ -144,15 +143,15 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
           }
         });
 
-    binding.anchorPreview.setOnSwitchCameraClickListener(
-        new AnchorPreviewView.OnSwitchCameraClickListener() {
+    binding.hostPreview.setOnSwitchCameraClickListener(
+        new HostPreviewView.OnSwitchCameraClickListener() {
           @Override
           public void onSwitchCamera() {
             getLiveViewModel().switchCamera();
           }
         });
 
-    binding.anchorLivingView.setOnLinkMicClickListener(
+    binding.hostLivingView.setOnLinkMicClickListener(
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -164,7 +163,7 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
           }
         });
 
-    binding.anchorLivingView.setOnLeaveRoomClickListener(
+    binding.hostLivingView.setOnLeaveRoomClickListener(
         new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -238,11 +237,9 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
   }
 
   private void startPreview() {
-    binding.anchorPreview.setVisibility(View.VISIBLE);
-    binding.anchorPreview.initData(username, configId);
-    binding.localVideoView.setZOrderMediaOverlay(true);
-    binding.localVideoView.setScalingType(NERoomVideoView.VideoScalingType.SCALE_ASPECT_BALANCED);
-    getLiveViewModel().startPreview(binding.localVideoView);
+    binding.hostPreview.setVisibility(View.VISIBLE);
+    binding.hostPreview.initData(username, configId);
+    getLiveViewModel().startPreview(binding.hostVideoView.getLocalVideoView());
   }
 
   //  protected void initSeatsInfo() {
@@ -300,10 +297,10 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
     if (ClickUtils.isFastClick()) {
       return;
     }
-    AnchorLinkSeatDialog anchorLinkSeatDialog = new AnchorLinkSeatDialog();
+    HostLinkSeatDialog hostLinkSeatDialog = new HostLinkSeatDialog();
     Bundle bundle = new Bundle();
-    anchorLinkSeatDialog.setArguments(bundle);
-    anchorLinkSeatDialog.show(getSupportFragmentManager(), "audienceConnectDialog");
+    hostLinkSeatDialog.setArguments(bundle);
+    hostLinkSeatDialog.show(getSupportFragmentManager(), "audienceConnectDialog");
 
     // 显示连麦设置对话框
     //    new LinkMicSettingDialog((Activity) getContext())
@@ -342,7 +339,7 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
         && getLiveViewModel().getLiveStateData() != null
         && getLiveViewModel().getLiveStateData().getValue() != null
         && getLiveViewModel().getLiveStateData().getValue()
-            == AnchorLiveViewModel.LIVE_STATE_LIVING) {
+            == HostLiveViewModel.LIVE_STATE_LIVING) {
       new ChoiceDialog(LiveStreamAnchorActivity.this)
           .setTitle(getString(R.string.live_end_live_title))
           .setContent(getString(R.string.live_end_live_tips))
@@ -355,15 +352,15 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
   }
 
   @Override
-  protected AnchorLiveViewModel getLiveViewModel() {
-    AnchorLiveViewModel viewModel = new ViewModelProvider(this).get(AnchorLiveViewModel.class);
+  protected HostLiveViewModel getLiveViewModel() {
+    HostLiveViewModel viewModel = new ViewModelProvider(this).get(HostLiveViewModel.class);
     LiveRoomLog.d(TAG, "getLiveViewModel = " + viewModel);
     return viewModel;
   }
 
   @Override
   protected ChatRoomMsgRecyclerView getChatMsgListView() {
-    return binding.anchorLivingView.getChatRoomMsgRecyclerView();
+    return binding.hostLivingView.getChatRoomMsgRecyclerView();
   }
 
   @Override

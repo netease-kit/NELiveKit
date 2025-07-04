@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.livestreamkit.ui.dialog.fragment;
+package com.netease.yunxin.kit.livestreamkit.ui.coaudience.fragment;
 
 import android.os.*;
 import androidx.annotation.*;
@@ -14,6 +14,7 @@ import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.*;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.view.*;
+import com.netease.yunxin.kit.roomkit.api.model.*;
 import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.*;
 import kotlin.*;
@@ -24,89 +25,87 @@ public class BaseLinkSeatFragment extends Fragment {
   protected NELiveStreamListener streamListener =
       new NELiveStreamListener() {
         @Override
-        public void onSeatRequestSubmitted(int seatIndex, @NonNull String account) {
-          LiveRoomLog.i(TAG, "onSeatRequestSubmitted seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
+        public void onSeatRequestSubmitted(@NonNull NESeatRequestItem requestItem) {
+          LiveRoomLog.i(TAG, "onSeatRequestSubmitted requestItem = " + requestItem);
+          if (LiveStreamUtils.isMySelf(requestItem.getUser())) {
             onLocalSeatRequest();
           } else {
-            onRemoteSeatRequest(account);
+            onRemoteSeatRequest(requestItem.getUser());
           }
         }
 
         @Override
-        public void onSeatRequestCancelled(int seatIndex, @NonNull String account) {
-          LiveRoomLog.i(TAG, "onSeatRequestCancelled seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
+        public void onSeatRequestCancelled(@NonNull NESeatRequestItem requestItem) {
+          LiveRoomLog.i(TAG, "onSeatRequestCancelled requestItem = " + requestItem);
+          if (LiveStreamUtils.isMySelf(requestItem.getUser())) {
             onLocalSeatRequestCanceled();
           } else {
-            onRemoteSeatRequestCanceled(account);
+            onRemoteSeatRequestCanceled(requestItem.getUser());
           }
         }
 
         @Override
         public void onSeatRequestApproved(
-            int seatIndex,
-            @NonNull String account,
-            @NonNull String operateBy,
+            @NonNull NESeatRequestItem requestItem,
+            @NonNull NERoomUser operateByUser,
             boolean isAutoAgree) {
-          LiveRoomLog.i(TAG, "onSeatRequestApproved seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
+          LiveRoomLog.i(TAG, "onSeatRequestApproved requestItem = " + requestItem);
+          if (LiveStreamUtils.isMySelf(requestItem.getUser())) {
             onLocalSeatLinked();
           } else {
-            onRemoteSeatLinked(account);
-          }
-        }
-
-        @Override
-        public void onSeatInvitationRejected(int seatIndex, @NonNull String account) {
-          LiveRoomLog.i(TAG, "onSeatInvitationReceived account = " + account);
-          if (LiveStreamUtils.isMySelf(account)) {
-            onLocalSeatInvitationRejected(seatIndex);
-          } else {
-            onRemoteSeatInvitationRejected(seatIndex, account);
-          }
-        }
-
-        @Override
-        public void onSeatInvitationAccepted(
-            int seatIndex, @NonNull String account, boolean isAutoAgree) {
-          LiveRoomLog.i(TAG, "onSeatInvitationAccepted seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
-            onLocalSeatLinked();
-          } else {
-            onRemoteSeatLinked(account);
-          }
-        }
-
-        @Override
-        public void onSeatLeave(int seatIndex, @NonNull String account) {
-          LiveRoomLog.i(TAG, "onSeatLeave seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
-            onLocalSeatUnlinked();
-          } else {
-            onRemoteSeatUnlinked(account);
-          }
-        }
-
-        @Override
-        public void onSeatKicked(
-            int seatIndex, @NonNull String account, @NonNull String operateBy) {
-          LiveRoomLog.i(TAG, "onSeatKicked seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
-            onLocalSeatUnlinked();
-          } else {
-            onRemoteSeatUnlinked(account);
+            onRemoteSeatLinked(requestItem.getUser());
           }
         }
 
         @Override
         public void onSeatRequestRejected(
-            int seatIndex, @NonNull String account, @NonNull String operateBy) {
-          LiveRoomLog.i(TAG, "onSeatRequestRejected seatIndex = " + seatIndex);
-          if (LiveStreamUtils.isMySelf(account)) {
+            @NonNull NESeatRequestItem requestItem, @NonNull NERoomUser operateBy) {
+          LiveRoomLog.i(TAG, "onSeatRequestRejected requestItem = " + requestItem);
+          if (LiveStreamUtils.isMySelf(requestItem.getUser())) {
             onLocalSeatUnlinked();
           } else {
-            onRemoteSeatUnlinked(account);
+            onRemoteSeatUnlinked(requestItem.getUser());
+          }
+        }
+
+        @Override
+        public void onSeatInvitationRejected(@NonNull NESeatInvitationItem invitationItem) {
+          LiveRoomLog.i(TAG, "onSeatInvitationReceived invitationItem = " + invitationItem);
+          if (LiveStreamUtils.isMySelf(invitationItem.getUser())) {
+            onLocalSeatInvitationRejected(invitationItem);
+          } else {
+            onRemoteSeatInvitationRejected(invitationItem);
+          }
+        }
+
+        @Override
+        public void onSeatInvitationAccepted(
+            @NonNull NESeatInvitationItem invitationItem, boolean isAutoAgree) {
+          LiveRoomLog.i(TAG, "onSeatInvitationAccepted invitationItem = " + invitationItem);
+          if (LiveStreamUtils.isMySelf(invitationItem.getUser())) {
+            onLocalSeatLinked();
+          } else {
+            onRemoteSeatLinked(invitationItem.getUser());
+          }
+        }
+
+        @Override
+        public void onSeatLeave(@NonNull NESeatItem seatItem) {
+          LiveRoomLog.i(TAG, "onSeatLeave seatItem = " + seatItem);
+          if (LiveStreamUtils.isMySelf(seatItem.getUser())) {
+            onLocalSeatUnlinked();
+          } else {
+            onRemoteSeatUnlinked(seatItem.getUser());
+          }
+        }
+
+        @Override
+        public void onSeatKicked(@NonNull NESeatItem seatItem, @NonNull NERoomUser operateBy) {
+          LiveRoomLog.i(TAG, "onSeatKicked seatItem = " + seatItem);
+          if (LiveStreamUtils.isMySelf(seatItem.getUser())) {
+            onLocalSeatUnlinked();
+          } else {
+            onRemoteSeatUnlinked(seatItem.getUser());
           }
         }
 
@@ -132,9 +131,9 @@ public class BaseLinkSeatFragment extends Fragment {
 
   protected void onRemoteSeatUnlinked(String account) {}
 
-  protected void onLocalSeatInvitationRejected(int seatIndex) {}
+  protected void onLocalSeatInvitationRejected(NESeatInvitationItem item) {}
 
-  protected void onRemoteSeatInvitationRejected(int seatIndex, @NonNull String user) {}
+  protected void onRemoteSeatInvitationRejected(NESeatInvitationItem item) {}
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {

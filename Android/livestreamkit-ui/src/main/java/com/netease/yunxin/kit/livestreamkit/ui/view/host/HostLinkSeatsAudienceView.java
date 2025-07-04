@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.livestreamkit.ui.view.anchor;
+package com.netease.yunxin.kit.livestreamkit.ui.view.host;
 
 import android.content.*;
 import android.text.*;
@@ -18,19 +18,19 @@ import com.netease.yunxin.kit.roomkit.api.*;
 import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.*;
 
-public class AnchorLinkSeatsAudienceView extends BaseView {
+public class HostLinkSeatsAudienceView extends BaseView {
   private static final String TAG = "AnchorLinkSeatsAudienceView";
   private LinkSeatsAudienceRecycleView linkSeatsRecycleView;
 
-  public AnchorLinkSeatsAudienceView(@NonNull Context context) {
+  public HostLinkSeatsAudienceView(@NonNull Context context) {
     super(context);
   }
 
-  public AnchorLinkSeatsAudienceView(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public HostLinkSeatsAudienceView(@NonNull Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public AnchorLinkSeatsAudienceView(
+  public HostLinkSeatsAudienceView(
       @NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
@@ -58,32 +58,22 @@ public class AnchorLinkSeatsAudienceView extends BaseView {
           for (NESeatItem item : seatItems) {
             LiveRoomLog.i(
                 TAG,
-                "onSeatListChanged user = "
-                    + item.getUser()
-                    + " userName = "
-                    + item.getUserName()
-                    + " status = "
-                    + item.getStatus());
+                "onSeatListChanged user = " + item.getUser() + " status = " + item.getStatus());
             if (item.getStatus() == NESeatItemStatus.TAKEN
+                && item.getUser() != null
+                && item.getUserInfo() != null
                 && !TextUtils.equals(item.getUser(), LiveStreamUtils.getLocalAccount())) {
               SeatView.SeatInfo seatInfo =
-                  new SeatView.SeatInfo(item.getUser(), item.getUserName(), item.getIcon());
+                  new SeatView.SeatInfo(
+                      item.getUserInfo().getUser(),
+                      item.getUserInfo().getUserName(),
+                      item.getUserInfo().getIcon());
               SeatMemberInfo seatMemberInfo = new SeatMemberInfo(seatInfo, false);
               seatMemberInfoList.add(seatMemberInfo);
             }
           }
 
           linkSeatsRecycleView.setList(seatMemberInfoList);
-        }
-
-        @Override
-        public void onSeatLeave(int seatIndex, @NonNull String user) {
-          LiveRoomLog.i(TAG, "onSeatLeave " + user);
-        }
-
-        @Override
-        public void onSeatKicked(int seatIndex, @NonNull String user, @NonNull String operateBy) {
-          LiveRoomLog.i(TAG, "onSeatKicked " + user);
         }
       };
 

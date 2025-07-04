@@ -7,6 +7,7 @@
 package com.netease.yunxin.kit.livestreamkit.api
 
 import com.netease.yunxin.kit.livestreamkit.impl.utils.LiveRoomLog
+import com.netease.yunxin.kit.roomkit.api.NERoomBuiltinRole
 
 /**
  * 房间结束原因枚举
@@ -314,4 +315,11 @@ object NELiveRoomSeatInviteMode {
      * 抱麦时需要对方同意
      */
     const val needAgree = 1
+}
+
+object LiveRoomRole {
+    const val ROLE_HOST = "host"
+    const val ROLE_INVITE_HOST = "invited_host"
+    const val ROLE_AUDIENCE_ON_SEAT = "audience"
+    const val ROLE_AUDIENCE = NERoomBuiltinRole.OBSERVER
 }

@@ -12,6 +12,7 @@ import com.netease.yunxin.kit.livestreamkit.impl.model.AudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomDefaultConfig
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomList
+import com.netease.yunxin.kit.livestreamkit.impl.model.RequestConnectionResponse
 import com.netease.yunxin.kit.livestreamkit.impl.model.StartLiveRoomParam
 import kotlinx.coroutines.flow.Flow
 
@@ -44,9 +45,18 @@ interface LiveRoomHttpService : HttpErrorReporter {
 
     fun addHeader(key: String, value: String)
 
-    fun getLiveRoomList(
+    fun fetchLiveRoomList(
         type: Int,
         live: Int,
+        pageNum: Int,
+        pageSize: Int,
+        callback:
+        NetRequestCallback<LiveRoomList>
+    )
+
+    fun fetchCoLiveRooms(
+        type: Int,
+        liveStatus: List<Int>,
         pageNum: Int,
         pageSize: Int,
         callback:
@@ -58,11 +68,6 @@ interface LiveRoomHttpService : HttpErrorReporter {
      *
      */
     fun startLiveRoom(param: StartLiveRoomParam, callback: NetRequestCallback<LiveRoomInfo>)
-
-    /**
-     * 加入成功后上报给服务器
-     */
-    fun joinedVoiceRoom(liveRecodeId: Long, callback: NetRequestCallback<Unit>)
 
     /**
      * 获取房间 信息
@@ -107,4 +112,30 @@ interface LiveRoomHttpService : HttpErrorReporter {
     )
 
     fun realNameAuthentication(name: String, cardNo: String, callback: NetRequestCallback<Unit>)
+
+    fun requestHostConnection(
+        roomUuids: List<String>,
+        timeoutSeconds: Long,
+        ext: String?,
+        callback: NetRequestCallback<RequestConnectionResponse>
+    )
+
+    fun cancelRequestHostConnection(
+        roomUuids: List<String>,
+        callback: NetRequestCallback<Unit>
+    )
+
+    fun acceptRequestHostConnection(
+        roomUuid: String,
+        callback: NetRequestCallback<Unit>
+    )
+
+    fun rejectRequestHostConnection(
+        roomUuid: String,
+        callback: NetRequestCallback<Unit>
+    )
+
+    fun disconnectHostConnection(
+        callback: NetRequestCallback<Unit>
+    )
 }

@@ -64,6 +64,7 @@ data class NELiveRoomLiveModel(
     val audienceCount: Int?,
     val onSeatCount: Int?,
     var liveConfig: NELiveConfig?,
+    var connectionStatus: Int? = 0, // 0 空闲 1 申请中 2 已接受 3 已拒绝 4 已取消 6 已断开 7 已连线 8 已超时
     var seatUserReward: List<NELiveRoomBatchSeatUserReward>?,
     val gameName: String?
 ) : Serializable

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/live_room_bg">
+
+    <com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView
+        android:id="@+id/local_video_view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/line"/>
+
+    <TextView
+        android:id="@+id/tv_pk_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/live_pk_countdown_bg"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="4dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/local_video_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="PK 2:30"
+        tools:visibility="visible" />
+    <View
+        android:id="@+id/line"
+        android:layout_width="4dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@+id/local_video_view"
+        app:layout_constraintEnd_toStartOf="@+id/remote_video_view"
+        app:layout_constraintTop_toTopOf="@+id/local_video_view"
+        app:layout_constraintBottom_toBottomOf="@+id/local_video_view"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView
+        android:id="@+id/remote_video_view"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

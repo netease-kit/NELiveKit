@@ -14,6 +14,7 @@ import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomList
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomSeatRequestItem
 import com.netease.yunxin.kit.livestreamkit.impl.LiveStreamKitImpl
+import com.netease.yunxin.kit.livestreamkit.impl.manager.CoHostManager
 import com.netease.yunxin.kit.roomkit.api.NECallback
 import com.netease.yunxin.kit.roomkit.api.NERoomChatMessage
 import com.netease.yunxin.kit.roomkit.api.NERoomLanguage
@@ -149,7 +150,7 @@ interface NELiveStreamKit {
      * @param callback 回调
      *
      */
-    fun getLiveRoomList(
+    fun fetchLiveRoomList(
         liveState: NELiveRoomLiveState,
         type: Int,
         pageNum: Int,
@@ -632,6 +633,25 @@ interface NELiveStreamKit {
      * <br>相关回调：发送礼物成功后，房间内所有人会收到[NELiveStreamListener.onReceiveBatchGift]回调
      */
     fun sendBatchGift(giftId: Int, giftCount: Int, userUuids: List<String>, callback: NELiveStreamCallback<Unit>?)
+
+    /**
+     * 获取能连麦的房间列表
+     * <br>使用前提：该方法仅在调用[login]方法登录成功后调用有效
+     * @param pageNum 页码
+     * @param pageSize 页大小,一页包含多少条
+     * @param callback 回调
+     *
+     */
+    fun fetchCoLiveRooms(
+        pageNum: Int,
+        pageSize: Int,
+        callback: NELiveStreamCallback<NELiveRoomList>?
+    )
+
+    /**
+     * 获取主播和主播连麦服务
+     */
+    fun getCoHostManager(): CoHostManager
 
     /**
      * 实名认证

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.livestreamkit.ui.dialog;
+package com.netease.yunxin.kit.livestreamkit.ui.coaudience.dialog;
 
 import android.view.*;
 import com.netease.yunxin.kit.common.ui.dialog.*;

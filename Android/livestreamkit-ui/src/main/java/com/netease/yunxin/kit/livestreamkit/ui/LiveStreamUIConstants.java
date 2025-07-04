@@ -6,6 +6,7 @@ package com.netease.yunxin.kit.livestreamkit.ui;
 public class LiveStreamUIConstants {
   public static final int COUNT_SEAT = 1 + 3; // 一个主播和3个连麦的观众
   public static final int PAGE_SIZE = 20;
+  public static final Long CO_HOST_CONNECT_TIMEOUT = 30L;
 
   public static class StreamLayout {
     //signal live stream layout
