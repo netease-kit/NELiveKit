@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView
-        android:id="@+id/local_video_view"
+    <com.netease.yunxin.kit.livestreamkit.ui.view.host.HostVideoView
+        android:id="@+id/host_video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.netease.yunxin.kit.livestreamkit.ui.view.anchor.AnchorPreviewView
-        android:id="@+id/anchor_preview"
+    <com.netease.yunxin.kit.livestreamkit.ui.view.host.HostPreviewView
+        android:id="@+id/host_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <com.netease.yunxin.kit.livestreamkit.ui.view.anchor.AnchorLivingView
-        android:id="@+id/anchor_living_view"
+    <com.netease.yunxin.kit.livestreamkit.ui.view.host.HostLivingView
+        android:id="@+id/host_living_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>

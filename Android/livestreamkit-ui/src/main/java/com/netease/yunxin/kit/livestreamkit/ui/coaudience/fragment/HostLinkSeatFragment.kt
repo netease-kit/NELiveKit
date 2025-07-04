@@ -4,9 +4,9 @@
  * found in the LICENSE file.
  */
 
-package com.netease.yunxin.kit.livestreamkit.ui.dialog.fragment
+package com.netease.yunxin.kit.livestreamkit.ui.coaudience.fragment
 
-import AnchorLinkSeatListAdapter
+import HostLinkSeatListAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,9 +22,9 @@ import com.netease.yunxin.kit.livestreamkit.ui.LiveStreamUIConstants
 import com.netease.yunxin.kit.livestreamkit.ui.R
 import com.netease.yunxin.kit.livestreamkit.ui.view.SeatView
 
-class AnchorLinkSeatFragment : BaseLinkSeatFragment() {
+class HostLinkSeatFragment : BaseLinkSeatFragment() {
     private var type = TYPE_INVITE
-    private var audienceLinkSeatListAdapter: AnchorLinkSeatListAdapter? = null
+    private var audienceLinkSeatListAdapter: HostLinkSeatListAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +46,7 @@ class AnchorLinkSeatFragment : BaseLinkSeatFragment() {
         }
         val rvAudienceList: RecyclerView? = view?.findViewById(R.id.rcv_audience)
         rvAudienceList?.layoutManager = LinearLayoutManager(context)
-        audienceLinkSeatListAdapter = AnchorLinkSeatListAdapter(activity, type)
+        audienceLinkSeatListAdapter = HostLinkSeatListAdapter(activity, type)
         rvAudienceList?.adapter = audienceLinkSeatListAdapter
     }
 

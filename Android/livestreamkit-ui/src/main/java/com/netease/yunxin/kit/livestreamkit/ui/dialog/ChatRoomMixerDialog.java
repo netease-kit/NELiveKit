@@ -47,7 +47,7 @@ public class ChatRoomMixerDialog extends BottomBaseDialog {
   }
 
   @Override
-  protected void renderBottomView(FrameLayout parent) {
+  protected void renderContentView(FrameLayout parent) {
     View bottomView =
         LayoutInflater.from(getContext()).inflate(R.layout.live_view_dialog_more_mixer, parent);
     SeekBar skRecordingVolume = bottomView.findViewById(R.id.recording_volume_control);

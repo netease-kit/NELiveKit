@@ -11,10 +11,10 @@ import androidx.annotation.*;
 import androidx.fragment.app.*;
 import com.netease.yunxin.kit.common.utils.*;
 import com.netease.yunxin.kit.entertainment.common.fragment.*;
-import com.netease.yunxin.kit.livestreamkit.ui.R;
+import com.netease.yunxin.kit.livestreamkit.ui.*;
 
-public class AudienceLinkSeatInviteDialog extends BaseDialogFragment {
-  private final String anchorName;
+public class TimeoutDialog extends BaseDialogFragment {
+  private final String title;
   private final OnActionListener listener;
   private int countdown = 12;
   private final Handler handler = new Handler(Looper.getMainLooper());
@@ -25,8 +25,8 @@ public class AudienceLinkSeatInviteDialog extends BaseDialogFragment {
     void onCancel();
   }
 
-  public AudienceLinkSeatInviteDialog(String anchorName, OnActionListener listener) {
-    this.anchorName = anchorName;
+  public TimeoutDialog(String title, OnActionListener listener) {
+    this.title = title;
     this.listener = listener;
   }
 
@@ -42,16 +42,12 @@ public class AudienceLinkSeatInviteDialog extends BaseDialogFragment {
       @NonNull LayoutInflater inflater,
       @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.live_dialog_audience_link_mic_invite, container, false);
+    View view = inflater.inflate(R.layout.live_timeout_dialog, container, false);
     TextView tvTitle = view.findViewById(R.id.tv_invite_title);
     Button btnCancel = view.findViewById(R.id.btn_cancel);
     Button btnConfirm = view.findViewById(R.id.btn_confirm);
 
-    tvTitle.setText(
-        String.format(
-            XKitUtils.getApplicationContext()
-                .getString(R.string.live_anchor_invite_audience_join_seats),
-            anchorName));
+    tvTitle.setText(title);
 
     btnCancel.setOnClickListener(
         v -> {

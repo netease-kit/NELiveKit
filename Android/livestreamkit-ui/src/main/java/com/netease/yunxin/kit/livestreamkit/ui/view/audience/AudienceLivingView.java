@@ -31,12 +31,15 @@ import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfoList;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.chatroom.ChatRoomMsgCreator;
+import com.netease.yunxin.kit.livestreamkit.ui.coaudience.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.databinding.LiveAudienceLivingLayoutBinding;
 import com.netease.yunxin.kit.livestreamkit.ui.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.LiveStreamUtils;
 import com.netease.yunxin.kit.livestreamkit.ui.view.*;
 import com.netease.yunxin.kit.livestreamkit.ui.viewmodel.*;
 import com.netease.yunxin.kit.roomkit.api.NERoomChatMessage;
+import com.netease.yunxin.kit.roomkit.api.model.*;
+import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.List;
 import kotlin.*;
 
@@ -48,7 +51,7 @@ public class AudienceLivingView extends BaseLivingView {
   protected AudienceLinkSeatDialog audienceLinkSeatDialog = null;
   protected static final String AUDIENCE_LINK_SEAT_INVITE_DIALOG_TAG =
       "AudienceLinkMicInviteDialog";
-  private AudienceLinkSeatInviteDialog linkSeatInviteDialog = null;
+  private AudienceLinkSeatInvitedDialog linkSeatInviteDialog = null;
 
   public AudienceLivingView(@NonNull Context context) {
     this(context, null);
@@ -273,13 +276,13 @@ public class AudienceLivingView extends BaseLivingView {
 
   @Override
   protected void onLivingSeatInvitationReceived(
-      int seatIndex, @NonNull String account, @NonNull String operateBy) {
+      @NonNull NESeatInvitationItem invitationItem, @NonNull NERoomUser operateBy) {
 
-    if (!TextUtils.equals(account, LiveStreamUtils.getLocalAccount())) {
+    if (!TextUtils.equals(invitationItem.getUser(), LiveStreamUtils.getLocalAccount())) {
       LiveRoomLog.i(
           TAG,
           "onLivingSeatInvitationReceived account = "
-              + account
+              + invitationItem.getUser()
               + ", current account = "
               + LiveStreamUtils.getLocalAccount());
       return;
@@ -290,15 +293,15 @@ public class AudienceLivingView extends BaseLivingView {
       return;
     }
 
-    String showName = operateBy;
+    String showName = operateBy.getUserName();
     if (LiveStreamUtils.getHost() != null
         && !TextUtils.isEmpty(LiveStreamUtils.getHost().getName())) {
       showName = LiveStreamUtils.getHost().getName();
     }
     linkSeatInviteDialog =
-        new AudienceLinkSeatInviteDialog(
+        new AudienceLinkSeatInvitedDialog(
             showName,
-            new AudienceLinkSeatInviteDialog.OnActionListener() {
+            new AudienceLinkSeatInvitedDialog.OnActionListener() {
               @Override
               public void onConfirm() {
                 NELiveStreamKit.getInstance()

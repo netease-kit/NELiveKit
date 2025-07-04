@@ -10,6 +10,7 @@ import com.netease.yunxin.kit.livestreamkit.impl.model.AudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomDefaultConfig
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomList
+import com.netease.yunxin.kit.livestreamkit.impl.model.RequestConnectionResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -18,15 +19,23 @@ import retrofit2.http.Query
 interface LiveRoomApi {
 
     /**
-     * 获取语聊房房间列表
+     * 获取直播房房间列表
      */
     @POST("nemo/entertainmentLive/live/list")
-    suspend fun getLiveRoomList(
+    suspend fun fetchLiveRoomList(
         @Body body: Map<String, @JvmSuppressWildcards Any?>
     ): Response<LiveRoomList>
 
     /**
-     * 创建语聊房 房间
+     * 获取连麦房间列表
+     */
+    @POST("nemo/entertainmentLive/live/available_connection_list")
+    suspend fun fetchCoLiveRooms(
+        @Body body: Map<String, @JvmSuppressWildcards Any?>
+    ): Response<LiveRoomList>
+
+    /**
+     * 创建直播房房间
      */
     @POST("nemo/entertainmentLive/live/createLiveV3")
     suspend fun startLiveRoom(
@@ -50,15 +59,15 @@ interface LiveRoomApi {
     ): Response<Unit>
 
     @POST("nemo/entertainmentLive/live/info")
-    suspend fun getRoomInfo(
+    suspend fun fetchRoomInfo(
         @Body params: Map<String, @JvmSuppressWildcards Any>
     ): Response<LiveRoomInfo>
 
     @GET("nemo/entertainmentLive/live/getDefaultLiveInfo")
-    suspend fun getDefaultLiveInfo(): Response<LiveRoomDefaultConfig>
+    suspend fun fetchDefaultLiveInfo(): Response<LiveRoomDefaultConfig>
 
     @GET("nemo/entertainmentLive/live/audience/list")
-    suspend fun getAudienceList(
+    suspend fun fetchAudienceList(
         @Query("liveRecordId") liveRecordId: Long, @Query("page") page: Int,
         @Query(
             "size"
@@ -66,7 +75,7 @@ interface LiveRoomApi {
     ): Response<AudienceInfoList>
 
     @GET("nemo/entertainmentLive/live/ongoing")
-    suspend fun getLivingRoomInfo(): Response<LiveRoomInfo>
+    suspend fun fetchLivingRoomInfo(): Response<LiveRoomInfo>
 
     /**
      * 批量打赏
@@ -83,6 +92,44 @@ interface LiveRoomApi {
     suspend fun realNameAuthentication(
         @Body params: Map<String, @JvmSuppressWildcards Any>
     ): Response<Unit>
+
+    /**
+     * 申请主播连麦
+     */
+    @POST("nemo/entertainmentLive/live/request_connection")
+    suspend fun requestHostConnection(
+        @Body params: Map<String, @JvmSuppressWildcards Any?>
+    ): Response<RequestConnectionResponse>
+
+    /**
+     * 取消主播连麦申请
+     */
+    @POST("nemo/entertainmentLive/live/cancel_connection")
+    suspend fun cancelRequestHostConnection(
+        @Body params: Map<String, @JvmSuppressWildcards Any>
+    ): Response<Unit>
+
+    /**
+     * 接受主播连麦
+     */
+    @POST("nemo/entertainmentLive/live/accept_connection")
+    suspend fun acceptRequestHostConnection(
+        @Body params: Map<String, @JvmSuppressWildcards Any>
+    ): Response<Unit>
+
+    /**
+     * 拒绝主播连麦
+     */
+    @POST("nemo/entertainmentLive/live/reject_connection")
+    suspend fun rejectRequestHostConnection(
+        @Body params: Map<String, @JvmSuppressWildcards Any>
+    ): Response<Unit>
+
+    /**
+     * 结束主播连麦
+     */
+    @POST("nemo/entertainmentLive/live/disconnect_connection")
+    suspend fun disconnectHostConnection(): Response<Unit>
 
     /**
      * 直播暂停

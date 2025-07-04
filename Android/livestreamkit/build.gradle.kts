@@ -29,9 +29,9 @@ dependencies {
     api("com.google.code.gson:gson:2.10.1")
 
     // xkit
-    implementation("com.netease.yunxin.kit.common:common:1.3.3")
+    implementation("com.netease.yunxin.kit.common:common:1.7.0")
     implementation("com.netease.yunxin.kit.common:common-network:1.1.8")
-    api("com.netease.yunxin.kit.room:roomkit:1.38.0")
+    api("com.netease.yunxin.kit.room:roomkit:1.39.0")
     api("com.netease.yunxin.kit:alog:1.1.0")
     api("com.netease.yunxin.kit.core:corekit:1.6.0")
     implementation("com.netease.yunxin.kit.core:corekit:1.4.7")

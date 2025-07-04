@@ -19,6 +19,7 @@ import com.netease.yunxin.kit.livestreamkit.ui.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.view.*;
 import com.netease.yunxin.kit.livestreamkit.ui.viewmodel.*;
 import com.netease.yunxin.kit.roomkit.api.*;
+import com.netease.yunxin.kit.roomkit.api.model.*;
 import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.*;
 import kotlin.*;
@@ -47,20 +48,19 @@ public class BaseAudienceContentView extends BaseView {
 
         @Override
         public void onSeatRequestApproved(
-            int seatIndex,
-            @NonNull String account,
-            @NonNull String operateBy,
+            @NonNull NESeatRequestItem requestItem,
+            @NonNull NERoomUser operateBy,
             boolean isAutoAgree) {
-          LiveRoomLog.i(TAG, "onSeatRequestApproved seatIndex = " + seatIndex);
-          if (TextUtils.equals(account, LiveStreamUtils.getLocalAccount())) {
+          LiveRoomLog.i(TAG, "onSeatRequestApproved requestItem = " + requestItem);
+          if (TextUtils.equals(requestItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalSeatRequestApproved();
           }
         }
 
         @Override
         public void onSeatInvitationAccepted(
-            int seatIndex, @NonNull String account, boolean isAutoAgree) {
-          if (TextUtils.equals(account, LiveStreamUtils.getLocalAccount())) {
+            @NonNull NESeatInvitationItem invitationItem, boolean isAutoAgree) {
+          if (TextUtils.equals(invitationItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalSeatInvitationAccepted();
           }
         }
@@ -72,23 +72,20 @@ public class BaseAudienceContentView extends BaseView {
         }
 
         @Override
-        public void onSeatLeave(int seatIndex, @NonNull String account) {
-          LiveRoomLog.i(TAG, "onSeatLeave seatIndex = " + seatIndex);
-          if (TextUtils.equals(account, LiveStreamUtils.getLocalAccount())) {
+        public void onSeatLeave(@NonNull NESeatItem seatItem) {
+          LiveRoomLog.i(TAG, "onSeatLeave seatItem = " + seatItem);
+          if (TextUtils.equals(seatItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalUserLeaveSeat();
           } else {
-            onRemoteUserLeaveSeat(account);
+            onRemoteUserLeaveSeat(seatItem.getUser());
           }
         }
 
         @Override
-        public void onSeatKicked(
-            int seatIndex, @NonNull String account, @NonNull String operateBy) {
-          LiveRoomLog.i(TAG, "onSeatKicked seatIndex = " + seatIndex);
-          if (TextUtils.equals(account, LiveStreamUtils.getLocalAccount())) {
+        public void onSeatKicked(@NonNull NESeatItem seatItem, @NonNull NERoomUser operateBy) {
+          LiveRoomLog.i(TAG, "onSeatKicked seatItem = " + seatItem);
+          if (TextUtils.equals(seatItem.getUser(), LiveStreamUtils.getLocalAccount())) {
             onLocalUserLeaveSeat();
-          } else {
-            onRemoteUserLeaveSeat(account);
           }
         }
 
@@ -154,7 +151,7 @@ public class BaseAudienceContentView extends BaseView {
     showCdnView();
   }
 
-  protected void onRemoteUserLeaveSeat(String uuid) {}
+  protected void onRemoteUserLeaveSeat(String user) {}
 
   @Override
   protected void initView() {

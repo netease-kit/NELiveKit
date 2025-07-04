@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.livestreamkit.ui.view.anchor;
+package com.netease.yunxin.kit.livestreamkit.ui.view.host;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,31 +17,29 @@ import androidx.lifecycle.*;
 import com.netease.yunxin.kit.common.ui.utils.*;
 import com.netease.yunxin.kit.entertainment.common.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.*;
-import com.netease.yunxin.kit.livestreamkit.ui.activity.*;
 import com.netease.yunxin.kit.livestreamkit.ui.databinding.LiveAnchorPreviewLayoutBinding;
 import com.netease.yunxin.kit.livestreamkit.ui.view.BaseView;
 import com.netease.yunxin.kit.livestreamkit.ui.viewmodel.*;
 
-public class AnchorPreviewView extends BaseView {
+public class HostPreviewView extends BaseView {
   private static final String TAG = "AnchorPreviewView";
   private LiveAnchorPreviewLayoutBinding binding;
   private OnCloseClickListener onCloseClickListener;
   private OnSwitchCameraClickListener onSwitchCameraClickListener;
   private OnBeautyClickListener onBeautyClickListener;
-  private AnchorLiveViewModel liveViewModel;
+  private HostLiveViewModel liveViewModel;
   private String username;
   private int configId;
 
-  public AnchorPreviewView(@NonNull Context context) {
+  public HostPreviewView(@NonNull Context context) {
     this(context, null);
   }
 
-  public AnchorPreviewView(@NonNull Context context, @Nullable AttributeSet attrs) {
+  public HostPreviewView(@NonNull Context context, @Nullable AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public AnchorPreviewView(
-      @NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+  public HostPreviewView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
@@ -50,7 +48,7 @@ public class AnchorPreviewView extends BaseView {
     binding = LiveAnchorPreviewLayoutBinding.inflate(LayoutInflater.from(getContext()), this, true);
     ViewUtils.paddingStatusBarHeight((Activity) getContext(), binding.getRoot());
     liveViewModel =
-        new ViewModelProvider((AppCompatActivity) mContext).get(AnchorLiveViewModel.class);
+        new ViewModelProvider((AppCompatActivity) mContext).get(HostLiveViewModel.class);
     // 设置输入监听
     binding.edtLiveTitle.addTextChangedListener(
         new TextWatcher() {
@@ -139,13 +137,13 @@ public class AnchorPreviewView extends BaseView {
         .observe(
             (AppCompatActivity) getContext(),
             liveState -> {
-              if (liveState == AnchorLiveViewModel.LIVE_STATE_LIVING) {
+              if (liveState == HostLiveViewModel.LIVE_STATE_LIVING) {
                 binding.flLoading.setVisibility(View.GONE);
-              } else if (liveState == AnchorLiveViewModel.LIVE_STATE_PREVIEW) {
+              } else if (liveState == HostLiveViewModel.LIVE_STATE_PREVIEW) {
                 binding.flLoading.setVisibility(View.GONE);
-              } else if (liveState == AnchorLiveViewModel.LIVE_STATE_FINISH) {
+              } else if (liveState == HostLiveViewModel.LIVE_STATE_FINISH) {
                 binding.flLoading.setVisibility(View.GONE);
-              } else if (liveState == AnchorLiveViewModel.LIVE_STATE_ERROR) {
+              } else if (liveState == HostLiveViewModel.LIVE_STATE_ERROR) {
                 binding.flLoading.setVisibility(View.GONE);
                 binding.btnStartLive.setEnabled(true);
               }

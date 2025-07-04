@@ -30,7 +30,7 @@ dependencies {
     // xkit dependencies
     api("com.netease.nimlib:neliveplayer:3.5.0")
     api("com.netease:gslb:1.1.4")
-    api("com.netease.yunxin.kit.common:common-ui:1.3.9")
+    api("com.netease.yunxin.kit.common:common-ui:1.7.0")
     api("com.netease.yunxin.kit.common:common-network:1.1.8")
     api("com.netease.yunxin.kit.common:common-image:1.2.0")
     implementation("com.netease.yunxin.kit.core:corekit:1.5.1")

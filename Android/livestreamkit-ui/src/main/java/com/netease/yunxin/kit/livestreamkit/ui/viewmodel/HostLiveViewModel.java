@@ -38,8 +38,8 @@ import com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView;
 import kotlin.Unit;
 import org.jetbrains.annotations.*;
 
-public class AnchorLiveViewModel extends BaseLiveViewModel implements SensorEventListener {
-  private static final String TAG = "LiveAnchorViewModel";
+public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventListener {
+  private static final String TAG = "HostLiveViewModel";
   private static final int ANCHOR_SEAT_INDEX = 1;
   public static final int LIVE_STATE_FINISH = 0;
   public static final int LIVE_STATE_LIVING = 1;
@@ -60,7 +60,7 @@ public class AnchorLiveViewModel extends BaseLiveViewModel implements SensorEven
 
   private final IBeautyModule beautyModule;
 
-  public AnchorLiveViewModel() {
+  public HostLiveViewModel() {
     beautyModule = new FaceUnityBeautyModule();
     beautyModule.init();
     setupFaceUnity();
@@ -126,7 +126,6 @@ public class AnchorLiveViewModel extends BaseLiveViewModel implements SensorEven
                       true,
                       frame -> {
                         beautyModule.onFrameAvailable(frame);
-                        ALog.d(TAG, "onFrameAvailable skipFrame = " + LiveStreamUtils.skipFrame);
                         if (LiveStreamUtils.skipFrame-- > 0) {
                           return null;
                         } else {
@@ -222,7 +221,7 @@ public class AnchorLiveViewModel extends BaseLiveViewModel implements SensorEven
           @Override
           public void onSuccess(@Nullable NELiveRoomInfo neLiveRoomInfo) {
             LiveRoomLog.d(TAG, "joinLive onSuccess");
-            liveStateData.setValue(AnchorLiveViewModel.LIVE_STATE_LIVING);
+            liveStateData.setValue(HostLiveViewModel.LIVE_STATE_LIVING);
             roomInfoData.setValue(neLiveRoomInfo);
             NELiveStreamKit.getInstance().submitSeatRequest(ANCHOR_SEAT_INDEX, true, null);
           }
@@ -245,7 +244,7 @@ public class AnchorLiveViewModel extends BaseLiveViewModel implements SensorEven
               @Override
               public void onSuccess(Unit unit) {
                 LiveRoomLog.d(TAG, "endRoom onSuccess");
-                ToastX.showShortToast(com.netease.yunxin.kit.entertainment.common.R.string.voiceroom_host_close_room_success);
+                ToastX.showShortToast(R.string.voiceroom_host_close_room_success);
                 liveStateData.postValue(LIVE_STATE_FINISH);
               }
 

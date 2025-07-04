@@ -40,7 +40,7 @@ public class ChatRoomAudioDialog extends BottomBaseDialog {
   }
 
   @Override
-  protected void renderBottomView(FrameLayout parent) {
+  protected void renderContentView(FrameLayout parent) {
     View bottomView =
         LayoutInflater.from(getContext()).inflate(R.layout.live_view_dialog_more_audio, parent);
 

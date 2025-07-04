@@ -6,8 +6,8 @@ package com.netease.yunxin.kit.livestreamkit.ui.config;
 
 public class LiveConfig {
   public static final class Video {
-    public static final int DEFAULT_WIDTH = 540;
-    public static final int DEFAULT_HEIGHT = 960;
+    public static final int DEFAULT_WIDTH = 720;
+    public static final int DEFAULT_HEIGHT = 1280;
     public static final int DEFAULT_FPS = 15;
     public static final int DEFAULT_BITRATE = 1000;
   }

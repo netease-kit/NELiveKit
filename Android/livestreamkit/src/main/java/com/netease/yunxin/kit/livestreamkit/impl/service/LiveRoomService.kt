@@ -8,16 +8,17 @@ package com.netease.yunxin.kit.livestreamkit.impl.service
 
 import android.net.Uri
 import android.text.TextUtils
-import com.google.gson.JsonObject
 import com.netease.yunxin.kit.common.utils.NetworkUtils
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamListener
 import com.netease.yunxin.kit.livestreamkit.api.model.NEVoiceRoomMember
 import com.netease.yunxin.kit.livestreamkit.api.model.NEVoiceRoomMemberVolumeInfo
+import com.netease.yunxin.kit.livestreamkit.impl.Constants
 import com.netease.yunxin.kit.livestreamkit.impl.model.VoiceRoomBatchGiftModel
 import com.netease.yunxin.kit.livestreamkit.impl.model.VoiceRoomMember
 import com.netease.yunxin.kit.livestreamkit.impl.model.VoiceRoomMemberVolumeInfo
 import com.netease.yunxin.kit.livestreamkit.impl.utils.GsonUtils
 import com.netease.yunxin.kit.livestreamkit.impl.utils.LiveRoomLog
+import com.netease.yunxin.kit.livestreamkit.impl.utils.LiveRoomUtils
 import com.netease.yunxin.kit.roomkit.api.NECallback
 import com.netease.yunxin.kit.roomkit.api.NECallback2
 import com.netease.yunxin.kit.roomkit.api.NEErrorCode
@@ -44,18 +45,20 @@ import com.netease.yunxin.kit.roomkit.api.model.NERoomCreateAudioMixingOption
 import com.netease.yunxin.kit.roomkit.api.model.NERoomRtcAudioStreamType
 import com.netease.yunxin.kit.roomkit.api.model.NERoomRtcClientRole
 import com.netease.yunxin.kit.roomkit.api.model.NERoomRtcLastmileProbeResult
+import com.netease.yunxin.kit.roomkit.api.model.NERoomUser
 import com.netease.yunxin.kit.roomkit.api.service.NEJoinRoomOptions
 import com.netease.yunxin.kit.roomkit.api.service.NEJoinRoomParams
 import com.netease.yunxin.kit.roomkit.api.service.NERoomService
 import com.netease.yunxin.kit.roomkit.api.service.NESeatEventListener
 import com.netease.yunxin.kit.roomkit.api.service.NESeatInfo
+import com.netease.yunxin.kit.roomkit.api.service.NESeatInvitationItem
 import com.netease.yunxin.kit.roomkit.api.service.NESeatItem
 import com.netease.yunxin.kit.roomkit.api.service.NESeatItemStatus
 import com.netease.yunxin.kit.roomkit.api.service.NESeatRequestItem
 import com.netease.yunxin.kit.roomkit.api.view.NERoomVideoView
 import com.netease.yunxin.kit.roomkit.impl.model.RoomCustomMessages
 
-internal class LiveRoomService {
+class LiveRoomService {
 
     private var currentRoomContext: NERoomContext? = null
     private val listeners = ArrayList<NELiveStreamListener>()
@@ -98,13 +101,10 @@ internal class LiveRoomService {
         }
 
     companion object {
-        private const val TAG = "VoiceRoomService"
+        private const val TAG = "LiveRoomService"
         private const val ERROR_MSG_ROOM_NOT_EXISTS = "Room not exists"
         private const val ERROR_MSG_MEMBER_NOT_EXISTS = "Member not exists"
         private const val ERROR_MSG_MEMBER_AUDIO_BANNED = "Member audio banned"
-        const val TYPE_BATCH_GIFT = 1005 // 批量礼物
-        const val TYPE_LIVE_PAUSE = 1105 // 暂停直播
-        const val TYPE_LIVE_RESUME = 1106 // 恢复直播
     }
 
     fun getLocalMember(): NERoomMember? {
@@ -146,9 +146,11 @@ internal class LiveRoomService {
                 role = role
             )
         }
+        val roomOptions = NEJoinRoomOptions()
+        roomOptions.autoStartVideo = true
         NERoomKit.getInstance().getService(NERoomService::class.java).joinRoom(
             neJoinRoomParams,
-            NEJoinRoomOptions(),
+            roomOptions,
             object : NECallback2<NERoomContext>() {
                 override fun onSuccess(data: NERoomContext?) {
                     LiveRoomLog.d(TAG, "joinRoom roomUuid = $roomUuid success")
@@ -176,7 +178,6 @@ internal class LiveRoomService {
                                             "joinChatroomChannel roomUuid = $roomUuid success"
                                         )
                                         unmuteMyAudio(EmptyCallback)
-                                        unmuteMyVideo(EmptyCallback)
                                         callback.onSuccess(data)
                                     }
 
@@ -323,6 +324,14 @@ internal class LiveRoomService {
 
     fun sendTextMessage(content: String, callback: NECallback2<NERoomChatMessage>) {
         currentRoomContext?.chatController?.sendBroadcastTextMessage(content, callback)
+            ?: callback.onError(
+                NEErrorCode.FAILURE,
+                ERROR_MSG_ROOM_NOT_EXISTS
+            )
+    }
+
+    fun sendBroadcastCustomMessage(content: String, callback: NECallback2<NERoomChatMessage>) {
+        currentRoomContext?.chatController?.sendBroadcastCustomMessage(content, callback)
             ?: callback.onError(
                 NEErrorCode.FAILURE,
                 ERROR_MSG_ROOM_NOT_EXISTS
@@ -619,6 +628,22 @@ internal class LiveRoomService {
         ) ?: NEErrorCode.FAILURE
     }
 
+    fun startChannelMediaRelay(roomUuid: String, callback: NECallback<Unit>? = null) {
+        currentRoomContext?.rtcController?.startChannelMediaRelay(roomUuid, callback) ?: callback?.onResult(
+            NEErrorCode.FAILURE,
+            "room context is null",
+            null
+        )
+    }
+
+    fun stopChannelMediaRelay(roomUuid: String, callback: NECallback<Unit>? = null) {
+        currentRoomContext?.rtcController?.stopChannelMediaRelay(roomUuid, callback) ?: callback?.onResult(
+            NEErrorCode.FAILURE,
+            "room context is null",
+            null
+        )
+    }
+
     fun pauseAudioMixing(): Int {
         return currentRoomContext?.rtcController?.pauseAudioMixing() ?: NEErrorCode.FAILURE
     }
@@ -721,14 +746,40 @@ internal class LiveRoomService {
             }
 
             override fun onMemberJoinRoom(members: List<NERoomMember>) {
-                listeners.forEach {
-                    it.onMemberJoinRoom(members)
+                var localMember: NERoomMember? = null
+                val remoteMembers = mutableListOf<NERoomMember>()
+
+                members.forEach {
+                    if (LiveRoomUtils.isLocal(it.uuid)) {
+                        localMember = it
+                    } else {
+                        remoteMembers.add(it)
+                    }
+                }
+
+                if (remoteMembers.size > 0) {
+                    listeners.forEach {
+                        it.onRemoteMemberJoinRoom(remoteMembers)
+                    }
                 }
             }
 
             override fun onMemberLeaveRoom(members: List<NERoomMember>) {
-                listeners.forEach {
-                    it.onMemberLeaveRoom(members)
+                var localMember: NERoomMember? = null
+                val remoteMembers = mutableListOf<NERoomMember>()
+
+                members.forEach {
+                    if (LiveRoomUtils.isLocal(it.uuid)) {
+                        localMember = it
+                    } else {
+                        remoteMembers.add(it)
+                    }
+                }
+
+                if (remoteMembers.size > 0) {
+                    listeners.forEach {
+                        it.onRemoteMemberLeaveRoom(remoteMembers)
+                    }
                 }
             }
 
@@ -745,14 +796,53 @@ internal class LiveRoomService {
             }
 
             override fun onMemberJoinRtcChannel(members: List<NERoomMember>) {
-                listeners.forEach {
-                    it.onMemberJoinRtcChannel(members)
+                var localMember: NERoomMember? = null
+                val remoteMembers = mutableListOf<NERoomMember>()
+
+                members.forEach {
+                    if (LiveRoomUtils.isLocal(it.uuid)) {
+                        localMember = it
+                    } else {
+                        remoteMembers.add(it)
+                    }
+                }
+
+                localMember?.let {
+                    listeners.forEach {
+                        it.onLocalMemberJoinRtcChannel()
+                    }
+                }
+
+                if (remoteMembers.size > 0) {
+                    listeners.forEach {
+                        it.onRemoteMemberJoinRtcChannel(remoteMembers)
+                    }
                 }
             }
 
             override fun onMemberLeaveRtcChannel(members: List<NERoomMember>) {
-                listeners.forEach {
-                    it.onMemberLeaveRtcChannel(members)
+                var localMember: NERoomMember? = null
+                val remoteMembers = mutableListOf<NERoomMember>()
+
+                members.forEach {
+                    LiveRoomLog.i(TAG, "onMemberLeaveRtcChannel member: $it")
+                    if (LiveRoomUtils.isLocal(it.uuid)) {
+                        localMember = it
+                    } else {
+                        remoteMembers.add(it)
+                    }
+                }
+
+                localMember?.let {
+                    listeners.forEach {
+                        it.onLocalMemberLeaveRtcChannel()
+                    }
+                }
+
+                if (remoteMembers.size > 0) {
+                    listeners.forEach {
+                        it.onRemoteMemberLeaveRtcChannel(remoteMembers)
+                    }
                 }
             }
 
@@ -823,8 +913,8 @@ internal class LiveRoomService {
                             }
                         }
                     } else if (it is RoomCustomMessages) {
-                        when (getType(it.attachStr)) {
-                            TYPE_BATCH_GIFT -> {
+                        when (LiveRoomUtils.getType(it.attachStr)) {
+                            Constants.TYPE_BATCH_GIFT -> {
                                 val result = GsonUtils.fromJson(
                                     it.attachStr,
                                     VoiceRoomBatchGiftModel::class.java
@@ -837,7 +927,7 @@ internal class LiveRoomService {
                                     listener.onReceiveBatchGift(result.data)
                                 }
                             }
-                            TYPE_LIVE_PAUSE -> {
+                            Constants.TYPE_LIVE_PAUSE -> {
                                 listeners.forEach { listener ->
                                     LiveRoomLog.i(
                                         TAG,
@@ -847,13 +937,22 @@ internal class LiveRoomService {
                                 }
                             }
 
-                            TYPE_LIVE_RESUME -> {
+                            Constants.TYPE_LIVE_RESUME -> {
                                 listeners.forEach { listener ->
                                     LiveRoomLog.i(
                                         TAG,
                                         "onLiveResume customAttachment:${it.attachStr}"
                                     )
                                     listener.onLiveResume()
+                                }
+                            }
+                            else -> {
+                                listeners.forEach { listener ->
+                                    LiveRoomLog.i(
+                                        TAG,
+                                        "onReceiveCustomMessage customAttachment:${it.attachStr}"
+                                    )
+                                    listener.onReceiveChatroomMessages(listOf(it))
                                 }
                             }
                         }
@@ -884,93 +983,107 @@ internal class LiveRoomService {
 
     private fun addSeatListener() {
         seatListener = object : NESeatEventListener() {
-            override fun onSeatInvitationReceived(seatIndex: Int, user: String, operateBy: String) {
-                LiveRoomLog.d(
-                    TAG,
-                    "onSeatInvitationReceived seatIndex = $seatIndex user = $user operateBy = $operateBy"
-                )
+
+            override fun onSeatRequestSubmitted(requestItem: NESeatRequestItem) {
+                LiveRoomLog.d(TAG, "onSeatRequestSubmitted requestItem = $requestItem")
+
                 listeners.forEach {
-                    it.onSeatInvitationReceived(seatIndex, user, operateBy)
+                    it.onSeatRequestSubmitted(requestItem)
                 }
             }
 
-            override fun onSeatInvitationAccepted(
-                seatIndex: Int,
-                user: String,
-                isAutoAgree: Boolean
-            ) {
+            override fun onSeatRequestRejected(requestItem: NESeatRequestItem, operateByUser: NERoomUser) {
                 LiveRoomLog.d(
                     TAG,
-                    "onSeatInvitationAccepted seatIndex = $seatIndex user = $user isAutoAgree = $isAutoAgree"
+                    "onSeatRequestRejected requestItem = $requestItem operateByUser = $operateByUser"
                 )
                 listeners.forEach {
-                    it.onSeatInvitationAccepted(seatIndex, user, isAutoAgree)
+                    it.onSeatRequestRejected(requestItem, operateByUser)
                 }
             }
 
             override fun onSeatRequestApproved(
-                seatIndex: Int,
-                user: String,
-                operateBy: String,
+                requestItem: NESeatRequestItem,
+                operateByUser: NERoomUser,
                 isAutoAgree: Boolean
             ) {
                 LiveRoomLog.d(
                     TAG,
-                    "onSeatRequestApproved seatIndex = $seatIndex user = $user operateBy = $operateBy isAutoAgree = $isAutoAgree"
+                    "onSeatRequestApproved requestItem = $requestItem operateByUser = $operateByUser isAutoAgree = $isAutoAgree"
                 )
                 listeners.forEach {
-                    it.onSeatRequestApproved(seatIndex, user, operateBy, isAutoAgree)
+                    it.onSeatRequestApproved(requestItem, operateByUser, isAutoAgree)
                 }
             }
 
-            override fun onSeatRequestCancelled(seatIndex: Int, user: String) {
-                LiveRoomLog.d(TAG, "onSeatRequestCancelled seatIndex = $seatIndex user = $user")
+            override fun onSeatRequestCancelled(requestItem: NESeatRequestItem) {
+                LiveRoomLog.d(TAG, "onSeatRequestCancelled requestItem = $requestItem")
                 listeners.forEach {
-                    it.onSeatRequestCancelled(seatIndex, user)
+                    it.onSeatRequestCancelled(requestItem)
+                }
+            }
+
+            override fun onSeatInvitationReceived(invitationItem: NESeatInvitationItem, operateByUser: NERoomUser) {
+                LiveRoomLog.d(
+                    TAG,
+                    "onSeatInvitationReceived invitationItem = $invitationItem operateBy = $operateByUser"
+                )
+                listeners.forEach {
+                    it.onSeatInvitationReceived(invitationItem, operateByUser)
+                }
+            }
+
+            override fun onSeatInvitationAccepted(
+                invitationItem: NESeatInvitationItem,
+                isAutoAgree: Boolean
+            ) {
+                LiveRoomLog.d(
+                    TAG,
+                    "onSeatInvitationAccepted invitationItem = $invitationItem isAutoAgree = $isAutoAgree"
+                )
+                listeners.forEach {
+                    it.onSeatInvitationAccepted(invitationItem, isAutoAgree)
                 }
             }
 
             override fun onSeatInvitationCancelled(
-                seatIndex: Int,
-                user: String,
-                operateBy: String
+                invitationItem: NESeatInvitationItem,
+                operateByUser: NERoomUser
             ) {
                 LiveRoomLog.d(
                     TAG,
-                    "onSeatInvitationCancelled seatIndex = $seatIndex user = $user operateBy = $operateBy"
+                    "onSeatInvitationCancelled invitationItem = $invitationItem operateByUser = $operateByUser"
                 )
                 listeners.forEach {
-                    it.onSeatInvitationCancelled(seatIndex, user, operateBy)
+                    it.onSeatInvitationCancelled(invitationItem, operateByUser)
                 }
             }
 
-            override fun onSeatInvitationRejected(seatIndex: Int, user: String) {
-                LiveRoomLog.d(TAG, "onSeatInvitationRejected seatIndex = $seatIndex user = $user")
+            override fun onSeatInvitationRejected(invitationItem: NESeatInvitationItem) {
+                LiveRoomLog.d(TAG, "onSeatInvitationRejected invitationItem = $invitationItem")
                 listeners.forEach {
-                    it.onSeatInvitationRejected(seatIndex, user)
+                    it.onSeatInvitationRejected(invitationItem)
                 }
             }
 
-            override fun onSeatKicked(seatIndex: Int, user: String, operateBy: String) {
+            override fun onSeatKicked(seatItem: NESeatItem, operateByUser: NERoomUser) {
                 LiveRoomLog.d(
                     TAG,
-                    "onSeatKicked seatIndex = $seatIndex user = $user operateBy = $operateBy"
+                    "onSeatKicked seatItem = $seatItem operateByUser = $operateByUser"
                 )
                 listeners.forEach {
-                    it.onSeatKicked(seatIndex, user, operateBy)
+                    it.onSeatKicked(seatItem, operateByUser)
                 }
             }
 
-            override fun onSeatLeave(seatIndex: Int, user: String) {
+            override fun onSeatLeave(seatItem: NESeatItem) {
                 LiveRoomLog.d(
                     TAG,
-                    "onSeatLeave seatIndex = $seatIndex user = $user,member:${currentRoomContext?.getMember(
-                        user
-                    )}"
+                    "onSeatLeave seatItem = $seatItem"
                 )
 
                 listeners.forEach {
-                    it.onSeatLeave(seatIndex, user)
+                    it.onSeatLeave(seatItem)
                 }
             }
 
@@ -984,30 +1097,8 @@ internal class LiveRoomService {
                 }
             }
 
-            override fun onSeatRequestRejected(seatIndex: Int, user: String, operateBy: String) {
-                LiveRoomLog.d(
-                    TAG,
-                    "onSeatRequestRejected seatIndex = $seatIndex user = $user operateBy = $operateBy"
-                )
-                listeners.forEach {
-                    it.onSeatRequestRejected(seatIndex, user, operateBy)
-                }
-            }
-
-            override fun onSeatRequestSubmitted(seatIndex: Int, user: String) {
-                LiveRoomLog.d(TAG, "onSeatRequestSubmitted seatIndex = $seatIndex user = $user")
-
-                listeners.forEach {
-                    it.onSeatRequestSubmitted(seatIndex, user)
-                }
-            }
-
-            override fun onSeatManagerAdded(managers: List<String>) {
-                LiveRoomLog.d(TAG, "onSeatManagerAdded managers = $managers")
-            }
-
-            override fun onSeatManagerRemoved(managers: List<String>) {
-                LiveRoomLog.d(TAG, "onSeatManagerRemoved managers = $managers")
+            override fun onSeatManagersChanged(added: List<NERoomUser>, removed: List<NERoomUser>) {
+                LiveRoomLog.d(TAG, "onSeatManagerAdded added = $added removed = $removed")
             }
         }
 
@@ -1017,11 +1108,6 @@ internal class LiveRoomService {
 
     private fun handleSeatListItemChanged(seatItems: List<NESeatItem>) {
         LiveRoomLog.d(TAG, "handleSeatListItemChanged,seatItems:${seatItems.size}")
-        isLocalOnSeat = isCurrentOnSeat(seatItems)
-        currentRoomContext?.rtcController?.setClientRole(
-            if (isLocalOnSeat) NERoomRtcClientRole.BROADCASTER else NERoomRtcClientRole.AUDIENCE
-        )
-
         val context = currentRoomContext ?: return
         val myUuid = context.localMember.uuid
         val old = onSeatItems?.firstOrNull { it.user == myUuid }
@@ -1056,14 +1142,6 @@ internal class LiveRoomService {
 
     private fun syncLocalAudioState(mute: Boolean) {
         currentRoomContext?.rtcController?.setRecordDeviceMute(mute)
-    }
-
-    private fun getType(json: String): Int? {
-        val jsonObject: JsonObject = GsonUtils.fromJson(
-            json,
-            JsonObject::class.java
-        )
-        return jsonObject["type"]?.asInt
     }
 
     fun setPlayingPosition(effectId: Int, position: Long): Int {

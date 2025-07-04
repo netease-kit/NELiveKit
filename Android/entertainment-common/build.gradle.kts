@@ -36,8 +36,8 @@ dependencies {
     implementation("com.airbnb.android:lottie:5.0.3")
 
     implementation("com.netease.yunxin:nertc-base:5.8.15")
-    api("com.netease.yunxin.kit.common:common:1.4.0")
-    api("com.netease.yunxin.kit.common:common-ui:1.4.0")
+    api("com.netease.yunxin.kit.common:common:1.7.0")
+    api("com.netease.yunxin.kit.common:common-ui:1.7.0")
     api("com.netease.yunxin.kit.common:common-network:1.1.8")
     implementation("com.netease.yunxin.kit.core:corekit:1.6.0")
     implementation("com.netease.yunxin.kit.common:common-image:1.1.7")

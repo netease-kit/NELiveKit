@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.livestreamkit.ui.dialog.fragment;
+package com.netease.yunxin.kit.livestreamkit.ui.coaudience.fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,8 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamCallback;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
+import com.netease.yunxin.kit.livestreamkit.ui.coaudience.*;
 import com.netease.yunxin.kit.livestreamkit.ui.databinding.*;
-import com.netease.yunxin.kit.livestreamkit.ui.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.LiveStreamUtils;
 import com.netease.yunxin.kit.livestreamkit.ui.view.*;
 import java.util.List;

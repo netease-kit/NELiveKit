@@ -106,11 +106,17 @@
     <string name="network_error">网络异常，请检查网络设置</string>
     
     <!-- PK相关 -->
-    <string name="pk_invite_sent">PK邀请已发送</string>
-    <string name="pk_invite_failed">发送PK邀请失败</string>
-    <string name="no_pkable_anchor">当前没有可PK的主播</string>
-    <string name="get_pkable_list_failed">获取可PK主播列表失败</string>
-    
+    <string name="co_host_invite">PK邀请</string>
+    <string name="co_host_invite_success">已发出PK邀请</string>
+    <string name="co_host_invite_failed">发送PK邀请失败</string>
+    <string name="no_co_host_available_anchor">当前没有可PK的主播</string>
+    <string name="get_co_host_list_failed">获取可PK主播列表失败</string>
+    <string name="co_leave">结束</string>
+    <string name="co_with_user">与主播 %sPK 中</string>
+    <string name="co_host_count_down">PK %d:%02d</string>
+    <string name="co_host_hanup">是否结束与%s的PK？</string>
+    <string name="co_host_can_not_on_seat">目前正在PK中，无法进行连麦，将拒绝连麦申请</string>
+
     <!-- 连麦相关 -->
     <string name="link_mic_enabled">已允许观众连麦</string>
     <string name="link_mic_disabled">已禁止观众连麦</string>
@@ -119,12 +125,15 @@
     <string name="live_hangup">挂断</string>
     <string name="live_apply_on_seat">申请上麦(%d)</string>
     <string name="live_invite_join_seats">邀请上麦</string>
+    <string name="live_invite_host">邀请</string>
+    <string name="live_cancel_invite_host">取消邀请</string>
     <string name="live_apply_seat">连麦申请</string>
     <string name="live_cancel_on_seat">取消上麦</string>
     <string name="live_apply_seat_manager">连麦管理</string>
     <string name="live_accept">接受</string>
     <string name="live_reject">拒绝</string>
     <string name="live_anchor_invite_audience_join_seats">主播%s邀请你上麦</string>
+    <string name="live_co_host_invited">%s邀请你参加PK</string>
     <string name="live_join_seats">上麦</string>
     <string name="live_reject_countdown">拒绝(%ds)</string>
     <string name="live_audience_reject_link_seats_invited">对方已拒绝你的连麦邀请</string>
@@ -132,6 +141,7 @@
     <string name="live_permission_deny_tips">您拒绝了权限申请，该功能将无法使用</string>
     <string name="live_permission_error_tips">需要同意相机和麦克风权限才能正常连麦哦~</string>
     <string name="live_anchor_invite_success">邀请已发送</string>
+    <string name="live_anchor_invite_success_cancel">邀请已取消</string>
     <string name="live_have_accepted">已接受</string>
     <string name="live_have_reject">已拒绝</string>
     <string name="live_have_leave_seat">已下麦</string>

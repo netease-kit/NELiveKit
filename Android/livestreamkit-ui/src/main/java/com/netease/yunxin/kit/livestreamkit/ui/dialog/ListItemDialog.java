@@ -40,7 +40,7 @@ public class ListItemDialog extends BottomBaseDialog {
   }
 
   @Override
-  protected void renderBottomView(FrameLayout parent) {
+  protected void renderContentView(FrameLayout parent) {
     RecyclerView rvMemberList = new RecyclerView(getContext());
     rvMemberList.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     FrameLayout.LayoutParams layoutParams =
@@ -61,7 +61,7 @@ public class ListItemDialog extends BottomBaseDialog {
           }
 
           @Override
-          protected void onBindViewHolder(LiveViewHolder holder, String itemData) {
+          protected void onBindViewHolder(@NonNull LiveViewHolder holder, String itemData) {
             super.onBindViewHolder(holder, itemData);
             TextView tvName = holder.getView(R.id.tv_item);
             tvName.setText(itemData);

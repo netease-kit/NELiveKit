@@ -37,9 +37,14 @@ public class SeatUtils {
     List<SeatView.SeatInfo> seatInfoList = new ArrayList<>();
     for (NESeatItem item : neSeatItemList) {
       if (item.getStatus() == NEVoiceRoomSeatItemStatus.TAKEN
-          && !TextUtils.equals(item.getUser(), LiveStreamUtils.getHostUuid())) {
+          && item.getUser() != null
+          && item.getUserInfo() != null
+          && !TextUtils.equals(item.getUserInfo().getUser(), LiveStreamUtils.getHostUuid())) {
         SeatView.SeatInfo seatInfo =
-            new SeatView.SeatInfo(item.getUser(), item.getUserName(), item.getIcon());
+            new SeatView.SeatInfo(
+                item.getUserInfo().getUser(),
+                item.getUserInfo().getUserName(),
+                item.getUserInfo().getIcon());
         seatInfoList.add(seatInfo);
       }
     }

@@ -19,7 +19,6 @@
             android:layout_marginBottom="32dp"
             android:maxLines="2"
             android:gravity="center"
-            android:text="@string/live_anchor_invite_audience_join_seats"
             android:textColor="@color/text_primary"
             android:textSize="16sp"
             android:textStyle="bold"/>

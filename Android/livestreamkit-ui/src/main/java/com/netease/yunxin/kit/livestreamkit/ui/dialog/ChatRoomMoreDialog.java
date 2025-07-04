@@ -66,7 +66,7 @@ public class ChatRoomMoreDialog extends BottomBaseDialog {
           }
 
           @Override
-          protected void onBindViewHolder(LiveViewHolder holder, MoreItem itemData) {
+          protected void onBindViewHolder(@NonNull LiveViewHolder holder, MoreItem itemData) {
             ImageView ivIcon = holder.getView(R.id.iv_item_icon);
             ivIcon.setImageResource(itemData.iconResId);
             ivIcon.setEnabled(itemData.enable);
@@ -98,7 +98,7 @@ public class ChatRoomMoreDialog extends BottomBaseDialog {
   }
 
   @Override
-  protected void renderBottomView(FrameLayout parent) {
+  protected void renderContentView(FrameLayout parent) {
     RecyclerView rvList = new RecyclerView(getContext());
     rvList.setPadding(0, 0, 0, SizeUtils.dp2px(10));
     rvList.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
