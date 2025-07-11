@@ -42,13 +42,13 @@
 >示例项目源码请存放至全英文的路径下。
     
 
-2. 打开终端，在 (NELiveStreamKit/NELiveStreamDemo) Podfile 所在文件夹中执行如下命令进行安装：
+2. 打开终端，在 (NELiveStreamDemo) Podfile 所在文件夹中执行如下命令进行安装：
 
     ```
     pod install 
     ```
 
-3. 在 `NELiveStreamKit/NELiveStreamDemo/NELiveStreamDemo/AppKey.swift` 中，替换您自己的 App Key 和 App Secret 。 
+3. 在 `NELiveStreamDemo/NELiveStreamDemo/AppKey.swift` 中，替换您自己的 App Key 和 App Secret 。 
    
 
     ```
@@ -87,8 +87,8 @@
 # 示例项目结构
 
 ```
+├── NELiveStreamDemo // 直播房主工程
 ├── NELiveStreamKit
-│   ├── NELiveStreamDemo // 直播房主工程
 │   ├── NELiveStreamKit // 直播房逻辑模块
 │   ├── NELiveStreamUIKit // 直播房UI模块
 │   └── NEOrderSong // 点歌模块
