@@ -12,7 +12,7 @@ extension NELiveAnchorViewController: NECoHostListener {
     // 目前只有两人PK
     for user in joinedList {
       if user.userUuid != NELiveStreamKit.getInstance().localMember?.account {
-        NELiveStreamKit.getInstance().setRemoteVideoView(view: pkUIView.remoteRenderView, userUuid: user.userUuid)
+        NELiveStreamKit.getInstance().setRemoteVideoCanvas(view: pkUIView.remoteRenderView, userUuid: user.userUuid)
       }
 
       // 更新 PKUI 布局
@@ -26,7 +26,7 @@ extension NELiveAnchorViewController: NECoHostListener {
         return
       }
       NELiveStreamKit.getInstance().coHostManager.disconnect(roomUuid: roomUuid)
-      NELiveStreamKit.getInstance().setRemoteVideoView(view: nil, userUuid: userUuid)
+      NELiveStreamKit.getInstance().setRemoteVideoCanvas(view: nil, userUuid: userUuid)
 
       // 恢复单人直播布局
       layoutSingleUI()

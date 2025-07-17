@@ -3,23 +3,29 @@
 // found in the LICENSE file.
 
 import Foundation
+import NERoomKit
 
 /// 角色
 @objc
 public enum NELiveStreamRoomRole: Int {
-  /// 房主
+  ///  主播（房主）
   case host = 0
 
   ///  连麦观众
-  case audienceMic
+  case audienceOnSeat
 
   ///  普通观众
   case audience
 
+  ///  PK 主播
+  case invitedHost
+
   public func toString() -> String {
     switch self {
     case .host: return "host"
-    case .audienceMic: return "audience_mic"
+    case .audienceOnSeat: return "audience"
+    case .audience: return NERoomBuiltinRole.Observer
+    case .invitedHost: return "invited_host"
     default: return "audience"
     }
   }
@@ -28,18 +34,12 @@ public enum NELiveStreamRoomRole: Int {
 /// 加入房间参数
 @objcMembers
 public class NEJoinLiveStreamRoomParams: NSObject {
-  /// 房间uid
-  public var roomUuid: String = ""
+  /// roomInfo
+  public var roomInfo: NELiveStreamRoomInfo?
   /// 房间内昵称
   public var nick: String = ""
-  /// 直播id
-  public var liveRecordId: Int = 0
   /// 角色
   public var role: NELiveStreamRoomRole = .host
   /// 扩展参数
   public var extraData: String?
-  /// 是否是重新加入房间
-  public var isRejoin: Bool = false
-  /// roomInfo
-  public var roomInfo: NELiveStreamRoomInfo?
 }

@@ -13,7 +13,7 @@ extension NELiveAudienceViewController {
         // 为新上麦的观众设置视频视图
         let videoView = mutiConnectView.getVideoView(userId)
         // 设置远程视频视图
-        NELiveStreamKit.getInstance().setRemoteVideoView(view: videoView, userUuid: userId)
+        NELiveStreamKit.getInstance().setRemoteVideoCanvas(view: videoView, userUuid: userId)
         NELiveStreamKit.getInstance().subscribeRemoteVideoStream(userUuid: userId)
       }
     }
@@ -24,7 +24,7 @@ extension NELiveAudienceViewController {
     for leftSeat in seatItems {
       if let userId = leftSeat.user {
         // 移除离开观众的远程视频
-        NELiveStreamKit.getInstance().setRemoteVideoView(view: nil, userUuid: userId)
+        NELiveStreamKit.getInstance().setRemoteVideoCanvas(view: nil, userUuid: userId)
 
         // 如果是自己离开,默认其他人都下麦
         if userId == NELiveStreamKit.getInstance().localMember?.account {
@@ -75,7 +75,7 @@ extension NELiveAudienceViewController {
 
     if isLocalUserOnSeat {
       // 设置本地视频视图
-      NELiveStreamKit.getInstance().setLocalVideoView(view: localRender)
+      NELiveStreamKit.getInstance().setLocalVideoCanvas(view: localRender)
       localRender.isHidden = false
       localPlayerRender.isHidden = true
 
@@ -175,6 +175,13 @@ extension NELiveAudienceViewController {
       return
     }
 
+    leaveSeat()
+    localRender.isHidden = true
+    localPlayerRender.isHidden = false
+
+    // 数据置空
+    mutiConnectView.reloadDataSource([])
+
     NELiveStreamToast.show("已被踢下麦")
   }
 
@@ -184,10 +191,10 @@ extension NELiveAudienceViewController {
       return
     }
 
-    NELiveStreamKit.getInstance().changeMemberRole(userUuid: account, role: NELiveStreamRoomRole.audienceMic.toString()) { [weak self] code, msg, _ in
+    NELiveStreamKit.getInstance().changeMemberRole(userUuid: account, role: NELiveStreamRoomRole.audienceOnSeat.toString()) { [weak self] code, msg, _ in
       DispatchQueue.main.async { [weak self] in
         if code == 0 {
-          self?.role = .audienceMic
+          self?.role = .audienceOnSeat
           NELiveStreamUILog.successLog(anchorControllerTag, desc: "Successfully changeMemberRole.")
           self?.stopStream()
 

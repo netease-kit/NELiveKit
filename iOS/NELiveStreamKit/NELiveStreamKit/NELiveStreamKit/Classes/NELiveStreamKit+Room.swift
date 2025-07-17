@@ -177,21 +177,29 @@ public extension NELiveStreamKit {
                 callback: NELiveStreamCallback<NELiveStreamRoomInfo>? = nil) {
     NELiveStreamLog.apiLog(kitTag, desc: "Join room.")
 
-    // liveRecordId
-
-    liveRecordId = params.liveRecordId
-    if let roomInfo = params.roomInfo {
-      liveInfo = roomInfo
+    guard let roomInfo = params.roomInfo else {
+      NELiveStreamLog.errorLog(kitTag, desc: "Failed to join room. RoomInfo is nil.")
+      callback?(NELiveStreamErrorCode.failed, "Failed to join room. RoomInfo is nil.", nil)
+      return
     }
+
+    guard let roomUuid = roomInfo.liveModel?.roomUuid else {
+      NELiveStreamLog.errorLog(kitTag, desc: "Failed to join room. RoomUuid is nil.")
+      callback?(NELiveStreamErrorCode.failed, "Failed to join room. RoomUuid is nil.", nil)
+      return
+    }
+
+    liveRecordId = roomInfo.liveModel?.liveRecordId ?? 0
+    liveInfo = roomInfo
 
     // 初始化判断
     Judge.initCondition({
       func join(_ params: NEJoinLiveStreamRoomParams,
                 callback: NELiveStreamCallback<NELiveStreamRoomInfo>?) {
-        self._joinRoom(params.roomUuid,
+        self._joinRoom(params,
+                       roomUuid: roomUuid,
                        userName: params.nick,
-                       role: params.role.toString(),
-                       isRejoin: params.isRejoin) { [weak self] joinCode, joinMsg, _ in
+                       role: params.role.toString()) { joinCode, joinMsg, _ in
           if joinCode == 0 {
             callback?(joinCode, joinMsg, nil)
 
@@ -202,7 +210,7 @@ public extension NELiveStreamKit {
       }
       // 如果已经在此房间里则先退出
       if let context = NERoomKit.shared().roomService
-        .getRoomContext(roomUuid: params.roomUuid) {
+        .getRoomContext(roomUuid: roomUuid) {
         context.leaveRoom { code, msg, obj in
           join(params, callback: callback)
         }
@@ -220,27 +228,17 @@ public extension NELiveStreamKit {
     // 初始化、roomContext 判断
     Judge.preCondition({
       // 主动调用离开聊天室
-
-      var roomRole = NERoomBuiltinRole.Observer
-      if role == NELiveStreamRoomRole.audienceMic.toString() {
-        roomRole = "audience"
-      } else if role == NELiveStreamRoomRole.host.toString() {
-        roomRole = "host"
-      }
-
-      self.roomContext!.changeMemberRole(userUuid: userUuid, role: roomRole) { [weak self] code, msg, _ in
+      self.roomContext!.changeMemberRole(userUuid: userUuid, role: role) { [weak self] code, msg, _ in
         guard let self = self else { return }
         if code == 0 {
           NELiveStreamLog.successLog(kitTag, desc: "Successfully change Member Role.")
 
           // 上麦观众 或主播
-          if role == NELiveStreamRoomRole.audienceMic.toString() || role == NELiveStreamRoomRole.host.toString() {
+          if role == NELiveStreamRoomRole.audienceOnSeat.toString() || role == NELiveStreamRoomRole.host.toString() {
             self.roomContext?.rtcController.setClientRole(.broadcaster)
             self.roomContext?.rtcController.setParameters(["kNERtcKeyAutoSubscribeVideo": true])
-            var timestamp = Date().timeIntervalSince1970
             self.roomContext?.rtcController.joinRtcChannel { code, msg, _ in
-              timestamp = Date().timeIntervalSince1970
-              NELiveStreamLog.infoLog(kitTag, desc: "joinRtcChannel callback Timestamp: \(timestamp)")
+              NELiveStreamLog.infoLog(kitTag, desc: "joinRtcChannel callback")
 
               // 默认开启视频
               self.roomContext?.rtcController.enableLocalVideo(enable: true)
@@ -296,11 +294,13 @@ public extension NELiveStreamKit {
   }
 
   internal func reset() {
+    NELiveStreamLog.apiLog(kitTag, desc: "reset room.")
     // 移除 房间监听、消息监听
     roomContext?.removeRoomListener(listener: self)
     // 移除麦位监听
     roomContext?.seatController.removeSeatListener(self)
     roomContext = nil
+
     liveInfo = nil
   }
 
@@ -457,7 +457,6 @@ public extension NELiveStreamKit {
 extension NELiveStreamKit {
   func _joinRoom(_ context: NERoomContext,
                  role: String,
-                 isRejoin: Bool,
                  callback: NELiveStreamCallback<AnyObject>? = nil) {
     context.rtcController.setClientRole(.audience)
 
@@ -481,12 +480,16 @@ extension NELiveStreamKit {
       group.enter()
       context.rtcController.setLocalVideoConfig(width: 720, height: 1280, fps: 15)
       NELiveStreamLog.infoLog(kitTag, desc: "joinRtcChannel Timestamp: \(timestamp)")
-      context.rtcController.joinRtcChannel { code, msg, _ in
+      context.rtcController.joinRtcChannel { [weak context] code, msg, _ in
         timestamp = Date().timeIntervalSince1970
         NELiveStreamLog.infoLog(kitTag, desc: "joinRtcChannel callback Timestamp: \(timestamp)")
         rtcCode = code
         rtcMsg = msg
 
+        guard let context = context else {
+          NELiveStreamLog.errorLog(kitTag, desc: "YAT context is nil.")
+          return
+        }
         // 默认开启音频视频
         context.rtcController.enableLocalVideo(enable: true)
         context.rtcController.enableLocalAudio(channelName: context.roomUuid, enable: true)
@@ -554,10 +557,10 @@ extension NELiveStreamKit {
     }
   }
 
-  func _joinRoom(_ roomUuid: String,
+  func _joinRoom(_ params: NEJoinLiveStreamRoomParams,
+                 roomUuid: String,
                  userName: String,
                  role: String,
-                 isRejoin: Bool,
                  callback: NELiveStreamCallback<AnyObject>? = nil) {
     // 进入房间
     let joinParams = NEJoinRoomParams()
@@ -567,11 +570,6 @@ extension NELiveStreamKit {
     let joinOptions = NEJoinRoomOptions()
     joinOptions.enableMyAudioDeviceOnJoinRtc = true
     joinOptions.autoStartVideo = true
-
-    // 观众通过 observer
-    if role == NELiveStreamRoomRole.audience.toString() {
-      joinParams.role = NERoomBuiltinRole.Observer
-    }
 
     NERoomKit.shared().roomService.joinRoom(params: joinParams,
                                             options: joinOptions) { [weak self] joinCode, joinMsg, context in
@@ -584,6 +582,8 @@ extension NELiveStreamKit {
         callback?(joinCode, joinMsg, nil)
         return
       }
+
+      self.liveInfo = params.roomInfo
       self.localSeats = nil
       self.roomContext = context
       self.roomContext?.rtcController.setParameters([NERoomRtcParameters.kNERoomRtcKeyRecordAudioEnabled: true, NERoomRtcParameters.kNERoomRtcKeyRecordVideoEnabled: true])
@@ -591,7 +591,7 @@ extension NELiveStreamKit {
       context.addRoomListener(listener: self.coHostManager)
       context.seatController.addSeatListener(self)
       // 加入chatroom、rtc
-      self._joinRoom(context, role: role, isRejoin: isRejoin, callback: callback)
+      self._joinRoom(context, role: role, callback: callback)
     }
   }
 }
