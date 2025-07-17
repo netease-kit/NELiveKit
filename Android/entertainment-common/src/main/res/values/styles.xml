@@ -48,10 +48,4 @@
         <item name="android:windowIsTranslucent">false</item>
     </style>
 
-    <style name="TransCommonDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
-        <item name="android:windowBackground">#00000000</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
-
 </resources>

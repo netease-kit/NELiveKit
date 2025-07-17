@@ -13,10 +13,9 @@ public class LiveConstants {
   public static final String INTENT_USER_ROLE = "user_role";
   public static final String INTENT_LIVE_INFO = "live_info";
   public static final String INTENT_LIVE_INFO_LIST = "live_info_list";
-  public static final String INTENT_LIVE_TYPE = "liveType";
-
   public static final String ROLE_HOST = "host";
-  public static final String ROLE_AUDIENCE_ON_SEAT = "audience";
-  public static final String ROLE_AUDIENCE = NERoomBuiltinRole.OBSERVER;
+  public static final String ROLE_AUDIENCE = "audience";
+  public static final String ROLE_AUDIENCE_OBSERVER = NERoomBuiltinRole.OBSERVER;
+  public static final String INTENT_LIVE_TYPE = "liveType";
   public static final String INTENT_KEY_CONFIG_ID = "configId";
 }

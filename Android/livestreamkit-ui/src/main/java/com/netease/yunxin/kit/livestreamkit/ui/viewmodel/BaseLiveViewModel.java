@@ -101,7 +101,12 @@ public class BaseLiveViewModel extends ViewModel {
 
         @Override
         public void onMemberJoinChatroom2(@NonNull List<? extends NERoomMember> members) {
-          LiveRoomLog.d(TAG, "onMemberJoinChatroom :" + members.get(0).getName());
+          LiveRoomLog.d(
+              TAG,
+              "onMemberJoinChatroom name:"
+                  + members.get(0).getName()
+                  + ", role:"
+                  + members.get(0).getRole());
 
           for (NERoomMember member : members) {
             LiveRoomLog.d(TAG, "onMemberJoinRoom :${member.name}");
@@ -113,7 +118,12 @@ public class BaseLiveViewModel extends ViewModel {
 
         @Override
         public void onMemberLeaveChatroom2(@NonNull List<? extends NERoomMember> members) {
-          LiveRoomLog.d(TAG, "onMemberLeaveChatroom :" + members.get(0).getName());
+          LiveRoomLog.d(
+              TAG,
+              "onMemberLeaveChatroom name:"
+                  + members.get(0).getName()
+                  + ", role:"
+                  + members.get(0).getRole());
 
           for (NERoomMember member : members) {
             LiveRoomLog.d(TAG, "onMemberJoinRoom :${member.name}");
@@ -221,7 +231,6 @@ public class BaseLiveViewModel extends ViewModel {
         public void onConnected(NetworkUtils.NetworkType networkType) {
           if (!isFirst) {
             LiveRoomLog.i(TAG, "onNetworkAvailable");
-            getSeatInfo();
           }
           isFirst = false;
           netData.postValue(NET_AVAILABLE);
@@ -339,16 +348,16 @@ public class BaseLiveViewModel extends ViewModel {
       String username,
       String avatar,
       String role,
-      NELiveRoomInfo roomInfo,
-      NELiveStreamCallback<NELiveRoomInfo> callback) {
+      NELiveStreamRoomInfo roomInfo,
+      NELiveStreamCallback<NELiveStreamRoomInfo> callback) {
     liveRepo.joinLive(
         username,
         avatar,
         role,
         roomInfo,
-        new NELiveStreamCallback<NELiveRoomInfo>() {
+        new NELiveStreamCallback<NELiveStreamRoomInfo>() {
           @Override
-          public void onSuccess(@Nullable NELiveRoomInfo roomInfo) {
+          public void onSuccess(@Nullable NELiveStreamRoomInfo roomInfo) {
             LiveRoomLog.d(TAG, "joinLive success");
             callback.onSuccess(roomInfo);
           }

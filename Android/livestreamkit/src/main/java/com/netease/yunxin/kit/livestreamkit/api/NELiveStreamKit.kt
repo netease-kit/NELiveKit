@@ -10,12 +10,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.api.model.NECreateLiveRoomDefaultInfo
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomList
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomSeatRequestItem
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.LiveStreamKitImpl
 import com.netease.yunxin.kit.livestreamkit.impl.manager.CoHostManager
-import com.netease.yunxin.kit.roomkit.api.NECallback
 import com.netease.yunxin.kit.roomkit.api.NERoomChatMessage
 import com.netease.yunxin.kit.roomkit.api.NERoomLanguage
 import com.netease.yunxin.kit.roomkit.api.NERoomMember
@@ -169,7 +168,7 @@ interface NELiveStreamKit {
     fun createRoom(
         params: NECreateLiveRoomParams,
         options: NECreateLiveRoomOptions,
-        callback: NELiveStreamCallback<NELiveRoomInfo>? = null
+        callback: NELiveStreamCallback<NELiveStreamRoomInfo>? = null
     )
 
     /**
@@ -188,17 +187,13 @@ interface NELiveStreamKit {
     /**
      * 加入房间
      * <br>使用前提：该方法仅在调用[login]方法登录成功后调用有效
-     * @param params 加入房间参数配置[NEJoinVoiceRoomParams]
-     * @param options 进入房间时的必要配置[NEJoinVoiceRoomOptions]
+     * @param params 加入房间参数配置[NEJoinLiveStreamRoomParams]
      * @param callback 回调
      * <br>相关回调：加入房间成功后，会触发[NELiveStreamListener.onMemberJoinRoom]回调
      */
     fun joinRoom(
-        nick: String,
-        avatar: String?,
-        role: String,
-        roomInfo: NELiveRoomInfo,
-        callback: NELiveStreamCallback<NELiveRoomInfo>? = null
+        params: NEJoinLiveStreamRoomParams,
+        callback: NELiveStreamCallback<NELiveStreamRoomInfo>? = null
     )
 
     fun pauseLive(callback: NELiveStreamCallback<Unit>?)
@@ -218,18 +213,18 @@ interface NELiveStreamKit {
      * @param liveRecordId 直播Id
      * @param callback 回调
      */
-    fun getRoomInfo(liveRecordId: Long, callback: NELiveStreamCallback<NELiveRoomInfo>)
+    fun getRoomInfo(liveRecordId: Long, callback: NELiveStreamCallback<NELiveStreamRoomInfo>)
 
     /**
      * 查询当前用户未结束的直播详情
      */
-    fun getLivingRoomInfo(callback: NELiveStreamCallback<NELiveRoomInfo>)
+    fun getLivingRoomInfo(callback: NELiveStreamCallback<NELiveStreamRoomInfo>)
 
     /**
      * 获取当前房间信息
      * @return 当前房间信息
      */
-    fun getCurrentRoomInfo(): NELiveRoomInfo?
+    fun getCurrentRoomInfo(): NELiveStreamRoomInfo?
 
     /**
      * 结束房间 房主权限
@@ -604,11 +599,7 @@ interface NELiveStreamKit {
      */
     fun switchCamera(): Int
 
-    fun changeLocalMemberRole(role: String, callback: NECallback<Unit>)
-
-    fun joinRtcChannel(callback: NECallback<Unit>? = null)
-
-    fun leaveRtcChannel(callback: NECallback<Unit>? = null)
+    fun changeMemberRole(userUuid: String, role: String, callback: NELiveStreamCallback<Unit>? = null)
 
     fun setupLocalVideoCanvas(videoView: NERoomVideoView?): Int
 
@@ -704,28 +695,25 @@ data class NELiveStreamKitConfig(val appKey: String, val extras: Map<String, Any
 /**
  * 创建房间参数
  *
- * @property title 房间名，支持中英文大小写、数字、特殊字符
- * @property nick 昵称
- * @property seatCount 麦位个数，默认8个,取值范围为1~20
+ * @property liveTopic 房间名，支持中英文大小写、数字、特殊字符
+ * @property seatCount 麦位个数，默认4个,取值范围为1~20
  * @property seatApplyMode 麦位模式，0：自由模式，1：管理员控制模式
- * @property configId 模版id
+ * @property seatInviteMode 麦位邀请模式，0：抱麦时不需要对方同意，1：抱麦时需要对方同意
+ * @property configId 模版ID，获取方法请参考[如何获取模板 ID](https://doc.yunxin.163.com/neroom/concept/DQzNTEwMDE?platform=client#%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E6%A8%A1%E6%9D%BF-id)。
  * @property cover 封面，https链接
  * @property liveType 直播类型,参考[NELiveType]
- * @property extraData 扩展字段
  */
 data class NECreateLiveRoomParams(
-    val title: String,
-    val nick: String,
-    val seatCount: Int = 8,
+    val liveTopic: String,
+    val seatCount: Int = 4,
     val seatApplyMode: Int = NELiveRoomSeatApplyMode.managerApproval,
     val seatInviteMode: Int = NELiveRoomSeatInviteMode.needAgree,
     val configId: Int = 0,
     val cover: String?,
-    val liveType: Int = NELiveType.LIVE_TYPE_VOICE,
-    val extraData: String? = null
+    val liveType: Int = NELiveType.LIVE_INTERACTION
 ) {
     override fun toString(): String {
-        return "NECreateVoiceRoomParams(title='$title', nick='$nick', seatCount=$seatCount，seatMode=$seatApplyMode, configId=$configId, cover=$cover, extraData=$extraData)"
+        return "NECreateVoiceRoomParams(title='$liveTopic', seatCount=$seatCount，seatMode=$seatApplyMode, configId=$configId, cover=$cover)"
     }
 }
 
@@ -737,23 +725,19 @@ class NECreateLiveRoomOptions
 /**
  * 加入房间参数，支持中英文大小写、数字、特殊字符
  *
- * @property roomUuid 房间id
  * @property nick 昵称,最大字符长度64
- * @property avatar 头像
  * @property role 角色，支持HOST、AUDIENCE
- * @property liveRecordId 直播id
+ * @property roomInfo 房间信息
  * @property extraData 扩展字段
  */
-data class NEJoinVoiceRoomParams(
-    val roomUuid: String,
+data class NEJoinLiveStreamRoomParams(
     val nick: String,
-    val avatar: String?,
     val role: String,
-    val liveRecordId: Long,
+    val roomInfo: NELiveStreamRoomInfo,
     val extraData: Map<String, String>? = HashMap()
 ) {
     override fun toString(): String {
-        return "NEJoinVoiceRoomParams(roomUuid='$roomUuid', nick='$nick', avatar=$avatar, role=$role, liveRecordId=$liveRecordId, extraData=$extraData)"
+        return "NEJoinVoiceRoomParams(nick='$nick', role=$role, extraData=$extraData)"
     }
 }
 

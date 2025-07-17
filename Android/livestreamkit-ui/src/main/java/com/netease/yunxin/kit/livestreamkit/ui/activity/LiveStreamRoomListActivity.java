@@ -25,15 +25,15 @@ import com.netease.yunxin.kit.entertainment.common.smartrefresh.listener.OnRefre
 import com.netease.yunxin.kit.entertainment.common.utils.ClickUtils;
 import com.netease.yunxin.kit.entertainment.common.utils.OneOnOneUtils;
 import com.netease.yunxin.kit.entertainment.common.utils.ReportUtils;
-import com.netease.yunxin.kit.entertainment.common.utils.VoiceRoomUtils;
+import com.netease.yunxin.kit.entertainment.common.utils.RoomUtils;
 import com.netease.yunxin.kit.entertainment.common.widget.FooterView;
 import com.netease.yunxin.kit.entertainment.common.widget.HeaderView;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveRoomLiveState;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamCallback;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit;
 import com.netease.yunxin.kit.livestreamkit.api.NELiveType;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomList;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.adapter.LiveStreamListAdapter;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.NavUtils;
@@ -231,8 +231,8 @@ public class LiveStreamRoomListActivity extends BaseActivity
             });
   }
 
-  private void handleJoinLiveRoom(NELiveRoomInfo info) {
-    if (VoiceRoomUtils.isShowFloatView()) {
+  private void handleJoinLiveRoom(NELiveStreamRoomInfo info) {
+    if (RoomUtils.isShowFloatView()) {
       AlertDialog.Builder builder = new AlertDialog.Builder(LiveStreamRoomListActivity.this);
       builder.setTitle(getString(R.string.voiceroom_tip));
       builder.setMessage(getString(R.string.click_roomlist_tips));
@@ -264,7 +264,7 @@ public class LiveStreamRoomListActivity extends BaseActivity
     }
   }
 
-  private void joinLiveRoom(NELiveRoomInfo info) {
+  private void joinLiveRoom(NELiveStreamRoomInfo info) {
     NavUtils.toLiveAudiencePage(LiveStreamRoomListActivity.this, userName, avatar, info);
   }
 }

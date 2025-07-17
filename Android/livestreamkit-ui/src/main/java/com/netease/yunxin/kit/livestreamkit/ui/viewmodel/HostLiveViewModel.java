@@ -16,12 +16,11 @@ import com.faceunity.core.utils.CameraUtils;
 import com.faceunity.nama.FURenderer;
 import com.faceunity.nama.data.FaceUnityDataFactory;
 import com.faceunity.nama.listener.FURendererListener;
-import com.netease.yunxin.kit.alog.*;
 import com.netease.yunxin.kit.common.ui.utils.ToastX;
 import com.netease.yunxin.kit.common.utils.XKitUtils;
 import com.netease.yunxin.kit.entertainment.common.*;
 import com.netease.yunxin.kit.livestreamkit.api.*;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.beauty.FaceUnityBeautyModule;
@@ -47,10 +46,10 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
   public static final int LIVE_STATE_ERROR = 3;
   private final MutableLiveData<Integer> liveStateData = new MutableLiveData<>(LIVE_STATE_PREVIEW);
   private final MutableLiveData<String> memberCount = new MutableLiveData<>("0");
-  private final MutableLiveData<NELiveRoomInfo> existingRoomInfo = new MutableLiveData<>();
-  private final MutableLiveData<NELiveRoomInfo> roomInfoData = new MutableLiveData<>();
+  private final MutableLiveData<NELiveStreamRoomInfo> existingRoomInfo = new MutableLiveData<>();
+  private final MutableLiveData<NELiveStreamRoomInfo> roomInfoData = new MutableLiveData<>();
   private NEPreviewRoomContext previewRoomContext;
-  protected NELiveRoomInfo voiceRoomInfo;
+  protected NELiveStreamRoomInfo voiceRoomInfo;
   private final LiveRepo liveRepo = new LiveRepo();
   private int mCameraFacing = Camera.CameraInfo.CAMERA_FACING_FRONT;
   private boolean isFirstInit = true;
@@ -101,7 +100,7 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
         public void onRelease() {}
       };
 
-  public void setRoomInfo(NELiveRoomInfo roomInfo) {
+  public void setRoomInfo(NELiveStreamRoomInfo roomInfo) {
     voiceRoomInfo = roomInfo;
     roomInfoData.setValue(roomInfo);
   }
@@ -155,9 +154,9 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
   public void checkExistingLiveRoom() {
     NELiveStreamKit.getInstance()
         .getLivingRoomInfo(
-            new NELiveStreamCallback<NELiveRoomInfo>() {
+            new NELiveStreamCallback<NELiveStreamRoomInfo>() {
               @Override
-              public void onSuccess(NELiveRoomInfo roomInfo) {
+              public void onSuccess(NELiveStreamRoomInfo roomInfo) {
                 LiveRoomLog.d(TAG, "getLivingRoomInfo onSuccess, roomInfo = " + roomInfo);
                 if (roomInfo != null) {
                   existingRoomInfo.postValue(roomInfo);
@@ -188,9 +187,9 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
         anchorNick,
         cover,
         configId,
-        new NELiveStreamCallback<NELiveRoomInfo>() {
+        new NELiveStreamCallback<NELiveStreamRoomInfo>() {
           @Override
-          public void onSuccess(NELiveRoomInfo roomInfo) {
+          public void onSuccess(NELiveStreamRoomInfo roomInfo) {
             LiveRoomLog.d(TAG, "createLive onSuccess");
             setRoomInfo(roomInfo);
             liveStateData.postValue(LIVE_STATE_LIVING);
@@ -210,19 +209,19 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
         });
   }
 
-  public void joinLive(String username, String avatar, NELiveRoomInfo roomInfo) {
+  public void joinLive(String username, String avatar, NELiveStreamRoomInfo roomInfo) {
     joinLive(
         username,
         avatar,
-        LiveConstants.ROLE_HOST,
+        NELiveRoomRole.HOST.getValue(),
         roomInfo,
-        new NELiveStreamCallback<NELiveRoomInfo>() {
+        new NELiveStreamCallback<NELiveStreamRoomInfo>() {
 
           @Override
-          public void onSuccess(@Nullable NELiveRoomInfo neLiveRoomInfo) {
+          public void onSuccess(@Nullable NELiveStreamRoomInfo neLiveStreamRoomInfo) {
             LiveRoomLog.d(TAG, "joinLive onSuccess");
             liveStateData.setValue(HostLiveViewModel.LIVE_STATE_LIVING);
-            roomInfoData.setValue(neLiveRoomInfo);
+            roomInfoData.setValue(neLiveStreamRoomInfo);
             NELiveStreamKit.getInstance().submitSeatRequest(ANCHOR_SEAT_INDEX, true, null);
           }
 
@@ -259,9 +258,9 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
   public void getLivingRoomInfo() {
     NELiveStreamKit.getInstance()
         .getLivingRoomInfo(
-            new NELiveStreamCallback<NELiveRoomInfo>() {
+            new NELiveStreamCallback<NELiveStreamRoomInfo>() {
               @Override
-              public void onSuccess(NELiveRoomInfo roomInfo) {
+              public void onSuccess(NELiveStreamRoomInfo roomInfo) {
                 LiveRoomLog.d(TAG, "getLivingRoomInfo onSuccess");
                 ToastX.showShortToast(R.string.voiceroom_host_close_room_success);
                 liveStateData.postValue(LIVE_STATE_FINISH);
@@ -314,7 +313,7 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
     return memberCount;
   }
 
-  public MutableLiveData<NELiveRoomInfo> getRoomInfoData() {
+  public MutableLiveData<NELiveStreamRoomInfo> getRoomInfoData() {
     return roomInfoData;
   }
 
@@ -348,7 +347,7 @@ public class HostLiveViewModel extends BaseLiveViewModel implements SensorEventL
     mSensorManager.unregisterListener(this);
   }
 
-  public MutableLiveData<NELiveRoomInfo> getExistingRoomInfo() {
+  public MutableLiveData<NELiveStreamRoomInfo> getExistingRoomInfo() {
     return existingRoomInfo;
   }
 

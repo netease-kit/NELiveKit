@@ -103,6 +103,8 @@
     <string name="app_permission_tip_content">用于语音或者视频通话等场景</string>
     <string name="app_permission_tip_camera_title">相机权限使用说明</string>
     <string name="app_permission_tip_camera_content">用于视频通话等场景</string>
+    <string name="app_permission_tip_bluetooth_title">蓝牙权限使用说明</string>
+    <string name="app_permission_tip_bluetooth_content">用于通话等场景</string>
     <string name="app_permission_tip_microphone_title">麦克风权限使用说明</string>
     <string name="app_permission_tip_microphone_content">用于语音通话等场景</string>
     <string name="app_permission_tip_phone_call_title">拨打电话权限使用说明</string>

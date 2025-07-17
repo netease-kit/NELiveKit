@@ -8,10 +8,12 @@ import android.os.*;
 import androidx.annotation.*;
 import androidx.fragment.app.*;
 import com.netease.yunxin.kit.common.ui.utils.*;
+import com.netease.yunxin.kit.entertainment.common.*;
 import com.netease.yunxin.kit.livestreamkit.api.*;
 import com.netease.yunxin.kit.livestreamkit.api.model.*;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.*;
+import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.livestreamkit.ui.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.view.*;
 import com.netease.yunxin.kit.roomkit.api.model.*;
@@ -246,6 +248,22 @@ public class BaseLinkSeatFragment extends Fragment {
               @Override
               public void onSuccess(@Nullable Unit unit) {
                 LiveRoomLog.i(TAG, "leaveSeat success");
+
+                NELiveStreamKit.getInstance()
+                    .changeMemberRole(
+                        NELiveStreamKit.getInstance().getLocalMember().getUuid(),
+                        NELiveRoomRole.AUDIENCE_OBSERVER.getValue(),
+                        new NELiveStreamCallback<Unit>() {
+                          @Override
+                          public void onSuccess(@Nullable Unit data) {
+                            LiveRoomLog.i(TAG, "changeLocalMemberRole success");
+                          }
+
+                          @Override
+                          public void onFailure(int code, @Nullable String msg) {
+                            LiveRoomLog.i(TAG, "changeLocalMemberRole failed");
+                          }
+                        });
               }
 
               @Override

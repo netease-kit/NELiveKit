@@ -4,7 +4,9 @@
  * found in the LICENSE file.
  */
 
-package com.netease.yunxin.kit.voiceroomkit.api.model
+package com.netease.yunxin.kit.livestreamkit.api.model
+
+import java.io.Serializable
 
 /**
  * 房间信息
@@ -12,10 +14,10 @@ package com.netease.yunxin.kit.voiceroomkit.api.model
  * @property liveModel 直播模式
  * @constructor
  */
-data class NEVoiceRoomInfo(
-    val anchor: NEVoiceRoomAnchor,
-    val liveModel: NEVoiceRoomLiveModel
-)
+data class NELiveStreamRoomInfo(
+    val anchor: NELiveRoomAnchor,
+    val liveModel: NELiveRoomLiveModel
+) : Serializable
 
 /**
  * 主播信息
@@ -24,11 +26,11 @@ data class NEVoiceRoomInfo(
  * @property avatar 头像
  * @constructor
  */
-data class NEVoiceRoomAnchor(
+data class NELiveRoomAnchor(
     val account: String,
     val nick: String?,
     val avatar: String?
-)
+) : Serializable
 
 /**
  * 直播模式
@@ -48,7 +50,7 @@ data class NEVoiceRoomAnchor(
  * @property seatUserReward 麦上的打赏信息
  * @constructor
  */
-data class NEVoiceRoomLiveModel(
+data class NELiveRoomLiveModel(
     val roomUuid: String,
     val roomName: String?,
     val liveRecordId: Long,
@@ -62,9 +64,10 @@ data class NEVoiceRoomLiveModel(
     val audienceCount: Int?,
     val onSeatCount: Int?,
     var liveConfig: NELiveConfig?,
-    var seatUserReward: List<NEVoiceRoomBatchSeatUserReward>?,
+    var connectionStatus: Int? = 0, // 0 空闲 1 申请中 2 已接受 3 已拒绝 4 已取消 6 已断开 7 已连线 8 已超时
+    var seatUserReward: List<NELiveRoomBatchSeatUserReward>?,
     val gameName: String?
-)
+) : Serializable
 
 /**
  * 打赏详情
@@ -74,13 +77,13 @@ data class NEVoiceRoomLiveModel(
  * @property seatIndex 麦位
  * @property rewardTotal 打赏
  */
-data class NEVoiceRoomBatchSeatUserReward(
+data class NELiveRoomBatchSeatUserReward(
     val userUuid: String,
     val userName: String?,
     val icon: String?,
     val seatIndex: Int,
     val rewardTotal: Int
-)
+) : Serializable
 
 /**
  * 打赏用户
@@ -88,7 +91,7 @@ data class NEVoiceRoomBatchSeatUserReward(
  * @property userName 用户名称
  * @property icon 用户头像
  */
-data class NEVoiceRoomBatchRewardTarget(
+data class NELiveRoomBatchRewardTarget(
     val userUuid: String,
     val userName: String?,
     val icon: String?
@@ -98,4 +101,4 @@ data class NELiveConfig(
     val pullHlsUrl: String?,
     val pullRtmpUrl: String?,
     val pullHttpUrl: String?
-)
+) : Serializable

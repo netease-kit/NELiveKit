@@ -22,13 +22,12 @@ import com.netease.yunxin.kit.roomkit.api.*;
 import com.netease.yunxin.kit.roomkit.api.model.*;
 import com.netease.yunxin.kit.roomkit.api.service.*;
 import java.util.*;
-import kotlin.*;
 
 public class BaseAudienceContentView extends BaseView {
   private static final String TAG = "BaseAudienceContentView";
   protected CDNStreamTextureView cdnStreamTextureView;
   protected AudienceLiveViewModel audienceViewModel;
-  protected NELiveRoomInfo roomInfo;
+  protected NELiveStreamRoomInfo roomInfo;
 
   public BaseAudienceContentView(@NonNull Context context) {
     super(context);
@@ -85,7 +84,7 @@ public class BaseAudienceContentView extends BaseView {
         public void onSeatKicked(@NonNull NESeatItem seatItem, @NonNull NERoomUser operateBy) {
           LiveRoomLog.i(TAG, "onSeatKicked seatItem = " + seatItem);
           if (TextUtils.equals(seatItem.getUser(), LiveStreamUtils.getLocalAccount())) {
-            onLocalUserLeaveSeat();
+            onLocalUserKickSeat();
           }
         }
 
@@ -123,24 +122,7 @@ public class BaseAudienceContentView extends BaseView {
             @NonNull NERoomRole newRole) {
           LiveRoomLog.i(TAG, "onMemberRoleChanged account = " + member.getUuid());
           if (TextUtils.equals(member.getUuid(), LiveStreamUtils.getLocalAccount())
-              && newRole.getName().equals(LiveConstants.ROLE_AUDIENCE_ON_SEAT)) {
-            NELiveStreamKit.getInstance()
-                .joinRtcChannel(
-                    new NECallback2<Unit>() {
-                      @Override
-                      public void onSuccess(@Nullable Unit data) {
-                        LiveRoomLog.i(TAG, "joinRtcChannel success");
-                        NELiveStreamKit.getInstance().unmuteMyAudio(null);
-                        NELiveStreamKit.getInstance().unmuteMyVideo(null);
-                      }
-
-                      @Override
-                      public void onError(int code, @Nullable String message) {
-                        LiveRoomLog.i(TAG, "joinRtcChannel failed");
-                        NELiveStreamKit.getInstance().leaveSeat(null);
-                      }
-                    });
-          }
+              && newRole.getName().equals(LiveConstants.ROLE_AUDIENCE)) {}
         }
       };
 
@@ -149,6 +131,10 @@ public class BaseAudienceContentView extends BaseView {
   protected void onRemoteUserJoinSeat(NERoomMember member) {}
 
   protected void onLocalUserLeaveSeat() {
+    showCdnView();
+  }
+
+  protected void onLocalUserKickSeat() {
     showCdnView();
   }
 
@@ -165,7 +151,7 @@ public class BaseAudienceContentView extends BaseView {
         ViewGroup.LayoutParams.MATCH_PARENT);
   }
 
-  public void setRoomInfo(NELiveRoomInfo roomInfo) {
+  public void setRoomInfo(NELiveStreamRoomInfo roomInfo) {
     this.roomInfo = roomInfo;
     cdnStreamTextureView.prepare();
     if (roomInfo != null

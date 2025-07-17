@@ -85,7 +85,7 @@ public class BluetoothHeadsetUtil {
           () -> {
             int preSize = listeners.size();
             listeners.remove(observer);
-            if (preSize == 1 && listeners.size() == 0) {
+            if (preSize == 1 && listeners.isEmpty()) {
               XKitUtils.getApplicationContext()
                   .unregisterReceiver(BluetoothHeadsetStatusReceiver.getInstance());
             }
@@ -109,7 +109,7 @@ public class BluetoothHeadsetUtil {
       return false;
     }
     return BluetoothAdapter.getDefaultAdapter().getProfileConnectionState(BluetoothProfile.HEADSET)
-        == BluetoothProfile.STATE_CONNECTED;
+        == BluetoothAdapter.STATE_CONNECTED;
   }
 
   public static boolean hasBluetoothConnectPermission(Context context) {
@@ -120,17 +120,26 @@ public class BluetoothHeadsetUtil {
   }
 
   public static void requestBluetoothConnectPermission(Context context) {
-    TopPopupWindow permissionPop = null;
+    TopPopupWindow permissionPop;
     if (context instanceof Activity) {
       permissionPop =
           new TopPopupWindow(
-              (Activity) context,
-              R.string.app_permission_tip_camera_title,
-              R.string.app_permission_tip_camera_content);
-      if (!Permission.hasPermissions(context, BLUETOOTH_CONNECT_PERMISSION)) {
-        permissionPop.showAtLocation(
-            ((Activity) context).getWindow().getDecorView(), Gravity.TOP, 0, 100);
+              context,
+              R.string.app_permission_tip_bluetooth_title,
+              R.string.app_permission_tip_bluetooth_content);
+      if (!hasBluetoothConnectPermission(context)) {
+        new Handler()
+            .postDelayed(
+                () -> {
+                  if (!((Activity) context).isFinishing()) {
+                    permissionPop.showAtLocation(
+                        ((Activity) context).getWindow().getDecorView(), Gravity.TOP, 0, 100);
+                  }
+                },
+                300);
       }
+    } else {
+      permissionPop = null;
     }
 
     TopPopupWindow finalPermissionPop = permissionPop;

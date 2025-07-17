@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.netease.yunxin.kit.common.image.ImageLoader;
 import com.netease.yunxin.kit.common.utils.SizeUtils;
 import com.netease.yunxin.kit.entertainment.common.databinding.ItemVoiceRoomListBinding;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class LiveStreamListAdapter
     extends RecyclerView.Adapter<LiveStreamListAdapter.RoomViewHolder> {
   protected final Context context;
-  private final List<NELiveRoomInfo> roomInfoList;
+  private final List<NELiveStreamRoomInfo> roomInfoList;
   private static LiveStreamListAdapter.OnItemClickListener itemOnClickListener;
 
   public LiveStreamListAdapter(Context context) {
@@ -29,13 +29,13 @@ public class LiveStreamListAdapter
     roomInfoList = new ArrayList<>();
   }
 
-  public void refreshList(List<NELiveRoomInfo> dataList) {
+  public void refreshList(List<NELiveStreamRoomInfo> dataList) {
     roomInfoList.clear();
     roomInfoList.addAll(dataList);
     notifyDataSetChanged();
   }
 
-  public void loadMore(List<NELiveRoomInfo> dataList) {
+  public void loadMore(List<NELiveStreamRoomInfo> dataList) {
     roomInfoList.addAll(dataList);
     notifyDataSetChanged();
   }
@@ -46,7 +46,7 @@ public class LiveStreamListAdapter
 
   @Override
   public void onBindViewHolder(@NonNull LiveStreamListAdapter.RoomViewHolder holder, int position) {
-    NELiveRoomInfo roomInfo = roomInfoList.get(position);
+    NELiveStreamRoomInfo roomInfo = roomInfoList.get(position);
     holder.setData(roomInfo);
   }
 
@@ -66,7 +66,7 @@ public class LiveStreamListAdapter
       this.context = context;
     }
 
-    public void setData(NELiveRoomInfo info) {
+    public void setData(NELiveStreamRoomInfo info) {
       ImageLoader.with(context)
           .load(info.getLiveModel().getCover())
           .error(com.netease.yunxin.kit.entertainment.common.R.drawable.chat_room_default_bg)
@@ -116,7 +116,7 @@ public class LiveStreamListAdapter
   }
 
   public interface OnItemClickListener {
-    void onClick(NELiveRoomInfo info);
+    void onClick(NELiveStreamRoomInfo info);
   }
 
   @NonNull
@@ -134,7 +134,7 @@ public class LiveStreamListAdapter
     }
 
     @Override
-    public void setData(NELiveRoomInfo info) {
+    public void setData(NELiveStreamRoomInfo info) {
       super.setData(info);
       binding.ivType.setVisibility(View.GONE);
     }

@@ -11,10 +11,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import com.netease.yunxin.kit.entertainment.common.LiveConstants;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.databinding.LiveActivityAudienceBinding;
-import com.netease.yunxin.kit.livestreamkit.ui.dialog.*;
 import com.netease.yunxin.kit.livestreamkit.ui.model.SeatEvent;
 import com.netease.yunxin.kit.livestreamkit.ui.model.VoiceRoomSeat;
 import com.netease.yunxin.kit.livestreamkit.ui.view.ChatRoomMsgRecyclerView;
@@ -25,7 +24,7 @@ public class LiveStreamAudienceActivity extends LiveStreamBaseActivity {
   private final String TAG = "LiveStreamAudienceActivity";
 
   private LiveActivityAudienceBinding binding;
-  private NELiveRoomInfo roomInfo;
+  private NELiveStreamRoomInfo roomInfo;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,10 +72,11 @@ public class LiveStreamAudienceActivity extends LiveStreamBaseActivity {
     super.initIntent();
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
       roomInfo =
-          getIntent().getSerializableExtra(LiveConstants.INTENT_LIVE_INFO, NELiveRoomInfo.class);
+          getIntent()
+              .getSerializableExtra(LiveConstants.INTENT_LIVE_INFO, NELiveStreamRoomInfo.class);
     } else {
       roomInfo =
-          (NELiveRoomInfo) (getIntent().getSerializableExtra(LiveConstants.INTENT_LIVE_INFO));
+          (NELiveStreamRoomInfo) (getIntent().getSerializableExtra(LiveConstants.INTENT_LIVE_INFO));
     }
   }
 

@@ -112,7 +112,7 @@ public class SeatAudienceContentView extends BaseAudienceContentView
           });
       Permission.requirePermissions(getContext(), permissions).request(this);
     } else {
-      joinRtcAndShowRtcUI();
+      changeMemberRole2Audience();
     }
   }
 
@@ -121,7 +121,7 @@ public class SeatAudienceContentView extends BaseAudienceContentView
     if (permissionPop != null) {
       permissionPop.dismiss();
     }
-    joinRtcAndShowRtcUI();
+    changeMemberRole2Audience();
   }
 
   @Override
@@ -129,7 +129,7 @@ public class SeatAudienceContentView extends BaseAudienceContentView
     if (permissionPop != null) {
       permissionPop.dismiss();
     }
-    joinRtcAndShowRtcUI();
+    changeMemberRole2Audience();
   }
 
   @Override
@@ -181,43 +181,45 @@ public class SeatAudienceContentView extends BaseAudienceContentView
   }
 
   @Override
-  protected void onLocalUserLeaveSeat() {
-    super.onLocalUserLeaveSeat();
-    LiveRoomLog.i(TAG, "onLocalLeaveSeat");
-    leaveRtcAndHideRtcUI();
+  protected void onLocalUserKickSeat() {
+    super.onLocalUserKickSeat();
+    LiveRoomLog.i(TAG, "onLocalUserKickSeat");
+    changeMemberRole2Observer();
   }
 
-  private void joinRtcAndShowRtcUI() {
+  private void changeMemberRole2Audience() {
 
     NELiveStreamKit.getInstance()
-        .changeLocalMemberRole(
-            LiveConstants.ROLE_AUDIENCE_ON_SEAT,
-            new NECallback2<Unit>() {
+        .changeMemberRole(
+            NELiveStreamKit.getInstance().getLocalMember().getUuid(),
+            NELiveRoomRole.AUDIENCE.getValue(),
+            new NELiveStreamCallback<Unit>() {
               @Override
-              public void onSuccess(@Nullable Unit data) {
-                LiveRoomLog.i(TAG, "changeLocalMemberRole success");
+              public void onSuccess(@Nullable Unit unit) {
+                LiveRoomLog.i(TAG, "changeMemberRole2Audience success");
               }
 
               @Override
-              public void onError(int code, @Nullable String message) {
-                LiveRoomLog.i(TAG, "changeLocalMemberRole failed");
+              public void onFailure(int code, @Nullable String msg) {
+                LiveRoomLog.i(TAG, "changeMemberRole2Audience failed");
               }
             });
   }
 
-  private void leaveRtcAndHideRtcUI() {
+  private void changeMemberRole2Observer() {
     NELiveStreamKit.getInstance()
-        .changeLocalMemberRole(
-            LiveConstants.ROLE_AUDIENCE,
-            new NECallback2<Unit>() {
+        .changeMemberRole(
+            NELiveStreamKit.getInstance().getLocalMember().getUuid(),
+            NELiveRoomRole.AUDIENCE_OBSERVER.getValue(),
+            new NELiveStreamCallback<Unit>() {
               @Override
               public void onSuccess(@Nullable Unit data) {
-                LiveRoomLog.i(TAG, "changeLocalMemberRole success");
+                LiveRoomLog.i(TAG, "changeMemberRole2Observer success");
               }
 
               @Override
-              public void onError(int code, @Nullable String message) {
-                LiveRoomLog.i(TAG, "changeLocalMemberRole failed");
+              public void onFailure(int code, @Nullable String msg) {
+                LiveRoomLog.i(TAG, "changeMemberRole2Observer failed");
               }
             });
   }

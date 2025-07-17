@@ -179,7 +179,9 @@ public abstract class BaseLivingView extends BaseView {
         }
 
         @Override
-        public void onConnectionRequestReject(@NonNull ConnectionUser invitee) {}
+        public void onConnectionRequestReject(@NonNull ConnectionUser invitee) {
+          onLivingConnectionRequestReject(invitee);
+        }
 
         @Override
         public void onConnectionRequestTimeout(
@@ -196,6 +198,8 @@ public abstract class BaseLivingView extends BaseView {
   protected void onLivingConnectionRequestReceived(@NonNull ConnectionUser inviter) {}
 
   protected void onLivingConnectionRequestAccept(@NonNull ConnectionUser invitee) {}
+
+  protected void onLivingConnectionRequestReject(@NonNull ConnectionUser invitee) {}
 
   protected void onLivingConnectionRequestCancelled(@NonNull ConnectionUser inviter) {}
 

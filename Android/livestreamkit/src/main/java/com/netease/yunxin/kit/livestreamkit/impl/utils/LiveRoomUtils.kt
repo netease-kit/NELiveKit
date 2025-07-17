@@ -8,15 +8,15 @@ package com.netease.yunxin.kit.livestreamkit.impl.utils
 
 import android.text.TextUtils
 import com.google.gson.JsonObject
+import com.netease.yunxin.kit.livestreamkit.api.NELiveRoomRole
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit
-import com.netease.yunxin.kit.livestreamkit.api.NEVoiceRoomRole
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveConfig
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomAnchor
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomBatchSeatUserReward
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomList
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomLiveModel
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomSeatRequestItem
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomList
 import com.netease.yunxin.kit.livestreamkit.impl.model.SeatUserReward
@@ -42,7 +42,7 @@ internal object LiveRoomUtils {
         val member: NERoomMember =
             getMember(uuid)
                 ?: return false
-        return TextUtils.equals(member.role.name, NEVoiceRoomRole.HOST.value)
+        return TextUtils.equals(member.role.name, NELiveRoomRole.HOST.value)
     }
 
     fun getMember(uuid: String?): NERoomMember? {
@@ -56,8 +56,8 @@ internal object LiveRoomUtils {
         return null
     }
 
-    fun liveRoomInfo2NELiveRoomInfo(liveRoomInfo: LiveRoomInfo): NELiveRoomInfo {
-        return NELiveRoomInfo(
+    fun liveRoomInfo2NELiveRoomInfo(liveRoomInfo: LiveRoomInfo): NELiveStreamRoomInfo {
+        return NELiveStreamRoomInfo(
             NELiveRoomAnchor(
                 liveRoomInfo.anchor.userUuid,
                 liveRoomInfo.anchor.userName,

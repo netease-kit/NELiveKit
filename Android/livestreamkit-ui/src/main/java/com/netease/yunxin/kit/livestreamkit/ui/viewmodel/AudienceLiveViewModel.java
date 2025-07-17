@@ -7,8 +7,9 @@ package com.netease.yunxin.kit.livestreamkit.ui.viewmodel;
 import android.text.TextUtils;
 import androidx.lifecycle.MutableLiveData;
 import com.netease.yunxin.kit.common.ui.utils.ToastX;
+import com.netease.yunxin.kit.entertainment.common.*;
 import com.netease.yunxin.kit.livestreamkit.api.*;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.impl.utils.*;
 import com.netease.yunxin.kit.livestreamkit.ui.R;
 import com.netease.yunxin.kit.roomkit.api.*;
@@ -24,7 +25,7 @@ public class AudienceLiveViewModel extends BaseLiveViewModel {
   private static final String TAG = "LiveAudienceViewModel";
   private final MutableLiveData<String> liveRoomName = new MutableLiveData<>("");
   private final MutableLiveData<String> memberCount = new MutableLiveData<>("");
-  private final MutableLiveData<NELiveRoomInfo> roomInfoData = new MutableLiveData<>();
+  private final MutableLiveData<NELiveStreamRoomInfo> roomInfoData = new MutableLiveData<>();
   private NEPreviewRoomContext previewRoomContext;
   public static final int LIVE_STATE_FINISH = 0;
   public static final int LIVE_STATE_LIVING = 1;
@@ -75,18 +76,18 @@ public class AudienceLiveViewModel extends BaseLiveViewModel {
     }
   }
 
-  public void joinLive(String username, String avatar, NELiveRoomInfo roomInfo) {
+  public void joinLive(String username, String avatar, NELiveStreamRoomInfo roomInfo) {
     joinLive(
         username,
         avatar,
-        LiveRoomRole.ROLE_AUDIENCE,
+        NELiveRoomRole.AUDIENCE_OBSERVER.getValue(),
         roomInfo,
-        new NELiveStreamCallback<NELiveRoomInfo>() {
+        new NELiveStreamCallback<NELiveStreamRoomInfo>() {
 
           @Override
-          public void onSuccess(@Nullable NELiveRoomInfo neLiveRoomInfo) {
+          public void onSuccess(@Nullable NELiveStreamRoomInfo neLiveStreamRoomInfo) {
             liveStateData.setValue(HostLiveViewModel.LIVE_STATE_LIVING);
-            roomInfoData.setValue(neLiveRoomInfo);
+            roomInfoData.setValue(neLiveStreamRoomInfo);
           }
 
           @Override
@@ -134,7 +135,7 @@ public class AudienceLiveViewModel extends BaseLiveViewModel {
     return memberCount;
   }
 
-  public MutableLiveData<NELiveRoomInfo> getRoomInfoData() {
+  public MutableLiveData<NELiveStreamRoomInfo> getRoomInfoData() {
     return roomInfoData;
   }
 

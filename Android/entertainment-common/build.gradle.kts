@@ -41,5 +41,5 @@ dependencies {
     api("com.netease.yunxin.kit.common:common-network:1.1.8")
     implementation("com.netease.yunxin.kit.core:corekit:1.6.0")
     implementation("com.netease.yunxin.kit.common:common-image:1.1.7")
-    api(project(":voiceroomkit"))
+    api("com.netease.yunxin.kit.room:roomkit:1.39.0")
 }

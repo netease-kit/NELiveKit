@@ -66,7 +66,6 @@ class LiveRoomService {
     private var seatListener: NESeatEventListener? = null
     private var isEarBackEnable: Boolean = false
     private var onSeatItems: List<NESeatItem>? = null
-    var isLocalOnSeat = false
     private var recordingSignalVolume: Int = 100
     private var audioMixingVolume: Int = 100
     private var effectVolume: Int = 100
@@ -76,21 +75,6 @@ class LiveRoomService {
             private var isFirst = true
             override fun onConnected(networkType: NetworkUtils.NetworkType?) {
                 LiveRoomLog.d(TAG, "onNetwork available isFirst = $isFirst")
-                if (!isFirst) {
-                    getSeatInfo(object : NECallback2<NESeatInfo>() {
-                        override fun onSuccess(data: NESeatInfo?) {
-                            super.onSuccess(data)
-                            data?.let {
-                                handleSeatListItemChanged(data.seatItems)
-                                listeners.forEach {
-                                    it.onSeatListChanged(
-                                        data.seatItems
-                                    )
-                                }
-                            }
-                        }
-                    })
-                }
                 isFirst = false
             }
 
@@ -125,7 +109,6 @@ class LiveRoomService {
         roomUuid: String,
         role: String,
         userName: String,
-        avatar: String?,
         extraData: Map<String, String>?,
         callback: NECallback2<Unit>
     ) {
@@ -134,7 +117,6 @@ class LiveRoomService {
             neJoinRoomParams = NEJoinRoomParams(
                 roomUuid = roomUuid,
                 userName = userName,
-                avatar = avatar,
                 role = role,
                 initialProperties = extraData
             )
@@ -142,7 +124,6 @@ class LiveRoomService {
             neJoinRoomParams = NEJoinRoomParams(
                 roomUuid = roomUuid,
                 userName = userName,
-                avatar = avatar,
                 role = role
             )
         }
@@ -154,10 +135,11 @@ class LiveRoomService {
             object : NECallback2<NERoomContext>() {
                 override fun onSuccess(data: NERoomContext?) {
                     LiveRoomLog.d(TAG, "joinRoom roomUuid = $roomUuid success")
+                    NetworkUtils.registerNetworkStatusChangedListener(networkStateListener)
                     currentRoomContext = data!!
                     addRoomListener()
                     addSeatListener()
-                    NetworkUtils.registerNetworkStatusChangedListener(networkStateListener)
+                    getSeatInfo(null)
                     if (role != NERoomBuiltinRole.OBSERVER) {
                         if (role == "host") {
                             currentRoomContext?.rtcController?.setClientRole(
@@ -508,8 +490,19 @@ class LiveRoomService {
         return result
     }
 
-    fun getSeatInfo(callback: NECallback2<NESeatInfo>) {
-        currentRoomContext?.seatController?.getSeatInfo(callback) ?: callback.onError(
+    fun getSeatInfo(callback: NECallback2<NESeatInfo>?) {
+        currentRoomContext?.seatController?.getSeatInfo(object : NECallback2<NESeatInfo>() {
+            override fun onSuccess(data: NESeatInfo?) {
+                callback?.onSuccess(data)
+                data?.let {
+                    handleSeatListItemChanged(it.seatItems)
+                }
+            }
+
+            override fun onError(code: Int, message: String?) {
+                callback?.onError(code, message)
+            }
+        }) ?: callback?.onError(
             NEErrorCode.FAILURE,
             "roomContext is null"
         )
@@ -1118,16 +1111,15 @@ class LiveRoomService {
         onSeatItems = seatItems
     }
 
-    private fun isCurrentOnSeat(seatItems: List<NESeatItem>): Boolean {
-        var currentOnSeat = false
-        seatItems.forEach {
+    fun isLocalOnSeat(): Boolean {
+        onSeatItems?.forEach {
             if ((it.status == NESeatItemStatus.TAKEN || it.status == NESeatItemStatus.ON_TAKEN) &&
                 TextUtils.equals(currentRoomContext?.localMember?.uuid, it.user)
             ) {
-                currentOnSeat = true
+                return true
             }
         }
-        return currentOnSeat
+        return false
     }
 
     fun getOnSeatList(): List<NESeatItem> {

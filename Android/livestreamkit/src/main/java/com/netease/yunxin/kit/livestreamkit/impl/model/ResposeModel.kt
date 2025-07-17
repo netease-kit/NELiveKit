@@ -141,8 +141,7 @@ data class StartLiveRoomParam(
     val configId: Int = 0,
     val seatCount: Int = 7,
     val seatApplyMode: Int,
-    val seatInviteMode: Int,
-    val ext: String?
+    val seatInviteMode: Int
 )
 
 data class RequestConnectionResponse(

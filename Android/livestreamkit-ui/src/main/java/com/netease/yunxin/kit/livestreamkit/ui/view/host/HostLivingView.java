@@ -536,6 +536,11 @@ public class HostLivingView extends BaseLivingView {
   }
 
   @Override
+  protected void onLivingConnectionRequestReject(@NonNull ConnectionUser invitee) {
+    ToastX.showShortToast(R.string.co_host_invite_rejected);
+  }
+
+  @Override
   protected void onLivingConnectionUserListChanged(
       @NonNull List<ConnectionUser> connectedList,
       @NonNull List<ConnectionUser> joinedList,

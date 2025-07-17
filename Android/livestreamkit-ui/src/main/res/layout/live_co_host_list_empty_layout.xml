@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_empty"
             android:layout_marginTop="10dp"
-            android:text="@string/co_guest_empty"
+            android:text="@string/co_host_empty"
             android:textColor="@color/color_999999"
             android:layout_centerHorizontal="true"
             android:textSize="14sp"/>

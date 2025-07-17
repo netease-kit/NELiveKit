@@ -17,9 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.netease.yunxin.kit.common.image.ImageLoader;
-import com.netease.yunxin.kit.common.utils.SizeUtils;
+import com.netease.yunxin.kit.common.utils.*;
 import com.netease.yunxin.kit.entertainment.common.R;
-import com.netease.yunxin.kit.voiceroomkit.impl.utils.ScreenUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,7 +109,7 @@ public class SelectRoomBgView extends RecyclerView {
       holder.iv.setVisibility(selectPosition == position ? View.VISIBLE : View.GONE);
       holder.ivStroke.setVisibility(selectPosition == position ? View.VISIBLE : View.GONE);
       ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-      layoutParams.width = (ScreenUtil.getDisplayWidth() - SizeUtils.dp2px(51)) / 2;
+      layoutParams.width = (ScreenUtils.getDisplayWidth() - SizeUtils.dp2px(51)) / 2;
       layoutParams.height = layoutParams.width;
       holder.itemView.setLayoutParams(layoutParams);
       holder.itemView.setOnClickListener(

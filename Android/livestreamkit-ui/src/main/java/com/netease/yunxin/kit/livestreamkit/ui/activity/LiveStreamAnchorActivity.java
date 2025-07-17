@@ -97,7 +97,7 @@ public class LiveStreamAnchorActivity extends LiveStreamBaseActivity
             });
   }
 
-  private void showExistingRoomDialog(NELiveRoomInfo roomInfo) {
+  private void showExistingRoomDialog(NELiveStreamRoomInfo roomInfo) {
     ChoiceDialog dialog =
         new ChoiceDialog(this)
             .setTitle(getString(R.string.live_existing_room_title))
