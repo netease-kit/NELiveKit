@@ -1,8 +1,6 @@
 # Changelog
 
 ## [2.4.1] - 2025-07-17
-### Added
-- 1V1 AI数字人配置放在应用server
 
 ### Changed
 - 直播房组件接口对齐
