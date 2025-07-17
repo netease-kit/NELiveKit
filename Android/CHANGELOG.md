@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.4.1] - 2025-07-17
+### Changed
+- 直播房组件接口对齐
+
+### Fixed
+- 修复直播房已知bug
+
+### Compatibility
+- 兼容 `NERoomKit` 1.39.0 版本
+- 兼容 `NIMSDK` 10.8.30 版本
+- 兼容 `NERtcSDK` 5.9.0 版本
+
 ## [2.4.0] - 2025-07-05
 ### Added
 - 支持直播房主播连麦

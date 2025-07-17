@@ -22,9 +22,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.netease.yunxin.kit.entertainment.common.R;
 import com.netease.yunxin.kit.entertainment.common.model.RoomSeat;
-import com.netease.yunxin.kit.entertainment.common.utils.SeatUtils;
+import com.netease.yunxin.kit.entertainment.common.utils.RoomUtils;
 import com.netease.yunxin.kit.entertainment.common.utils.Utils;
-import com.netease.yunxin.kit.entertainment.common.utils.VoiceRoomUtils;
 import com.netease.yunxin.kit.entertainment.common.widget.HeadImageView;
 import com.netease.yunxin.kit.roomkit.api.*;
 import com.netease.yunxin.kit.roomkit.api.service.NESeatEventListener;
@@ -89,10 +88,7 @@ public class SelectMemberSendGiftView extends RecyclerView {
     roomContext.getSeatController().addSeatListener(seatEventListener);
     list.add(
         new RoomSeat(
-            ANCHOR_INDEX,
-            RoomSeat.Status.ON,
-            RoomSeat.Reason.NONE,
-            VoiceRoomUtils.getHost2(roomUuid)));
+            ANCHOR_INDEX, RoomSeat.Status.ON, RoomSeat.Reason.NONE, RoomUtils.getHost2(roomUuid)));
     for (int i = 2; i <= ALL_COUNT; i++) {
       list.add(new RoomSeat(i));
     }
@@ -119,7 +115,7 @@ public class SelectMemberSendGiftView extends RecyclerView {
 
   private void handleSeatItemListChanged(List<NESeatItem> seatItems) {
     if (seatItems == null) seatItems = Collections.emptyList();
-    List<RoomSeat> seats = SeatUtils.transNESeatItem2VoiceRoomSeat2(roomUuid, seatItems);
+    List<RoomSeat> seats = RoomUtils.transNESeatItem2VoiceRoomSeat2(roomUuid, seatItems);
     setData(seats);
   }
 

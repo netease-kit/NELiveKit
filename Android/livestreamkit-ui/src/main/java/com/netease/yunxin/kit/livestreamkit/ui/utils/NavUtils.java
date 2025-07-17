@@ -8,10 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import com.faceunity.nama.BeautySettingActivity;
 import com.netease.yunxin.kit.entertainment.common.LiveConstants;
-import com.netease.yunxin.kit.entertainment.common.activity.AuthenticateActivity;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
-import com.netease.yunxin.kit.livestreamkit.ui.activity.LiveStreamAnchorActivity;
-import com.netease.yunxin.kit.livestreamkit.ui.activity.LiveStreamAudienceActivity;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
+import com.netease.yunxin.kit.livestreamkit.ui.activity.*;
 
 public class NavUtils {
 
@@ -27,7 +25,7 @@ public class NavUtils {
   }
 
   public static void toLiveAudiencePage(
-      Context context, String username, String avatar, NELiveRoomInfo roomInfo) {
+      Context context, String username, String avatar, NELiveStreamRoomInfo roomInfo) {
     Intent intent = new Intent(context, LiveStreamAudienceActivity.class);
     intent.putExtra(LiveConstants.INTENT_USER_NAME, username);
     intent.putExtra(LiveConstants.INTENT_USER_AVATAR, avatar);

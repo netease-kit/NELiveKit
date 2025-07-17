@@ -16,5 +16,5 @@ package com.netease.yunxin.kit.livestreamkit.api.model
 data class NELiveRoomList(
     var pageNum: Int = 0,
     var hasNextPage: Boolean = false,
-    var list: List<NELiveRoomInfo>? = null
+    var list: List<NELiveStreamRoomInfo>? = null
 )

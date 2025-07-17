@@ -109,6 +109,7 @@
     <string name="co_host_invite">PK邀请</string>
     <string name="co_host_invite_success">已发出PK邀请</string>
     <string name="co_host_invite_failed">发送PK邀请失败</string>
+    <string name="co_host_invite_rejected">PK邀请被拒绝</string>
     <string name="no_co_host_available_anchor">当前没有可PK的主播</string>
     <string name="get_co_host_list_failed">获取可PK主播列表失败</string>
     <string name="co_leave">结束</string>
@@ -116,6 +117,7 @@
     <string name="co_host_count_down">PK %d:%02d</string>
     <string name="co_host_hanup">是否结束与%s的PK？</string>
     <string name="co_host_can_not_on_seat">目前正在PK中，无法进行连麦，将拒绝连麦申请</string>
+    <string name="co_host_empty">暂无可邀请主播</string>
 
     <!-- 连麦相关 -->
     <string name="link_mic_enabled">已允许观众连麦</string>
@@ -153,6 +155,7 @@
     <string name="live_seat_linked">连麦中...</string>
     <string name="live_cancel_apply">撤销申请</string>
     <string name="live_unlink_seat">结束连麦</string>
+    <string name="co_guest_empty">暂无待上麦观众</string>
 
     <string name="content_description_default"></string>
     <string name="current_state_can_not_pause_living">当前状态不支持暂停直播</string>

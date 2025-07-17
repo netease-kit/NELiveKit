@@ -257,7 +257,7 @@ object NEVoiceRoomSeatItemStatus {
  * @property value 角色值
  * @constructor
  */
-enum class NEVoiceRoomRole(val value: String) {
+enum class NELiveRoomRole(val value: String) {
     /**
      * 房主
      */
@@ -266,12 +266,18 @@ enum class NEVoiceRoomRole(val value: String) {
     /**
      * 观众
      */
-    AUDIENCE("audience");
+    AUDIENCE("audience"),
+
+    /**
+     * 观众（观察者）
+     */
+    AUDIENCE_OBSERVER(NERoomBuiltinRole.OBSERVER);
 
     companion object {
-        fun fromValue(value: String): NEVoiceRoomRole = when (value) {
+        fun fromValue(value: String): NELiveRoomRole = when (value) {
             "host" -> HOST
             "audience" -> AUDIENCE
+            NERoomBuiltinRole.OBSERVER -> AUDIENCE_OBSERVER
             else -> AUDIENCE
         }
     }
@@ -318,8 +324,5 @@ object NELiveRoomSeatInviteMode {
 }
 
 object LiveRoomRole {
-    const val ROLE_HOST = "host"
     const val ROLE_INVITE_HOST = "invited_host"
-    const val ROLE_AUDIENCE_ON_SEAT = "audience"
-    const val ROLE_AUDIENCE = NERoomBuiltinRole.OBSERVER
 }

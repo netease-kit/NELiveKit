@@ -6,9 +6,8 @@ package com.netease.yunxin.kit.livestreamkit.ui.repo;
 
 import androidx.annotation.Nullable;
 import com.netease.yunxin.kit.alog.ALog;
-import com.netease.yunxin.kit.entertainment.common.LiveConstants;
 import com.netease.yunxin.kit.livestreamkit.api.*;
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo;
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo;
 import com.netease.yunxin.kit.livestreamkit.ui.LiveStreamUIConstants;
 import com.netease.yunxin.kit.roomkit.api.NEErrorCode;
 
@@ -20,35 +19,33 @@ public class LiveRepo {
       String username,
       String avatar,
       int configId,
-      NELiveStreamCallback<NELiveRoomInfo> callback) {
+      NELiveStreamCallback<NELiveStreamRoomInfo> callback) {
 
     NECreateLiveRoomParams createRoomParams =
         new NECreateLiveRoomParams(
             title,
-            username,
             LiveStreamUIConstants.COUNT_SEAT,
             NELiveRoomSeatApplyMode.managerApproval,
             NELiveRoomSeatInviteMode.needAgree,
             configId,
             avatar,
-            NELiveType.LIVE_INTERACTION,
-            null);
+            NELiveType.LIVE_INTERACTION);
     NELiveStreamKit.getInstance()
         .createRoom(
             createRoomParams,
             new NECreateLiveRoomOptions(),
-            new NELiveStreamCallback<NELiveRoomInfo>() {
+            new NELiveStreamCallback<NELiveStreamRoomInfo>() {
               @Override
-              public void onSuccess(@Nullable NELiveRoomInfo roomInfo) {
+              public void onSuccess(@Nullable NELiveStreamRoomInfo roomInfo) {
                 ALog.i(TAG, "createRoom success");
                 joinLive(
                     username,
                     avatar,
-                    LiveConstants.ROLE_HOST,
+                    NELiveRoomRole.HOST.getValue(),
                     roomInfo,
-                    new NELiveStreamCallback<NELiveRoomInfo>() {
+                    new NELiveStreamCallback<NELiveStreamRoomInfo>() {
                       @Override
-                      public void onSuccess(@Nullable NELiveRoomInfo roomInfo) {
+                      public void onSuccess(@Nullable NELiveStreamRoomInfo roomInfo) {
                         if (callback != null) {
                           callback.onSuccess(roomInfo);
                         }
@@ -76,24 +73,23 @@ public class LiveRepo {
       String nick,
       String avatar,
       String role,
-      NELiveRoomInfo roomInfo,
-      NELiveStreamCallback<NELiveRoomInfo> callback) {
+      NELiveStreamRoomInfo roomInfo,
+      NELiveStreamCallback<NELiveStreamRoomInfo> callback) {
     ALog.i(TAG, "joinLive roomInfo = " + roomInfo);
     if (roomInfo == null) {
       callback.onFailure(NEErrorCode.FAILURE, "roomInfo == null");
       return;
     }
 
+    NEJoinLiveStreamRoomParams params = new NEJoinLiveStreamRoomParams(nick, role, roomInfo, null);
+
     NELiveStreamKit.getInstance()
         .joinRoom(
-            nick,
-            avatar,
-            role,
-            roomInfo,
-            new NELiveStreamCallback<NELiveRoomInfo>() {
+            params,
+            new NELiveStreamCallback<NELiveStreamRoomInfo>() {
 
               @Override
-              public void onSuccess(@Nullable NELiveRoomInfo roomInfo) {
+              public void onSuccess(@Nullable NELiveStreamRoomInfo roomInfo) {
                 ALog.i(TAG, "joinRoom success");
                 if (callback != null) {
                   callback.onSuccess(roomInfo);

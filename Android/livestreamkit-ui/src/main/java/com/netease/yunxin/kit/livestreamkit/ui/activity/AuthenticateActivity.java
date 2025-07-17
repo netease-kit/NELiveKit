@@ -2,23 +2,20 @@
 // Use of this source code is governed by a MIT license that can be
 // found in the LICENSE file.
 
-package com.netease.yunxin.kit.entertainment.common.activity;
+package com.netease.yunxin.kit.livestreamkit.ui.activity;
 
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.text.method.DigitsKeyListener;
-import android.text.method.ReplacementTransformationMethod;
-import android.view.View;
-import androidx.annotation.Nullable;
-import com.netease.yunxin.kit.common.ui.utils.ToastX;
-import com.netease.yunxin.kit.common.utils.NetworkUtils;
-import com.netease.yunxin.kit.entertainment.common.R;
-import com.netease.yunxin.kit.entertainment.common.databinding.ActivityAuthenticateBinding;
-import com.netease.yunxin.kit.entertainment.common.utils.DialogUtil;
-import com.netease.yunxin.kit.voiceroomkit.api.NEVoiceRoomCallback;
-import com.netease.yunxin.kit.voiceroomkit.api.NEVoiceRoomKit;
-import kotlin.Unit;
+import android.text.*;
+import android.text.method.*;
+import android.view.*;
+import androidx.annotation.*;
+import com.netease.yunxin.kit.common.ui.utils.*;
+import com.netease.yunxin.kit.common.utils.*;
+import com.netease.yunxin.kit.entertainment.common.*;
+import com.netease.yunxin.kit.entertainment.common.activity.*;
+import com.netease.yunxin.kit.entertainment.common.databinding.*;
+import com.netease.yunxin.kit.entertainment.common.utils.*;
+import com.netease.yunxin.kit.livestreamkit.api.*;
+import kotlin.*;
 
 public class AuthenticateActivity extends BasePartyActivity {
   private ActivityAuthenticateBinding binding;
@@ -88,11 +85,11 @@ public class AuthenticateActivity extends BasePartyActivity {
       return;
     }
 
-    NEVoiceRoomKit.getInstance()
+    NELiveStreamKit.getInstance()
         .authenticate(
             binding.etName.getText().toString(),
             binding.etId.getText().toString(),
-            new NEVoiceRoomCallback<Unit>() {
+            new NELiveStreamCallback<Unit>() {
 
               @Override
               public void onFailure(int code, @Nullable String msg) {

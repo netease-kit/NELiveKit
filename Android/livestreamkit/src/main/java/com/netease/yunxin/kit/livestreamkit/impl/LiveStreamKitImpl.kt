@@ -11,18 +11,21 @@ import android.text.TextUtils
 import com.netease.yunxin.kit.common.network.NetRequestCallback
 import com.netease.yunxin.kit.livestreamkit.api.NECreateLiveRoomOptions
 import com.netease.yunxin.kit.livestreamkit.api.NECreateLiveRoomParams
+import com.netease.yunxin.kit.livestreamkit.api.NEJoinLiveStreamRoomParams
 import com.netease.yunxin.kit.livestreamkit.api.NELiveRoomLiveState
+import com.netease.yunxin.kit.livestreamkit.api.NELiveRoomRole
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamCallback
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit
+import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKit.Companion.getInstance
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamKitConfig
 import com.netease.yunxin.kit.livestreamkit.api.NELiveStreamListener
 import com.netease.yunxin.kit.livestreamkit.api.NELiveType
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NEAudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.api.model.NECreateLiveRoomDefaultInfo
-import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomInfo
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomList
 import com.netease.yunxin.kit.livestreamkit.api.model.NELiveRoomSeatRequestItem
+import com.netease.yunxin.kit.livestreamkit.api.model.NELiveStreamRoomInfo
 import com.netease.yunxin.kit.livestreamkit.impl.manager.CoHostManager
 import com.netease.yunxin.kit.livestreamkit.impl.model.AudienceInfoList
 import com.netease.yunxin.kit.livestreamkit.impl.model.LiveRoomDefaultConfig
@@ -36,7 +39,6 @@ import com.netease.yunxin.kit.livestreamkit.impl.service.LiveRoomService
 import com.netease.yunxin.kit.livestreamkit.impl.utils.LiveRoomLog
 import com.netease.yunxin.kit.livestreamkit.impl.utils.LiveRoomUtils
 import com.netease.yunxin.kit.livestreamkit.impl.utils.ScreenUtil
-import com.netease.yunxin.kit.roomkit.api.NECallback
 import com.netease.yunxin.kit.roomkit.api.NECallback2
 import com.netease.yunxin.kit.roomkit.api.NEErrorCode
 import com.netease.yunxin.kit.roomkit.api.NEPreviewRoomContext
@@ -70,8 +72,8 @@ import java.util.concurrent.CopyOnWriteArrayList
 
 internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
     private val roomHttpService: LiveRoomHttpService by lazy { LiveRoomHttpServiceImpl }
-    private var createLiveRoomInfo: NELiveRoomInfo? = null
-    private var joinedRoomInfo: NELiveRoomInfo? = null
+    private var createLiveRoomInfo: NELiveStreamRoomInfo? = null
+    private var joinedRoomInfo: NELiveStreamRoomInfo? = null
     private val myRoomService = LiveRoomService()
     private lateinit var coHostManager: CoHostManager
     private val authListeners: CopyOnWriteArrayList<NEAuthListener> by lazy {
@@ -382,19 +384,18 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
     override fun createRoom(
         params: NECreateLiveRoomParams,
         options: NECreateLiveRoomOptions,
-        callback: NELiveStreamCallback<NELiveRoomInfo>?
+        callback: NELiveStreamCallback<NELiveStreamRoomInfo>?
     ) {
         LiveRoomLog.logApi("createRoom: params=$params")
         val createRoomParam = StartLiveRoomParam(
-            roomTopic = params.title,
-            roomName = params.title,
+            roomTopic = params.liveTopic,
+            roomName = params.liveTopic,
             cover = params.cover ?: "",
             liveType = params.liveType,
             configId = params.configId,
             seatCount = params.seatCount,
             seatApplyMode = params.seatApplyMode,
-            seatInviteMode = params.seatInviteMode,
-            ext = params.extraData ?: ""
+            seatInviteMode = params.seatInviteMode
         )
         roomHttpService.startLiveRoom(
             createRoomParam,
@@ -482,7 +483,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
     }
 
     override fun getLivingRoomInfo(
-        callback: NELiveStreamCallback<NELiveRoomInfo>
+        callback: NELiveStreamCallback<NELiveStreamRoomInfo>
     ) {
         LiveRoomLog.logApi("getLivingRoomInfo")
         roomHttpService.getLivingRoomInfo(
@@ -507,25 +508,21 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
     }
 
     override fun joinRoom(
-        nick: String,
-        avatar: String?,
-        role: String,
-        roomInfo: NELiveRoomInfo,
-        callback: NELiveStreamCallback<NELiveRoomInfo>?
+        params: NEJoinLiveStreamRoomParams,
+        callback: NELiveStreamCallback<NELiveStreamRoomInfo>?
     ) {
-        LiveRoomLog.logApi("joinRoom: nick=$nick")
+        LiveRoomLog.logApi("joinRoom")
         myRoomService.joinRoom(
-            roomInfo.liveModel.roomUuid,
-            role,
-            nick,
-            avatar,
-            null,
+            params.roomInfo.liveModel.roomUuid,
+            params.role,
+            params.nick,
+            params.extraData,
             object : NECallback2<Unit>() {
                 override fun onSuccess(data: Unit?) {
                     LiveRoomLog.i(tag, "joinRoom success")
-                    joinedRoomInfo = roomInfo
+                    joinedRoomInfo = params.roomInfo
                     callback?.onSuccess(
-                        roomInfo
+                        params.roomInfo
                     )
                 }
 
@@ -645,7 +642,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
         joinedRoomInfo = null
     }
 
-    override fun getRoomInfo(liveRecordId: Long, callback: NELiveStreamCallback<NELiveRoomInfo>) {
+    override fun getRoomInfo(liveRecordId: Long, callback: NELiveStreamCallback<NELiveStreamRoomInfo>) {
         roomHttpService.getRoomInfo(
             liveRecordId,
             object : NetRequestCallback<LiveRoomInfo> {
@@ -666,7 +663,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
         )
     }
 
-    override fun getCurrentRoomInfo(): NELiveRoomInfo? {
+    override fun getCurrentRoomInfo(): NELiveStreamRoomInfo? {
         return joinedRoomInfo
     }
 
@@ -1210,18 +1207,42 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
         return myRoomService.switchCamera()
     }
 
-    override fun changeLocalMemberRole(role: String, callback: NECallback<Unit>) {
-        localMember?.uuid?.let { myRoomService.changeMemberRole(it, role, callback) }
-    }
+    override fun changeMemberRole(userUuid: String, role: String, callback: NELiveStreamCallback<Unit>?) {
+        myRoomService.changeMemberRole(
+            userUuid,
+            role,
+            object :
+                NECallback2<Unit>() {
+                override fun onSuccess(data: Unit?) {
+                    if (TextUtils.equals(role, NELiveRoomRole.AUDIENCE.value)) {
+                        myRoomService.joinRtcChannel(
+                            object : NECallback2<Unit>() {
+                                override fun onSuccess(data: Unit?) {
+                                    LiveRoomLog.i(tag, "joinRtcChannel success")
+                                    getInstance().unmuteMyAudio(null)
+                                    getInstance().unmuteMyVideo(null)
+                                    callback?.onSuccess(data)
+                                }
 
-    override fun joinRtcChannel(callback: NECallback<Unit>?) {
-        LiveRoomLog.logApi("joinRtcChannel")
-        return myRoomService.joinRtcChannel(callback)
-    }
+                                override fun onError(code: Int, message: String?) {
+                                    LiveRoomLog.e(tag, "joinRtcChannel failed")
+                                    getInstance().leaveSeat(null)
+                                    callback?.onFailure(code, message)
+                                }
+                            }
+                        )
+                    } else if (TextUtils.equals(role, NELiveRoomRole.AUDIENCE_OBSERVER.value)) {
+                        callback?.onSuccess(data)
+                    } else {
+                        callback?.onSuccess(data)
+                    }
+                }
 
-    override fun leaveRtcChannel(callback: NECallback<Unit>?) {
-        LiveRoomLog.logApi("leaveRtcChannel")
-        return myRoomService.leaveRtcChannel(callback)
+                override fun onError(code: Int, message: String?) {
+                    callback?.onFailure(code, message)
+                }
+            }
+        )
     }
 
     override fun setupLocalVideoCanvas(videoView: NERoomVideoView?): Int {
@@ -1256,7 +1277,7 @@ internal class LiveStreamKitImpl : NELiveStreamKit, CoroutineRunner() {
 
     override fun isLocalOnSeat(): Boolean {
         LiveRoomLog.logApi("isLocalOnSeat")
-        return myRoomService.isLocalOnSeat
+        return myRoomService.isLocalOnSeat()
     }
 
     override fun getOnSeatList(): List<NESeatItem> {

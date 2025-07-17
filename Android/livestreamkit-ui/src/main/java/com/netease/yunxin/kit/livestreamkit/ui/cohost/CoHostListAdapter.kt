@@ -35,7 +35,7 @@ class CoHostListAdapter(val context: Activity) :
             TYPE_EMPTY -> {
                 val emptyView =
                     LayoutInflater.from(parent.context)
-                        .inflate(R.layout.live_apply_seat_list_empty_layout, parent, false)
+                        .inflate(R.layout.live_co_host_list_empty_layout, parent, false)
                 object : RecyclerView.ViewHolder(emptyView) {}
             }
 

@@ -3,13 +3,9 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven{
-            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-        }
         maven {
             setUrl("https://maven.faceunity.com/repository/maven-public/")
         }
-        jcenter()
     }
 }
 dependencyResolutionManagement {
@@ -17,13 +13,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven{
-            url 'https://oss.sonatype.org/content/repositories/snapshots/'
-        }
         maven {
             setUrl("https://maven.faceunity.com/repository/maven-public/")
         }
-        jcenter()
     }
 }
 rootProject.name = "Android"
@@ -33,4 +25,3 @@ include(":beauty-faceunity")
 include(":entertainment-common")
 include(":livestreamkit")
 include(":livestreamkit-ui")
-include(":voiceroomkit")

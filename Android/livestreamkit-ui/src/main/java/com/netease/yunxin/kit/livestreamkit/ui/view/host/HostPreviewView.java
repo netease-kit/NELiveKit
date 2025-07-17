@@ -96,7 +96,7 @@ public class HostPreviewView extends BaseView {
             if (ClickUtils.isFastClick()) {
               return;
             }
-            if (VoiceRoomUtils.isShowFloatView()) {
+            if (RoomUtils.isShowFloatView()) {
               AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
               builder.setTitle(getContext().getString(R.string.voiceroom_tip));
               builder.setMessage(getContext().getString(R.string.click_create_room_tips));
@@ -105,7 +105,7 @@ public class HostPreviewView extends BaseView {
                   getContext().getString(R.string.voiceroom_sure),
                   (dialog, which) -> {
                     liveViewModel.endLive();
-                    VoiceRoomUtils.stopFloatPlay();
+                    RoomUtils.stopFloatPlay();
                     dialog.dismiss();
                   });
               builder.setNegativeButton(
