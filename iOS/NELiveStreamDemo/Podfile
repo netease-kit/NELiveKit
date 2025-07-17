@@ -2,12 +2,12 @@
 platform :ios, '13.0'
 
 # 引入配置文件
-require_relative '../../PodConfigs/config_third.rb'
-require_relative '../../PodConfigs/config_local_common.rb'
-require_relative '../../PodConfigs/config_local_core.rb'
-require_relative '../../PodConfigs/config_local_im.rb'
-require_relative '../../PodConfigs/config_local_room.rb'
-require_relative '../../PodConfigs/config_local_social.rb'
+require_relative '../PodConfigs/config_third.rb'
+require_relative '../PodConfigs/config_local_common.rb'
+require_relative '../PodConfigs/config_local_core.rb'
+require_relative '../PodConfigs/config_local_im.rb'
+require_relative '../PodConfigs/config_local_room.rb'
+require_relative '../PodConfigs/config_local_social.rb'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
@@ -25,16 +25,16 @@ target 'NELiveStreamDemo' do
   
   
 #源码依赖
-  pod 'NEUIKit', :path => '../../UIKit/NEUIKit/NEUIKit.podspec'
-  pod 'NEOrderSong', :path => '../NEOrderSong/NEOrderSong.podspec'
-  pod 'LottieSwift', :path => '../../third_party/lottie/LottieSwift.podspec'
-  pod 'NESocialUIKit', :path => '../../Party/NESocialUIKit/NESocialUIKit.podspec'
-  pod 'NELiveStreamKit', :path => '../NELiveStreamKit/NELiveStreamKit.podspec'
-  pod 'NELiveStreamUIKit', :path => '../NELiveStreamUIKit/NELiveStreamUIKit.podspec'
-  pod 'FaceUnity', :path => '../../third_party/FaceUnity/FaceUnity.podspec'
+  pod 'NELiveStreamKit', :path => '../NELiveStreamKit/NELiveStreamKit/NELiveStreamKit.podspec'
+  pod 'NELiveStreamUIKit', :path => '../NELiveStreamKit/NELiveStreamUIKit/NELiveStreamUIKit.podspec'
+  pod 'NEOrderSong', :path => '../NELiveStreamKit/NEOrderSong/NEOrderSong.podspec'
+  pod 'NEUIKit', :path => '../UIKit/NEUIKit/NEUIKit.podspec'
+  pod 'LottieSwift', :path => '../third_party/lottie/LottieSwift.podspec'
+  pod 'NESocialUIKit', :path => '../Party/NESocialUIKit/NESocialUIKit.podspec'
+  pod 'FaceUnity', :path => '../third_party/FaceUnity/FaceUnity.podspec'
 
 #登录
-  pod 'NELoginSample',:path => '../../OneOnOne/NELoginSample/NELoginSample.podspec'
+  pod 'NELoginSample',:path => '../OneOnOne/NELoginSample/NELoginSample.podspec'
 
 #发布需要打开
 #远端依赖
@@ -44,7 +44,6 @@ pod NECommonKit.name , NECommonKit.version
 pod IHProgressHUD.name
 pod NECommonUIKit.name , NECommonUIKit.version
 #GitPushEnd
-
 
 end
 

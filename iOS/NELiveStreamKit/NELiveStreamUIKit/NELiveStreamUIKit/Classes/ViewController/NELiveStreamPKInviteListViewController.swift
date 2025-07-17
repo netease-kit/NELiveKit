@@ -413,7 +413,7 @@ extension NELiveStreamPKInviteListViewController: NELiveStreamPKInviteCellDelega
         }
       }
     } else {
-      NELiveStreamKit.getInstance().coHostManager.requestConnection(roomUuid: roomUuid, timeoutSeconds: 5) { [weak self] code, msg, _ in
+      NELiveStreamKit.getInstance().coHostManager.requestConnection(roomUuid: roomUuid, timeoutSeconds: 12) { [weak self] code, msg, _ in
         guard let self = self else { return }
         if code == 0 {
           self.fetchPKInviteList()

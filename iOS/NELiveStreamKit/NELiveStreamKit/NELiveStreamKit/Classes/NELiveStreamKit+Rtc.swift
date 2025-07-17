@@ -158,7 +158,7 @@ public extension NELiveStreamKit {
   }
 
   @discardableResult
-  func setLocalVideoView(view: UIView?) -> Int {
+  func setLocalVideoCanvas(view: UIView?) -> Int {
     NELiveStreamLog.apiLog(kitTag, desc: "set local video view: \(view).")
     return Judge.syncCondition {
       let videoView = NERoomVideoView()
@@ -175,7 +175,7 @@ public extension NELiveStreamKit {
   }
 
   @discardableResult
-  func setRemoteVideoView(view: UIView?, userUuid: String) -> Int {
+  func setRemoteVideoCanvas(view: UIView?, userUuid: String) -> Int {
     NELiveStreamLog.apiLog(kitTag, desc: "set remote video view: \(view). userUuid:\(userUuid)")
     return Judge.syncCondition {
       let videoView = NERoomVideoView()

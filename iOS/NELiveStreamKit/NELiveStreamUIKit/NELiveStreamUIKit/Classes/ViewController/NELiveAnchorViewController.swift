@@ -269,7 +269,7 @@ class NELiveAnchorViewController: UIViewController {
   // MARK: - Private Methods
 
   private func addRoomObserver() {
-    // 添加房间结束监听
+    // 添加房间监听
     NELiveStreamKit.getInstance().addLiveStreamListener(self)
     NELiveStreamKit.getInstance().addCoHostListener(self)
   }
@@ -577,7 +577,6 @@ class NELiveAnchorViewController: UIViewController {
     NELiveStreamToast.showLoading()
     let createParam = NECreateLiveStreamRoomParams()
     createParam.configId = NELiveStreamUIManager.shared.configId
-    createParam.roomName = coverSettingPanel.roomName
     createParam.liveTopic = coverSettingPanel.roomName
     createParam.seatCount = 4 // 麦位数量 默认4个
 
@@ -589,9 +588,9 @@ class NELiveAnchorViewController: UIViewController {
           self?.liveInfo = info
 
           let joinParam = NEJoinLiveStreamRoomParams()
-          joinParam.roomUuid = info.liveModel?.roomUuid ?? ""
           joinParam.nick = NELiveStreamUIManager.shared.nickname
-          joinParam.liveRecordId = info.liveModel?.liveRecordId ?? 0
+          joinParam.role = .host
+          joinParam.roomInfo = info
 
           self?.anchorInfoView.configure(avatar: info.anchor?.icon, nickname: info.liveModel?.liveTopic, roomId: info.liveModel?.roomUuid)
 
@@ -611,7 +610,7 @@ class NELiveAnchorViewController: UIViewController {
 
                 self?.switchToLiveMode()
 
-                NELiveStreamKit.getInstance().setLocalVideoView(view: self?.localRender)
+                NELiveStreamKit.getInstance().setLocalVideoCanvas(view: self?.localRender)
               } else {
                 NELiveStreamUILog.errorLog(anchorControllerTag, desc: "开始直播失败")
               }
@@ -822,16 +821,13 @@ class NELiveAnchorViewController: UIViewController {
     }
 
     let joinParam = NEJoinLiveStreamRoomParams()
-    joinParam.roomUuid = info.liveModel?.roomUuid ?? ""
     joinParam.nick = NELiveStreamUIManager.shared.nickname
-    joinParam.liveRecordId = info.liveModel?.liveRecordId ?? 0
-    joinParam.isRejoin = true
     joinParam.roomInfo = liveInfo
 
     anchorInfoView.configure(avatar: info.anchor?.icon, nickname: info.liveModel?.liveTopic, roomId: info.liveModel?.roomUuid)
 
-    // 版权设置为听歌场景
-    NEOrderSong.getInstance().setSongScene(TYPE_LISTENING_TO_MUSIC)
+//    // 版权设置为听歌场景
+//    NEOrderSong.getInstance().setSongScene(TYPE_LISTENING_TO_MUSIC)
     NEOrderSong.getInstance().configRoomSetting(info.liveModel!.roomUuid ?? "", liveRecordId: UInt64(info.liveModel!.liveRecordId))
 
     NELiveStreamKit.getInstance().joinRoom(joinParam) { [weak self] code, msg, _ in
@@ -845,6 +841,7 @@ class NELiveAnchorViewController: UIViewController {
           self?.startAudienceListTimer()
 
           self?.switchToLiveMode()
+          NELiveStreamKit.getInstance().setLocalVideoCanvas(view: self?.localRender)
         } else {
           NELiveStreamUILog.errorLog(anchorControllerTag, desc: "恢复异常直播失败")
         }

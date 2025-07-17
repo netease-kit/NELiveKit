@@ -21,12 +21,10 @@ public class NECreateLiveStreamRoomParams: NSObject {
   public var liveTopic: String?
   /// 直播封面图
   public var cover: String?
-  /// 房间名称
-  public var roomName: String?
-  /// 模版 ID
+  /// 模版 ID, 获取方法请参考(https://doc.yunxin.163.com/neroom/concept/DQzNTEwMDE?platform=client#%E8%8E%B7%E5%8F%96%E7%BB%84%E4%BB%B6%E6%A8%A1%E6%9D%BF-id)
   public var configId: Int = 0
-  /// 麦位数量。如果设置为大于**0**的值，则会在创建的房间中启用麦位管理
-  public var seatCount: Int = 9
+  /// 麦位数量。如果设置为大于**0**的值，则会在创建的房间中启用麦位管理，最大20
+  public var seatCount: Int = 4
 
   /// 麦位模式，0：自由模式，1：管理员控制模式，不传默认为自由模式
   /// 0申请上麦时不需要管理员同意，直接上麦；1:申请上麦时需要管理员同意

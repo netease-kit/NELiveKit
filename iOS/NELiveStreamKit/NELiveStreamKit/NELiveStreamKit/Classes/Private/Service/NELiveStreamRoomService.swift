@@ -102,7 +102,7 @@ class NELiveStreamRoomService {
       "liveTopic": params.liveTopic ?? "",
       "cover": params.cover ?? "",
       "configId": params.configId,
-      "roomName": params.roomName ?? "",
+      "roomName": params.liveTopic ?? "",
       "seatCount": params.seatCount,
       "seatApplyMode": params.seatApplyMode.rawValue,
       "seatInviteMode": params.seatInviteMode,

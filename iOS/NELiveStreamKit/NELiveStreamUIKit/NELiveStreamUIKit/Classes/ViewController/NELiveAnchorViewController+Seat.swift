@@ -149,7 +149,7 @@ extension NELiveAnchorViewController {
         // 为新上麦的观众设置视频视图
         let videoView = mutiConnectView.getVideoView(userId)
         // 设置远程视频视图
-        NELiveStreamKit.getInstance().setRemoteVideoView(view: videoView, userUuid: userId)
+        NELiveStreamKit.getInstance().setRemoteVideoCanvas(view: videoView, userUuid: userId)
         NELiveStreamKit.getInstance().subscribeRemoteVideoStream(userUuid: userId)
       }
     }
@@ -160,7 +160,7 @@ extension NELiveAnchorViewController {
     for leftSeat in seatItems {
       if let userId = leftSeat.user {
         // 移除离开观众的远程视频
-        NELiveStreamKit.getInstance().setRemoteVideoView(view: nil, userUuid: userId)
+        NELiveStreamKit.getInstance().setRemoteVideoCanvas(view: nil, userUuid: userId)
       }
     }
   }

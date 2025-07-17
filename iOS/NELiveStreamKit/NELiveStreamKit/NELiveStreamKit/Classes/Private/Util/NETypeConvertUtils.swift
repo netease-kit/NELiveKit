@@ -13,7 +13,7 @@ func convertToLiveStreamRole(_ role: NERoomRole?) -> NELiveStreamRoomRole {
   case "host":
     return .host
   case "audience":
-    return .audienceMic
+    return .audienceOnSeat
   case NERoomBuiltinRole.Observer:
     return .audience
   default:

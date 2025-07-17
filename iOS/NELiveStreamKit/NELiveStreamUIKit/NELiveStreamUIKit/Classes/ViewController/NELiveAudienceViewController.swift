@@ -260,9 +260,7 @@ class NELiveAudienceViewController: UIViewController {
 
   private func joinRoom() {
     let joinParam = NEJoinLiveStreamRoomParams()
-    joinParam.roomUuid = roomInfo.liveModel?.roomUuid ?? ""
     joinParam.nick = NELiveStreamUIManager.shared.nickname
-    joinParam.liveRecordId = roomInfo.liveModel?.liveRecordId ?? 0
     joinParam.role = .audience
     joinParam.roomInfo = roomInfo
     NELiveStreamInnerSingleton.sharedInstance().roomInfo = roomInfo

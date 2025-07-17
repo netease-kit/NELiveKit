@@ -1,4 +1,14 @@
 # Changelog
+## [2.4.1] - 2025-07-17
+
+### fixed
+- 已知问题修复
+  
+### Compatibility
+- 兼容 `NERoomKit` 1.39.0 版本
+- 兼容 `NIMSDK` 10.9.10 版本
+- 兼容 `NERtcSDK` 5.9.1 版本
+
 ## [2.4.0] - 2025-07-04
 
 ### Added
